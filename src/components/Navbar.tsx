@@ -32,15 +32,18 @@ export function Navbar() {
         </a>
 
         {/* Center Nav Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-brand-muted">
-          <a href="#carrusel" className="hover:text-brand-yellow transition-colors">
-            Carrusel 3D
+        <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-slate-300">
+          <a href="#studio" className="hover:text-brand-yellow transition-colors">
+            Studio
+          </a>
+          <a href="#detalles" className="hover:text-brand-yellow transition-colors">
+            Detalles
+          </a>
+          <a href="#colecciones" className="hover:text-brand-yellow transition-colors">
+            Colecciones
           </a>
           <a href="#galeria" className="hover:text-brand-yellow transition-colors">
-            Galería de Diseños
-          </a>
-          <a href="#sobre-nosotros" className="hover:text-brand-yellow transition-colors">
-            Sobre la Marca
+            Galería
           </a>
           <a
             href={CASEMOOD_INSTAGRAM}
