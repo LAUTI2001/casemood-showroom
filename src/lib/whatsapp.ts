@@ -2,9 +2,8 @@ export const CASEMOOD_PHONE = '5493424353268';
 export const CASEMOOD_INSTAGRAM = 'https://instagram.com/casemood__';
 export const CASEMOOD_STORE_URL = 'https://casemood.pages.dev';
 
-export function createWhatsAppConsultUrl(productName: string, model?: string): string {
-  const modelText = model ? ` para el modelo *${model}*` : '';
-  const message = `¡Hola Case Mood! 👋 Me encantó el diseño *${productName}*${modelText} que vi en el Showroom y quería consultarles disponibilidad y detalles.`;
+export function createWhatsAppConsultUrl(productName: string): string {
+  const message = `¡Hola Case Mood! 👋 Me encantó el diseño *${productName}* que vi en la galería visual y quería consultarles detalles.`;
   return `https://wa.me/${CASEMOOD_PHONE}?text=${encodeURIComponent(message)}`;
 }
 

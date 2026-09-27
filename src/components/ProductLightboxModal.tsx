@@ -68,7 +68,7 @@ export function ProductLightboxModal({ product, open, onClose }: ProductLightbox
     touchStartX.current = null;
   }
 
-  const whatsappUrl = createWhatsAppConsultUrl(product.displayName || product.name, selectedModel);
+  const whatsappUrl = createWhatsAppConsultUrl(product.displayName || product.name);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
