@@ -68,8 +68,8 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
           <span>Case Mood · Galería de Diseños</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-4xl leading-tight">
-          Exposición Visual de <span className="text-brand-yellow">Diseños</span>
+        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl leading-tight">
+          CaseMood, <span className="text-brand-yellow">vestí tu celular con estilo &amp; protección</span>
         </h1>
 
         <p className="mt-4 text-sm sm:text-lg text-brand-muted max-w-xl leading-relaxed">
