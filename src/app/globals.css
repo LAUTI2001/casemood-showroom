@@ -4,11 +4,10 @@
 
 :root {
   --font-sans: -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 body {
-  background-color: #191F29;
+  background-color: #121721;
   color: #F8FAFC;
   overflow-x: hidden;
   font-family: var(--font-sans);
@@ -19,16 +18,16 @@ body {
 /* Custom Selection & Scrollbars */
 ::selection {
   background-color: #F5C518;
-  color: #191F29;
+  color: #121721;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #12161E;
+  background: #0D1117;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -40,17 +39,152 @@ body {
   background: #F5C518;
 }
 
-/* Utilities */
-.bg-radial-glow {
-  background: radial-gradient(circle at 50% 0%, rgba(245, 197, 24, 0.12) 0%, rgba(25, 31, 41, 0) 70%);
+/* Psychedelic Background Mesh & Aurora Animations */
+@keyframes aurora-mesh {
+  0% {
+    background-position: 0% 50%, 50% 0%, 100% 50%;
+  }
+  50% {
+    background-position: 100% 50%, 0% 100%, 50% 100%;
+  }
+  100% {
+    background-position: 0% 50%, 50% 0%, 100% 50%;
+  }
 }
 
-.bg-radial-blue {
-  background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.08) 0%, rgba(25, 31, 41, 0) 60%);
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-/* Mask gradients for marquee / scroll */
-.mask-edges {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+@keyframes float-tilt {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-1.5deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(-16px) rotate(1deg) scale(1);
+  }
+  75% {
+    transform: translateY(-8px) rotate(2deg) scale(1.02);
+  }
+}
+
+@keyframes float-tilt-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(8px) rotate(1.5deg) scale(1.02);
+  }
+  50% {
+    transform: translateY(16px) rotate(-1.5deg) scale(1);
+  }
+  75% {
+    transform: translateY(8px) rotate(-2deg) scale(1.02);
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+
+.animate-aurora {
+  background: radial-gradient(circle at 20% 20%, rgba(245, 197, 24, 0.15), transparent 45%),
+              radial-gradient(circle at 80% 30%, rgba(168, 85, 247, 0.18), transparent 45%),
+              radial-gradient(circle at 50% 80%, rgba(56, 189, 248, 0.15), transparent 50%),
+              #121721;
+  background-size: 200% 200%;
+  animation: aurora-mesh 18s ease infinite;
+}
+
+.animate-float-tilt {
+  animation: float-tilt 6s ease-in-out infinite;
+}
+
+.animate-float-tilt-reverse {
+  animation: float-tilt-reverse 5.5s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 24s linear infinite;
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-left 35s linear infinite;
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-right 35s linear infinite;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Glassmorphism & Neon Glows */
+.glass-panel {
+  background: rgba(26, 33, 46, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-glow {
+  background: rgba(26, 33, 46, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  box-shadow: 0 0 35px rgba(245, 197, 24, 0.08);
+}
+
+.text-stroke-hollow {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
+  color: transparent;
+}
+
+.text-stroke-yellow {
+  -webkit-text-stroke: 1.5px rgba(245, 197, 24, 0.7);
+  color: transparent;
+}
+
+.mask-fade-edges {
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }

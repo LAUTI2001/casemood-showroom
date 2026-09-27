@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Sparkles, ExternalLink, MessageCircle, ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Sparkles, ExternalLink, MessageCircle, ChevronLeft, ChevronRight, ShoppingBag, Eye, Heart } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
@@ -12,11 +12,40 @@ interface GiantProductShowcaseProps {
   total: number;
 }
 
+// Alternating psychedelic color themes per case section
+const COLOR_THEMES = [
+  {
+    glow: 'from-amber-500/25 via-purple-600/20 to-brand-sky/25',
+    accentText: 'text-brand-yellow',
+    badgeBorder: 'border-brand-yellow/50 bg-brand-yellow/15 text-brand-yellow',
+    mascot: '😎',
+  },
+  {
+    glow: 'from-purple-600/30 via-pink-500/25 to-amber-400/20',
+    accentText: 'text-pink-400',
+    badgeBorder: 'border-pink-500/50 bg-pink-500/15 text-pink-300',
+    mascot: '🌸',
+  },
+  {
+    glow: 'from-cyan-500/30 via-blue-600/20 to-purple-500/20',
+    accentText: 'text-brand-sky',
+    badgeBorder: 'border-sky-400/50 bg-sky-400/15 text-sky-300',
+    mascot: '✨',
+  },
+  {
+    glow: 'from-emerald-500/30 via-teal-500/20 to-amber-500/20',
+    accentText: 'text-emerald-400',
+    badgeBorder: 'border-emerald-400/50 bg-emerald-400/15 text-emerald-300',
+    mascot: '🔥',
+  },
+];
+
 export function GiantProductShowcase({ product, index, total }: GiantProductShowcaseProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
+  const theme = COLOR_THEMES[index % COLOR_THEMES.length];
   const images = product.images && product.images.length > 0
     ? product.images
     : ['https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg'];
@@ -58,64 +87,76 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
   return (
     <section
       id={product.id}
-      className="relative min-h-[92vh] sm:min-h-screen w-full flex flex-col justify-center items-center py-12 px-4 sm:px-8 border-b border-brand-border/40 overflow-hidden"
+      className="relative min-h-[95vh] sm:min-h-screen w-full flex flex-col justify-between items-center py-14 px-4 sm:px-8 border-b border-brand-border/40 overflow-hidden select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Background Ambient Glow */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30">
-        <div className="h-[450px] w-[450px] sm:h-[600px] sm:w-[600px] rounded-full bg-brand-yellow/20 blur-[120px]" />
+      {/* Background Giant Artistic Aurora Flare */}
+      <div
+        className={`pointer-events-none absolute inset-0 flex items-center justify-center opacity-40`}
+      >
+        <div className={`h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${theme.glow} blur-[140px] animate-pulse-glow`} />
       </div>
 
-      {/* Top Index & Category */}
+      {/* Background Watermark Headline */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-5 select-none">
+        <span className="text-[22vw] font-black uppercase text-stroke-hollow whitespace-nowrap">
+          {product.name}
+        </span>
+      </div>
+
+      {/* Top Header Row: Index, Category & Mascot Reaction */}
       <div className="relative z-10 w-full max-w-6xl flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-sm sm:text-base font-extrabold text-brand-yellow tracking-widest">
-            {formattedIndex} <span className="text-brand-muted">/ {formattedTotal}</span>
+          <span className="font-mono text-base sm:text-lg font-black tracking-widest text-white">
+            <span className={theme.accentText}>{formattedIndex}</span>
+            <span className="text-brand-muted"> / {formattedTotal}</span>
           </span>
-          <span className="rounded-full bg-brand-bg-deep/80 border border-brand-border px-3 py-1 text-[11px] font-extrabold uppercase tracking-wider text-brand-sky">
+
+          <span className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wider ${theme.badgeBorder}`}>
             {product.category}
           </span>
-          {product.isNew && (
-            <span className="inline-flex items-center gap-1 rounded-full bg-brand-yellow/20 border border-brand-yellow/40 px-2.5 py-0.5 text-[10px] font-extrabold uppercase tracking-wider text-brand-yellow">
-              <Sparkles className="h-3 w-3" />
-              Nuevo
-            </span>
-          )}
+
+          <span className="text-base sm:text-lg animate-bounce-subtle hidden sm:inline-block">
+            {theme.mascot}
+          </span>
         </div>
 
-        {/* Multi-angle indicator pills */}
+        {/* Multi-angle Pills */}
         {images.length > 1 && (
-          <div className="flex items-center gap-1.5 bg-brand-bg-deep/70 backdrop-blur-md px-3 py-1.5 rounded-full border border-brand-border/60">
-            <span className="text-[10px] font-semibold text-brand-muted mr-1">Ángulos:</span>
+          <div className="flex items-center gap-2 glass-panel px-3.5 py-1.5 rounded-full shadow-lg">
+            <span className="text-[11px] font-bold text-brand-muted">Ángulos:</span>
             {images.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setActiveImageIndex(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`h-2.5 rounded-full transition-all duration-300 ${
                   i === activeImageIndex
-                    ? 'w-5 bg-brand-yellow shadow-xs'
+                    ? 'w-6 bg-brand-yellow shadow-md shadow-brand-yellow/40'
                     : 'w-2 bg-slate-600 hover:bg-slate-400'
                 }`}
-                aria-label={`Ver foto ${i + 1}`}
+                aria-label={`Ver ángulo ${i + 1}`}
               />
             ))}
           </div>
         )}
       </div>
 
-      {/* Giant Case Image Canvas */}
-      <div className="relative z-10 w-full max-w-2xl flex-1 flex items-center justify-center my-2 sm:my-4">
-        <div className="relative aspect-[3/4] sm:aspect-square w-full max-w-[340px] sm:max-w-[460px] lg:max-w-[540px] overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl transition-all duration-500 hover:shadow-brand-yellow/10">
+      {/* Giant Case Image Canvas (Center Stage) */}
+      <div className="relative z-10 w-full max-w-3xl flex-1 flex items-center justify-center my-4">
+        <div className="relative aspect-[3/4] sm:aspect-square w-full max-w-[360px] sm:max-w-[500px] lg:max-w-[580px] overflow-hidden rounded-3xl bg-white p-6 sm:p-10 shadow-2xl transition-all duration-700 hover:scale-[1.03] animate-float-tilt">
+          {/* Subtle Inner Glass Aura */}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/90 via-transparent to-white/70" />
+
           {images.map((src, i) => {
             const isCurrent = i === activeImageIndex;
             return (
               <div
                 key={src + i}
-                className={`absolute inset-0 p-6 sm:p-8 transition-opacity duration-700 ease-in-out ${
+                className={`absolute inset-0 p-6 sm:p-10 transition-opacity duration-700 ease-in-out ${
                   isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                 }`}
               >
@@ -124,7 +165,7 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
                     src={src}
                     alt={`${product.displayName} - foto ${i + 1}`}
                     fill
-                    sizes="(min-width: 1024px) 540px, (min-width: 640px) 460px, 90vw"
+                    sizes="(min-width: 1024px) 580px, (min-width: 640px) 500px, 90vw"
                     className="object-contain transition-transform duration-700 hover:scale-105"
                     priority={index === 0 && i === 0}
                   />
@@ -133,48 +174,47 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
             );
           })}
 
-          {/* Desktop Manual Carousel Chevrons */}
+          {/* Desktop Next/Prev Arrow Overlays */}
           {images.length > 1 && (
             <>
               <button
                 type="button"
                 onClick={() => setActiveImageIndex((prev) => (prev - 1 + images.length) % images.length)}
-                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/60 text-white backdrop-blur-xs opacity-0 hover:opacity-100 group-hover:opacity-80 transition-opacity hover:scale-110 active:scale-95"
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-slate-950/70 text-white backdrop-blur-md opacity-0 hover:opacity-100 group-hover:opacity-80 transition-all hover:scale-110 active:scale-95"
                 aria-label="Foto anterior"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-6 w-6" />
               </button>
               <button
                 type="button"
                 onClick={() => setActiveImageIndex((prev) => (prev + 1) % images.length)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-slate-900/60 text-white backdrop-blur-xs opacity-0 hover:opacity-100 group-hover:opacity-80 transition-opacity hover:scale-110 active:scale-95"
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 flex h-11 w-11 items-center justify-center rounded-full bg-slate-950/70 text-white backdrop-blur-md opacity-0 hover:opacity-100 group-hover:opacity-80 transition-all hover:scale-110 active:scale-95"
                 aria-label="Foto siguiente"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-6 w-6" />
               </button>
             </>
           )}
         </div>
       </div>
 
-      {/* Bottom Editorial Info & Minimalist CTAs */}
-      <div className="relative z-10 w-full max-w-3xl text-center space-y-3 mt-2 sm:mt-4">
-        <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white uppercase">
+      {/* Bottom Editorial Presentation & Action Links */}
+      <div className="relative z-10 w-full max-w-3xl text-center space-y-3 mt-4">
+        <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase drop-shadow-[0_4px_25px_rgba(0,0,0,0.8)]">
           {product.displayName}
         </h2>
 
-        <p className="text-sm sm:text-base text-brand-muted max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-lg text-brand-muted max-w-xl mx-auto leading-relaxed font-medium">
           {product.description}
         </p>
 
-
         {/* Minimalist Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
           <a
             href={storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-2xl bg-brand-yellow px-6 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 transition-all hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 rounded-2xl bg-brand-yellow px-7 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-2xl shadow-brand-yellow/25 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
             <span>Ver en Tienda Oficial</span>
@@ -185,7 +225,7 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-2xl border border-brand-border bg-brand-bg-deep/80 px-5 py-3 text-xs sm:text-sm font-bold text-slate-200 backdrop-blur-md transition-all hover:border-emerald-400 hover:text-emerald-400 active:scale-95"
+            className="flex items-center gap-2 rounded-2xl glass-panel px-6 py-3.5 text-xs sm:text-sm font-bold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
           >
             <MessageCircle className="h-4 w-4 text-emerald-400" />
             <span>Consultar por WhatsApp</span>
