@@ -2,14 +2,13 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Sparkles, ExternalLink, MessageCircle, ChevronLeft, ChevronRight, ShoppingBag, Eye, Heart } from 'lucide-react';
+import { Sparkles, ExternalLink, MessageCircle, ChevronLeft, ChevronRight, ShoppingBag, Eye, Star } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
 interface GiantProductShowcaseProps {
   product: ShowroomProduct;
   index: number;
-  total: number;
 }
 
 // Alternating psychedelic color themes per case section
@@ -40,15 +39,35 @@ const COLOR_THEMES = [
   },
 ];
 
-export function GiantProductShowcase({ product, index, total }: GiantProductShowcaseProps) {
+export function GiantProductShowcase({ product, index }: GiantProductShowcaseProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef<HTMLElement | null>(null);
   const touchStartX = useRef<number | null>(null);
 
   const theme = COLOR_THEMES[index % COLOR_THEMES.length];
   const images = product.images && product.images.length > 0
     ? product.images
     : ['https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg'];
+
+  // Scroll Reveal Observer
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   // Auto crossfade between angles every 3.5s
   useEffect(() => {
@@ -79,43 +98,41 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
     }
   }
 
-  const formattedIndex = String(index + 1).padStart(2, '0');
-  const formattedTotal = String(total).padStart(2, '0');
   const storeUrl = getEcommerceProductUrl(product.name);
   const whatsappUrl = createWhatsAppConsultUrl(product.displayName || product.name);
 
   return (
     <section
+      ref={sectionRef}
       id={product.id}
-      className="relative min-h-[95vh] sm:min-h-screen w-full flex flex-col justify-between items-center py-14 px-4 sm:px-8 border-b border-brand-border/40 overflow-hidden select-none"
+      className={`relative min-h-[90vh] sm:min-h-screen w-full flex flex-col justify-between items-center py-12 sm:py-16 px-4 sm:px-8 border-b border-brand-border/40 overflow-hidden select-none transition-all duration-1000 ${
+        isInView ? 'opacity-100 translate-y-0' : 'opacity-40 translate-y-12'
+      }`}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Background Giant Artistic Aurora Flare */}
-      <div
-        className={`pointer-events-none absolute inset-0 flex items-center justify-center opacity-40`}
-      >
-        <div className={`h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${theme.glow} blur-[140px] animate-pulse-glow`} />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-40">
+        <div
+          className={`h-[450px] w-[450px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${theme.glow} blur-[140px] transition-transform duration-1000 ${
+            isInView ? 'scale-100 opacity-90' : 'scale-75 opacity-40'
+          }`}
+        />
       </div>
 
       {/* Background Watermark Headline */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-5 select-none">
-        <span className="text-[22vw] font-black uppercase text-stroke-hollow whitespace-nowrap">
+        <span className="text-[20vw] font-black uppercase text-stroke-hollow whitespace-nowrap">
           {product.name}
         </span>
       </div>
 
-      {/* Top Header Row: Index, Category & Mascot Reaction */}
+      {/* Top Header Row: Category Badge & Angle Switcher */}
       <div className="relative z-10 w-full max-w-6xl flex items-center justify-between mb-4">
         <div className="flex items-center gap-3">
-          <span className="font-mono text-base sm:text-lg font-black tracking-widest text-white">
-            <span className={theme.accentText}>{formattedIndex}</span>
-            <span className="text-brand-muted"> / {formattedTotal}</span>
-          </span>
-
-          <span className={`rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wider ${theme.badgeBorder}`}>
+          <span className={`rounded-full border px-4 py-1 text-xs font-black uppercase tracking-wider ${theme.badgeBorder} shadow-lg shadow-black/30`}>
             {product.category}
           </span>
 
@@ -127,7 +144,7 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
         {/* Multi-angle Pills */}
         {images.length > 1 && (
           <div className="flex items-center gap-2 glass-panel px-3.5 py-1.5 rounded-full shadow-lg">
-            <span className="text-[11px] font-bold text-brand-muted">Ángulos:</span>
+            <span className="text-[11px] font-bold text-brand-muted">Vistas:</span>
             {images.map((_, i) => (
               <button
                 key={i}
@@ -138,7 +155,7 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
                     ? 'w-6 bg-brand-yellow shadow-md shadow-brand-yellow/40'
                     : 'w-2 bg-slate-600 hover:bg-slate-400'
                 }`}
-                aria-label={`Ver ángulo ${i + 1}`}
+                aria-label={`Ver foto ${i + 1}`}
               />
             ))}
           </div>
@@ -147,7 +164,11 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
 
       {/* Giant Case Image Canvas (Center Stage) */}
       <div className="relative z-10 w-full max-w-3xl flex-1 flex items-center justify-center my-4">
-        <div className="relative aspect-[3/4] sm:aspect-square w-full max-w-[360px] sm:max-w-[500px] lg:max-w-[580px] overflow-hidden rounded-3xl bg-white p-6 sm:p-10 shadow-2xl transition-all duration-700 hover:scale-[1.03] animate-float-tilt">
+        <div
+          className={`relative aspect-[3/4] sm:aspect-square w-full max-w-[340px] sm:max-w-[480px] lg:max-w-[560px] overflow-hidden rounded-3xl bg-white p-6 sm:p-10 shadow-2xl transition-all duration-700 hover:scale-[1.03] ${
+            isInView ? 'scale-100 rotate-0' : 'scale-90 -rotate-1'
+          } animate-float-tilt`}
+        >
           {/* Subtle Inner Glass Aura */}
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-white/90 via-transparent to-white/70" />
 
@@ -165,7 +186,7 @@ export function GiantProductShowcase({ product, index, total }: GiantProductShow
                     src={src}
                     alt={`${product.displayName} - foto ${i + 1}`}
                     fill
-                    sizes="(min-width: 1024px) 580px, (min-width: 640px) 500px, 90vw"
+                    sizes="(min-width: 1024px) 560px, (min-width: 640px) 480px, 90vw"
                     className="object-contain transition-transform duration-700 hover:scale-105"
                     priority={index === 0 && i === 0}
                   />

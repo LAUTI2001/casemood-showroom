@@ -33,8 +33,11 @@ export function Navbar() {
 
         {/* Center Nav Links (Desktop) */}
         <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-brand-muted">
-          <a href="#showroom" className="hover:text-brand-yellow transition-colors">
-            Catálogo
+          <a href="#carrusel" className="hover:text-brand-yellow transition-colors">
+            Carrusel 3D
+          </a>
+          <a href="#galeria" className="hover:text-brand-yellow transition-colors">
+            Galería de Diseños
           </a>
           <a href="#sobre-nosotros" className="hover:text-brand-yellow transition-colors">
             Sobre la Marca

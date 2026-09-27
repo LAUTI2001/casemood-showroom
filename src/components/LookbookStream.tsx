@@ -2,7 +2,7 @@
 
 import { useMemo, useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Sparkles, ArrowDown } from 'lucide-react';
+import { Sparkles, ArrowDown, Compass } from 'lucide-react';
 import { GiantProductShowcase } from './GiantProductShowcase';
 import { fetchLiveShowroomProducts } from '../data/products';
 import { CASEMOOD_STORE_URL } from '../lib/whatsapp';
@@ -39,7 +39,7 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
   return (
     <div className="relative w-full">
       {/* Editorial Intro Banner */}
-      <section className="relative min-h-[65vh] sm:min-h-[70vh] flex flex-col items-center justify-center text-center px-4 py-16 overflow-hidden">
+      <section className="relative min-h-[55vh] sm:min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-14 overflow-hidden">
         {/* Decorative Mascot Floaters */}
         <div className="absolute top-12 left-6 sm:left-16 h-16 w-16 sm:h-20 sm:w-20 animate-float-slow opacity-90 hidden sm:block">
           <div className="relative h-full w-full rounded-full border-2 border-brand-yellow/80 bg-white p-1 shadow-lg shadow-brand-yellow/20">
@@ -55,10 +55,10 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
 
         {/* Mascot duo for mobile */}
         <div className="flex items-center gap-3 mb-4 sm:hidden">
-          <div className="relative h-12 w-12 rounded-full border-2 border-brand-yellow bg-white p-0.5">
+          <div className="relative h-12 w-12 rounded-full border-2 border-brand-yellow bg-white p-0.5 shadow-md">
             <Image src="/brand/logo-cool.jpeg" alt="Mascota Cool" fill className="object-cover rounded-full" priority />
           </div>
-          <div className="relative h-12 w-12 rounded-full border-2 border-brand-sky bg-white p-0.5">
+          <div className="relative h-12 w-12 rounded-full border-2 border-brand-sky bg-white p-0.5 shadow-md">
             <Image src="/brand/logo-cute.jpeg" alt="Mascota Cute" fill className="object-cover rounded-full" priority />
           </div>
         </div>
@@ -77,18 +77,18 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
           Diseños a pleno con toda la personalidad de Case Mood.
         </p>
 
-        {/* Category Filter Pills */}
+        {/* Category Filter Pills (No counts) */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-2 max-w-2xl">
           <button
             type="button"
             onClick={() => setSelectedCategory(null)}
             className={`rounded-full px-5 py-2.5 text-xs font-extrabold transition-all ${
               selectedCategory === null
-                ? 'bg-brand-yellow text-brand-bg shadow-md'
+                ? 'bg-brand-yellow text-brand-bg shadow-md scale-105'
                 : 'bg-brand-card text-brand-muted hover:text-white border border-brand-border'
             }`}
           >
-            Todos los Diseños ({products.length})
+            Todos los Diseños
           </button>
 
           {categories.map((cat) => {
@@ -100,7 +100,7 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
                 onClick={() => setSelectedCategory(isSelected ? null : cat)}
                 className={`rounded-full px-5 py-2.5 text-xs font-extrabold transition-all ${
                   isSelected
-                    ? 'bg-brand-yellow text-brand-bg shadow-md'
+                    ? 'bg-brand-yellow text-brand-bg shadow-md scale-105'
                     : 'bg-brand-card text-brand-muted hover:text-white border border-brand-border'
                 }`}
               >
@@ -111,20 +111,19 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
         </div>
 
         {/* Scroll down prompt */}
-        <div className="mt-12 flex flex-col items-center gap-2 text-xs font-bold text-brand-muted animate-bounce-subtle">
-          <span>Deslizá para ver los diseños</span>
+        <div className="mt-10 flex flex-col items-center gap-2 text-xs font-bold text-brand-muted animate-bounce-subtle">
+          <span>Deslizá hacia abajo</span>
           <ArrowDown className="h-4 w-4 text-brand-yellow" />
         </div>
       </section>
 
-      {/* Giant Full-Screen Cases Stream: One design after another */}
+      {/* Giant Full-Screen Cases Stream: One design after another (No counts) */}
       <div className="w-full">
         {filtered.map((product, idx) => (
           <GiantProductShowcase
             key={product.id || product.name}
             product={product}
             index={idx}
-            total={filtered.length}
           />
         ))}
       </div>
