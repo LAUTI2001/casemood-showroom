@@ -1,16 +1,13 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import {
   ChevronLeft,
   ChevronRight,
-  Sparkles,
   ShoppingBag,
   ExternalLink,
   MessageCircle,
-  Eye,
-  Flame,
   Zap,
 } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
@@ -57,7 +54,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
   const storeUrl = getEcommerceProductUrl(currentProduct.name);
   const whatsappUrl = createWhatsAppConsultUrl(currentProduct.displayName || currentProduct.name);
 
-  // Compute 5 visible slides for coverflow effect [-2, -1, 0, 1, 2]
+  // Compute visible indexes for desktop coverflow [-2, -1, 0, 1, 2]
   const getVisibleIndex = (offset: number) => {
     const total = validProducts.length;
     return (currentIndex + offset + total) % total;
@@ -96,7 +93,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
     >
       {/* Background Psychedelic Glow Orb */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30">
-        <div className="h-[450px] w-[450px] sm:h-[650px] sm:w-[650px] rounded-full bg-gradient-to-tr from-brand-yellow/30 via-purple-600/30 to-pink-500/30 blur-[130px] animate-pulse-glow" />
+        <div className="h-[350px] w-[350px] sm:h-[650px] sm:w-[650px] rounded-full bg-gradient-to-tr from-brand-yellow/30 via-purple-600/30 to-pink-500/30 blur-[100px] sm:blur-[130px] animate-pulse-glow" />
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center mb-8 sm:mb-12">
@@ -108,14 +105,14 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-3xl leading-tight">
           Deslizá y Explorá el <span className="text-brand-yellow">Lookbook 3D</span>
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-brand-muted max-w-lg">
+        <p className="mt-3 text-xs sm:text-base text-brand-muted max-w-lg">
           Tocá las flechas o deslizá para descubrir la colección completa de fundas Case Mood.
         </p>
       </div>
 
       {/* 3D Coverflow Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex items-center justify-center min-h-[380px] sm:min-h-[460px] lg:min-h-[520px]">
-        {/* Far Left Slide (-2) - Hidden on small mobile */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex items-center justify-center min-h-[320px] sm:min-h-[460px] lg:min-h-[500px]">
+        {/* Far Left Slide (-2) - Desktop only */}
         {prevProduct2 && (
           <div
             onClick={() => setCurrentIndex(getVisibleIndex(-2))}
@@ -132,11 +129,11 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
           </div>
         )}
 
-        {/* Left Slide (-1) */}
+        {/* Left Slide (-1) - Desktop only */}
         {prevProduct && (
           <div
             onClick={prevSlide}
-            className="absolute left-2 sm:left-12 lg:left-24 z-20 cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 -rotate-6"
+            className="absolute left-4 lg:left-24 z-20 hidden md:block cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 -rotate-6"
           >
             <div className="relative h-56 w-40 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-3 shadow-2xl">
               <Image
@@ -154,7 +151,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         )}
 
         {/* Center Active Slide (0) */}
-        <div className="relative z-30 flex flex-col items-center scale-100 sm:scale-105 transition-all duration-500">
+        <div className="relative z-30 flex flex-col items-center scale-100 sm:scale-105 transition-all duration-500 px-8 sm:px-0">
           <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[440px] lg:w-[330px] overflow-hidden rounded-3xl bg-white p-5 sm:p-7 shadow-2xl shadow-brand-yellow/15 border-2 border-brand-yellow/50 animate-float-tilt">
             {/* Dynamic Angle Crossfade */}
             {images.map((src, i) => {
@@ -202,11 +199,11 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
           </div>
         </div>
 
-        {/* Right Slide (1) */}
+        {/* Right Slide (1) - Desktop only */}
         {nextProduct && (
           <div
             onClick={nextSlide}
-            className="absolute right-2 sm:right-12 lg:right-24 z-20 cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 rotate-6"
+            className="absolute right-4 lg:right-24 z-20 hidden md:block cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 rotate-6"
           >
             <div className="relative h-56 w-40 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-3 shadow-2xl">
               <Image
@@ -223,7 +220,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
           </div>
         )}
 
-        {/* Far Right Slide (2) - Hidden on small mobile */}
+        {/* Far Right Slide (2) - Desktop only */}
         {nextProduct2 && (
           <div
             onClick={() => setCurrentIndex(getVisibleIndex(2))}
@@ -244,41 +241,41 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         <button
           type="button"
           onClick={prevSlide}
-          className="absolute left-1 sm:left-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
+          className="absolute left-1 sm:left-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
           aria-label="Diseño anterior"
         >
-          <ChevronLeft className="h-6 w-6" />
+          <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
         <button
           type="button"
           onClick={nextSlide}
-          className="absolute right-1 sm:right-4 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
+          className="absolute right-1 sm:right-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
           aria-label="Diseño siguiente"
         >
-          <ChevronRight className="h-6 w-6" />
+          <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       </div>
 
       {/* Active Design Info & CTAs */}
-      <div className="relative z-10 max-w-xl mx-auto text-center mt-8 space-y-3">
+      <div className="relative z-10 max-w-xl mx-auto text-center mt-6 sm:mt-8 space-y-3">
         <div className="inline-block rounded-full bg-brand-yellow/15 border border-brand-yellow/40 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-brand-yellow">
           {currentProduct.category}
         </div>
 
-        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight drop-shadow-md">
+        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight drop-shadow-md">
           {currentProduct.displayName}
         </h3>
 
-        <p className="text-sm sm:text-base text-brand-muted leading-relaxed font-medium">
+        <p className="text-xs sm:text-base text-brand-muted leading-relaxed font-medium px-4">
           {currentProduct.description}
         </p>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 pt-3">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 px-4 w-full max-w-xs sm:max-w-none mx-auto">
           <a
             href={storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-2xl bg-brand-yellow px-6 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
             <span>Ver en Tienda Oficial</span>
@@ -289,7 +286,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-2xl glass-panel px-5 py-3 text-xs sm:text-sm font-bold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full glass-panel px-5 py-3 text-xs sm:text-sm font-bold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
           >
             <MessageCircle className="h-4 w-4 text-emerald-400" />
             <span>Consultar WhatsApp</span>
@@ -298,8 +295,8 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
       </div>
 
       {/* Thumbnail Bar Below Carousel */}
-      <div className="relative z-10 max-w-4xl mx-auto mt-10 overflow-x-auto py-2 mask-fade-edges scrollbar-none">
-        <div className="flex items-center justify-center gap-2.5 min-w-max px-4">
+      <div className="relative z-10 max-w-4xl mx-auto mt-8 sm:mt-10 overflow-x-auto py-2 mask-fade-edges scrollbar-none">
+        <div className="flex items-center justify-center gap-2 sm:gap-2.5 min-w-max px-4">
           {validProducts.map((p, idx) => {
             const isActive = idx === currentIndex;
             return (
@@ -310,7 +307,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
                   setCurrentIndex(idx);
                   setActiveAngleIndex(0);
                 }}
-                className={`group relative h-14 w-12 sm:h-16 sm:w-14 flex-shrink-0 overflow-hidden rounded-xl bg-white p-1 transition-all duration-300 ${
+                className={`group relative h-12 w-10 sm:h-16 sm:w-14 shrink-0 overflow-hidden rounded-xl bg-white p-1 transition-all duration-300 ${
                   isActive
                     ? 'ring-2 ring-brand-yellow scale-110 shadow-lg shadow-brand-yellow/30'
                     : 'opacity-40 hover:opacity-80 hover:scale-105'
@@ -321,7 +318,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
                   src={p.images[0]}
                   alt={p.displayName}
                   fill
-                  className="object-contain p-1"
+                  className="object-contain p-0.5"
                 />
               </button>
             );

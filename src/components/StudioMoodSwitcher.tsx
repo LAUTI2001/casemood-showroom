@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, MessageCircle, ExternalLink, Sparkles, Check, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShoppingBag, MessageCircle, ExternalLink, Sparkles, Check } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
@@ -105,11 +105,11 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
   const whatsappUrl = createWhatsAppConsultUrl(matchingProduct?.displayName || activeSwatch.name);
 
   return (
-    <section className="relative w-full py-20 sm:py-28 px-4 sm:px-8 bg-[#0D111A] overflow-hidden border-b border-white/10 select-none">
+    <section className="relative w-full py-16 sm:py-28 px-4 sm:px-8 bg-[#0D111A] overflow-hidden border-b border-white/10 select-none">
       {/* Studio Backdrop Light */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-60 transition-all duration-700">
         <div
-          className={`h-[500px] w-[500px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${activeSwatch.glowColor} blur-[140px]`}
+          className={`h-[350px] w-[350px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${activeSwatch.glowColor} blur-[90px] sm:blur-[140px]`}
         />
       </div>
 
@@ -123,19 +123,19 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
           Elegí tu <span className={activeSwatch.textColor}>{activeSwatch.label}</span>
         </h2>
-        <p className="mt-3 text-sm sm:text-base text-slate-400 max-w-md">
+        <p className="mt-2 sm:mt-3 text-xs sm:text-base text-slate-400 max-w-md px-2">
           {activeSwatch.tagline}
         </p>
 
         {/* Central Giant Studio Case */}
-        <div className="relative my-10 sm:my-14 flex flex-col items-center justify-center">
-          <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[450px] lg:w-[340px] overflow-hidden rounded-3xl bg-white p-6 sm:p-8 shadow-2xl shadow-black/80 border border-white/15 transition-all duration-700 hover:scale-[1.03]">
+        <div className="relative my-8 sm:my-14 flex flex-col items-center justify-center">
+          <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[450px] lg:w-[340px] overflow-hidden rounded-3xl bg-white p-5 sm:p-8 shadow-2xl shadow-black/80 border border-white/15 transition-all duration-700 hover:scale-[1.03]">
             {images.map((src, i) => {
               const isCurrent = i === activeAngleIdx;
               return (
                 <div
                   key={src + i}
-                  className={`absolute inset-0 p-6 sm:p-8 transition-opacity duration-500 ease-in-out ${
+                  className={`absolute inset-0 p-5 sm:p-8 transition-opacity duration-500 ease-in-out ${
                     isCurrent ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
                   }`}
                 >
@@ -144,7 +144,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
                       src={src}
                       alt={`${matchingProduct?.displayName || activeSwatch.name} - ${i + 1}`}
                       fill
-                      sizes="(min-width: 1024px) 340px, 280px"
+                      sizes="(min-width: 1024px) 340px, 260px"
                       className="object-contain transition-transform duration-500 hover:scale-105"
                       priority
                     />
@@ -183,11 +183,11 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
 
         {/* Apple-style Color Swatches Bar */}
         <div className="w-full max-w-xl flex flex-col items-center">
-          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">
+          <span className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3 sm:mb-4">
             Explorá los acabados
           </span>
 
-          <div className="flex items-center justify-center gap-3.5 sm:gap-4 flex-wrap px-4">
+          <div className="flex items-center justify-center gap-2.5 sm:gap-4 flex-wrap px-2">
             {SWATCH_CONFIGS.map((swatch, idx) => {
               const isSelected = idx === selectedIdx;
               return (
@@ -198,7 +198,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
                     setSelectedIdx(idx);
                     setActiveAngleIdx(0);
                   }}
-                  className={`group relative flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300 ${
+                  className={`group relative flex h-9 w-9 sm:h-12 sm:w-12 items-center justify-center rounded-full transition-all duration-300 ${
                     isSelected
                       ? 'scale-115 ring-2 ring-white shadow-lg shadow-black'
                       : 'hover:scale-105 opacity-70 hover:opacity-100'
@@ -207,10 +207,10 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
                   aria-label={`Seleccionar acabado ${swatch.label}`}
                 >
                   {isSelected && (
-                    <Check className="h-4 w-4 text-white drop-shadow-md stroke-[3]" />
+                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-white drop-shadow-md stroke-[3]" />
                   )}
                   {/* Tooltip on hover */}
-                  <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-0.5 text-[10px] font-bold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100">
+                  <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-0.5 text-[10px] font-bold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 hidden sm:block">
                     {swatch.label}
                   </span>
                 </button>
@@ -220,12 +220,12 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
         </div>
 
         {/* Action CTAs for Active Finish */}
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 w-full max-w-xs sm:max-w-none mx-auto">
           <a
             href={storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full bg-brand-yellow px-7 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-lg shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-7 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-lg shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
             <span>Ver {activeSwatch.name} en Tienda</span>
@@ -236,7 +236,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
           >
             <MessageCircle className="h-4 w-4 text-emerald-400" />
             <span>Consultar Disponibilidad</span>
