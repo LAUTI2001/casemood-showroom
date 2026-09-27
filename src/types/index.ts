@@ -21,6 +21,19 @@ export interface ShowroomApiConfig {
   enabled: boolean;
 }
 
+export interface ShowroomSwatchConfig {
+  id: string;
+  name: string;
+  productName?: string;
+  label: string;
+  finishName: string;
+  colorHex: string;
+  textColor?: string;
+  tagline: string;
+  glowColor?: string;
+  enabled?: boolean;
+}
+
 export interface RawCatalogProduct {
   id: string;
   name: string;
@@ -34,3 +47,4 @@ export interface RawCatalogProduct {
   order?: number;
   active: boolean;
 }
+

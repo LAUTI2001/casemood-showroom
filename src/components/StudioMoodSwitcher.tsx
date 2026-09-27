@@ -1,115 +1,80 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { ShoppingBag, MessageCircle, ExternalLink, Sparkles, Check } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
-import type { ShowroomProduct } from '../types';
+import { DEFAULT_SWATCH_CONFIGS } from '../data/products';
+import type { ShowroomProduct, ShowroomSwatchConfig } from '../types';
 
 interface StudioMoodSwitcherProps {
   products: ShowroomProduct[];
+  initialSwatches?: ShowroomSwatchConfig[];
 }
 
-interface SwatchItem {
-  name: string;
-  label: string;
-  finishName: string;
-  colorHex: string;
-  textColor: string;
-  tagline: string;
-  glowColor: string;
-}
-
-const SWATCH_CONFIGS: SwatchItem[] = [
-  {
-    name: 'AURORA',
-    label: 'Aurora Glow',
-    finishName: 'Gradiente Ácido & Pastel',
-    colorHex: '#F5C518',
-    textColor: 'text-amber-400',
-    tagline: 'Reflejos etéreos que mutan de color según el ángulo de la luz.',
-    glowColor: 'from-amber-500/20 via-yellow-400/15 to-transparent',
-  },
-  {
-    name: 'WINE ROYALE',
-    label: 'Wine Royale',
-    finishName: 'Borgoña Aterciopelado',
-    colorHex: '#722F37',
-    textColor: 'text-rose-400',
-    tagline: 'Profundidad cromática en vino tinto con acabado satinado anti-marcas.',
-    glowColor: 'from-rose-900/30 via-red-600/20 to-transparent',
-  },
-  {
-    name: 'WAVE BLACK',
-    label: 'Wave Black',
-    finishName: 'Negro Carbón 3D',
-    colorHex: '#1E2430',
-    textColor: 'text-slate-300',
-    tagline: 'Relieve de ondas ergonómicas táctiles con absorción de impactos.',
-    glowColor: 'from-slate-700/30 via-slate-900/40 to-transparent',
-  },
-  {
-    name: 'SURF',
-    label: 'Surf Coast',
-    finishName: 'Turquesa Oceánico',
-    colorHex: '#00A896',
-    textColor: 'text-teal-400',
-    tagline: 'Vibra costera playera con marco reforzado para aventuras cotidianas.',
-    glowColor: 'from-teal-600/25 via-cyan-500/20 to-transparent',
-  },
-  {
-    name: 'WILD',
-    label: 'Wild Leopard',
-    finishName: 'Ocre & Ébano Street',
-    colorHex: '#C68B59',
-    textColor: 'text-orange-400',
-    tagline: 'Estampado animal print de alta fidelidad con protección perimetral.',
-    glowColor: 'from-orange-700/25 via-amber-600/20 to-transparent',
-  },
-  {
-    name: 'VELVET SILVER',
-    label: 'Velvet Silver',
-    finishName: 'Plata Metalizado Silk',
-    colorHex: '#94A3B8',
-    textColor: 'text-slate-200',
-    tagline: 'Sensación de seda metalizada al tacto con esquinas reforzadas.',
-    glowColor: 'from-slate-400/25 via-slate-600/20 to-transparent',
-  },
-  {
-    name: 'SPARK ROSA',
-    label: 'Spark Rosa',
-    finishName: 'Fucsia Neón Holográfico',
-    colorHex: '#EC4899',
-    textColor: 'text-pink-400',
-    tagline: 'Destellos de energía vibrante que resaltan sobre cualquier superficie.',
-    glowColor: 'from-pink-600/30 via-purple-600/20 to-transparent',
-  },
-];
-
-export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
+export function StudioMoodSwitcher({ products, initialSwatches }: StudioMoodSwitcherProps) {
+  const [swatches, setSwatches] = useState<ShowroomSwatchConfig[]>(
+    initialSwatches && initialSwatches.length > 0 ? initialSwatches : DEFAULT_SWATCH_CONFIGS
+  );
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [activeAngleIdx, setActiveAngleIdx] = useState(0);
 
-  const activeSwatch = SWATCH_CONFIGS[selectedIdx];
+  // Client-side live sync with Admin settings
+  useEffect(() => {
+    fetch('https://casemood.pages.dev/api/settings')
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        const raw = data?.settings?.showroom_swatches_config;
+        if (raw) {
+          try {
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              const activeList = parsed.filter((s: ShowroomSwatchConfig) => s && s.enabled !== false);
+              if (activeList.length > 0) {
+                setSwatches(activeList);
+              }
+            }
+          } catch {
+            // keep existing swatches on parse error
+          }
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const safeIdx = selectedIdx < swatches.length ? selectedIdx : 0;
+  const activeSwatch = swatches[safeIdx] || DEFAULT_SWATCH_CONFIGS[0];
+
+  // Target product name linked to this color swatch
+  const targetProductName = (activeSwatch.productName || activeSwatch.name || '').trim();
 
   // Find matching product in catalog
   const matchingProduct = products.find(
-    (p) => p.name.toUpperCase() === activeSwatch.name.toUpperCase()
+    (p) => p.name.trim().toUpperCase() === targetProductName.toUpperCase()
+  ) || products.find(
+    (p) => p.displayName?.trim().toUpperCase() === targetProductName.toUpperCase()
   ) || products[0];
 
   const images = matchingProduct?.images && matchingProduct.images.length > 0
     ? matchingProduct.images
     : ['https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg'];
 
-  const storeUrl = getEcommerceProductUrl(matchingProduct?.name || activeSwatch.name);
-  const whatsappUrl = createWhatsAppConsultUrl(matchingProduct?.displayName || activeSwatch.name);
+  const storeUrl = getEcommerceProductUrl(matchingProduct?.name || targetProductName);
+  const whatsappUrl = createWhatsAppConsultUrl(matchingProduct?.displayName || matchingProduct?.name || activeSwatch.label);
+
+  const glowStyle = activeSwatch.colorHex
+    ? {
+        background: `radial-gradient(circle, ${activeSwatch.colorHex}35 0%, ${activeSwatch.colorHex}15 45%, transparent 70%)`,
+      }
+    : undefined;
 
   return (
     <section className="relative w-full py-16 sm:py-28 px-4 sm:px-8 bg-[#0D111A] overflow-hidden border-b border-white/10 select-none">
-      {/* Studio Backdrop Light */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-60 transition-all duration-700">
+      {/* Studio Backdrop Dynamic Light Glow */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-70 transition-all duration-700">
         <div
-          className={`h-[350px] w-[350px] sm:h-[700px] sm:w-[700px] rounded-full bg-gradient-to-tr ${activeSwatch.glowColor} blur-[90px] sm:blur-[140px]`}
+          className="h-[360px] w-[360px] sm:h-[720px] sm:w-[720px] rounded-full blur-[90px] sm:blur-[140px] transition-all duration-700"
+          style={glowStyle}
         />
       </div>
 
@@ -117,11 +82,11 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
         {/* Apple-style Studio Header */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1 text-xs font-semibold text-slate-300 backdrop-blur-md mb-3">
           <Sparkles className="h-3.5 w-3.5 text-brand-yellow" />
-          <span>Case Mood Studio · Selector de Acabados</span>
+          <span>Case Mood Studio · Selector de Acabados &amp; Colores</span>
         </div>
 
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-          Elegí tu <span className={activeSwatch.textColor}>{activeSwatch.label}</span>
+          Elegí tu <span style={{ color: activeSwatch.colorHex || '#F5C518' }}>{activeSwatch.label}</span>
         </h2>
         <p className="mt-2 sm:mt-3 text-xs sm:text-base text-slate-400 max-w-md px-2">
           {activeSwatch.tagline}
@@ -142,7 +107,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
                   <div className="relative h-full w-full">
                     <Image
                       src={src}
-                      alt={`${matchingProduct?.displayName || activeSwatch.name} - ${i + 1}`}
+                      alt={`${matchingProduct?.displayName || targetProductName} - ${i + 1}`}
                       fill
                       sizes="(min-width: 1024px) 340px, 260px"
                       className="object-contain transition-transform duration-500 hover:scale-105"
@@ -172,11 +137,13 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
           </div>
 
           {/* Finish details pill below image */}
-          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold text-slate-300">
+          <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold text-slate-300 backdrop-blur-md">
             <span
-              className="h-2.5 w-2.5 rounded-full border border-white/40"
+              className="h-2.5 w-2.5 rounded-full border border-white/40 shadow-xs"
               style={{ backgroundColor: activeSwatch.colorHex }}
             />
+            <span className="font-bold text-white">{matchingProduct?.name || targetProductName}</span>
+            <span className="text-slate-400">·</span>
             <span>{activeSwatch.finishName}</span>
           </div>
         </div>
@@ -188,11 +155,11 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
           </span>
 
           <div className="flex items-center justify-center gap-2.5 sm:gap-4 flex-wrap px-2">
-            {SWATCH_CONFIGS.map((swatch, idx) => {
-              const isSelected = idx === selectedIdx;
+            {swatches.map((swatch, idx) => {
+              const isSelected = idx === safeIdx;
               return (
                 <button
-                  key={swatch.name}
+                  key={swatch.id || swatch.name + idx}
                   type="button"
                   onClick={() => {
                     setSelectedIdx(idx);
@@ -211,7 +178,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
                   )}
                   {/* Tooltip on hover */}
                   <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md bg-slate-900 px-2 py-0.5 text-[10px] font-bold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 hidden sm:block">
-                    {swatch.label}
+                    {swatch.label} ({swatch.productName || swatch.name})
                   </span>
                 </button>
               );
@@ -228,7 +195,7 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-7 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-lg shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
-            <span>Ver {activeSwatch.name} en Tienda</span>
+            <span>Ver {matchingProduct?.name || targetProductName} en Tienda</span>
             <ExternalLink className="h-3.5 w-3.5 opacity-70" />
           </a>
 
@@ -246,3 +213,4 @@ export function StudioMoodSwitcher({ products }: StudioMoodSwitcherProps) {
     </section>
   );
 }
+

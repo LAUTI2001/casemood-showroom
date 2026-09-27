@@ -22,7 +22,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'surf',
     name: 'SURF',
-    displayName: 'SURF COAST',
+    displayName: 'SURF',
     category: 'Urban & Vibes',
     price: 16000,
     models: ['iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 15 PRO', 'iPhone 16 PRO MAX'],
@@ -39,7 +39,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'wild',
     name: 'WILD',
-    displayName: 'WILD LEOPARD',
+    displayName: 'WILD',
     category: 'Streetwear',
     price: 14000,
     models: ['iPhone 14', 'iPhone 15', 'iPhone 16', 'iPhone 16 PRO', 'iPhone 17 PRO'],
@@ -73,7 +73,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'bahia',
     name: 'BAHIA',
-    displayName: 'BAHIA TROPICAL',
+    displayName: 'BAHIA',
     category: 'Naturaleza',
     price: 14000,
     models: ['iPhone 13', 'iPhone 14', 'iPhone 14 PRO', 'iPhone 15', 'iPhone 15 PRO', 'Samsung S23'],
@@ -89,7 +89,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'cherry',
     name: 'CHERRY',
-    displayName: 'CHERRY SWEET',
+    displayName: 'CHERRY',
     category: 'Pop & Vibes',
     price: 13000,
     models: ['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15'],
@@ -136,7 +136,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'wave-white',
     name: 'WAVE WITHE',
-    displayName: 'WAVE WHITE',
+    displayName: 'WAVE WITHE',
     category: 'Minimalista',
     price: 12000,
     models: ['iPhone 13', 'iPhone 14', 'iPhone 15', 'iPhone 16'],
@@ -280,7 +280,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'stickers',
     name: 'STICKERS',
-    displayName: 'STICKERS COLLAGE',
+    displayName: 'STICKERS',
     category: 'Pop & Vibes',
     price: 12000,
     models: ['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15'],
@@ -296,7 +296,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'street',
     name: 'STREET',
-    displayName: 'STREET MOOD',
+    displayName: 'STREET',
     category: 'Streetwear',
     price: 13000,
     models: ['iPhone 14', 'iPhone 15', 'iPhone 16 PRO'],
@@ -312,7 +312,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'universo',
     name: 'UNIVERSO',
-    displayName: 'UNIVERSO COSMIC',
+    displayName: 'UNIVERSO',
     category: 'Aesthetic',
     price: 13000,
     models: ['iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15 PRO'],
@@ -329,7 +329,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'wings',
     name: 'WINGS',
-    displayName: 'WINGS FLIGHT',
+    displayName: 'WINGS',
     category: 'Minimalista',
     price: 14000,
     models: ['iPhone 14', 'iPhone 15', 'iPhone 17', '17 PRO'],
@@ -345,7 +345,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'sweetie',
     name: 'SWEETIE',
-    displayName: 'SWEETIE VIBES',
+    displayName: 'SWEETIE',
     category: 'Pop & Vibes',
     price: 15000,
     models: ['iPhone 12', 'iPhone 13', 'iPhone 14', 'iPhone 15'],
@@ -361,7 +361,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'teddy',
     name: 'TEDDY',
-    displayName: 'TEDDY BEAR',
+    displayName: 'TEDDY',
     category: 'Pop & Vibes',
     price: 12000,
     models: ['iPhone 11', 'iPhone 12', 'iPhone 13', 'iPhone 14'],
@@ -377,7 +377,7 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
   {
     id: 'urban',
     name: 'URBAN',
-    displayName: 'URBAN STREETWEAR',
+    displayName: 'URBAN',
     category: 'Streetwear',
     price: 13500,
     models: ['iPhone 12', 'iPhone 13', 'iPhone 14 PRO', 'iPhone 15 PRO', 'Samsung S23 Ultra'],
@@ -390,6 +390,94 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
     storeUrl: getEcommerceProductUrl('URBAN'),
   },
 ];
+
+export const DEFAULT_SWATCH_CONFIGS: import('../types').ShowroomSwatchConfig[] = [
+  {
+    id: 'aurora',
+    name: 'AURORA',
+    productName: 'AURORA',
+    label: 'Aurora Glow',
+    finishName: 'Gradiente Ácido & Pastel',
+    colorHex: '#F5C518',
+    textColor: 'text-amber-400',
+    tagline: 'Reflejos etéreos que mutan de color según el ángulo de la luz.',
+    glowColor: 'from-amber-500/20 via-yellow-400/15 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'wine-royale',
+    name: 'WINE ROYALE',
+    productName: 'WINE ROYALE',
+    label: 'Wine Royale',
+    finishName: 'Borgoña Aterciopelado',
+    colorHex: '#722F37',
+    textColor: 'text-rose-400',
+    tagline: 'Profundidad cromática en vino tinto con acabado satinado anti-marcas.',
+    glowColor: 'from-rose-900/30 via-red-600/20 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'wave-black',
+    name: 'WAVE BLACK',
+    productName: 'WAVE BLACK',
+    label: 'Wave Black',
+    finishName: 'Negro Carbón 3D',
+    colorHex: '#1E2430',
+    textColor: 'text-slate-300',
+    tagline: 'Relieve de ondas ergonómicas táctiles con absorción de impactos.',
+    glowColor: 'from-slate-700/30 via-slate-900/40 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'surf',
+    name: 'SURF',
+    productName: 'SURF',
+    label: 'Surf Coast',
+    finishName: 'Turquesa Oceánico',
+    colorHex: '#00A896',
+    textColor: 'text-teal-400',
+    tagline: 'Vibra costera playera con marco reforzado para aventuras cotidianas.',
+    glowColor: 'from-teal-600/25 via-cyan-500/20 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'wild',
+    name: 'WILD',
+    productName: 'WILD',
+    label: 'Wild Leopard',
+    finishName: 'Ocre & Ébano Street',
+    colorHex: '#C68B59',
+    textColor: 'text-orange-400',
+    tagline: 'Estampado animal print de alta fidelidad con protección perimetral.',
+    glowColor: 'from-orange-700/25 via-amber-600/20 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'velvet-silver',
+    name: 'VELVET SILVER',
+    productName: 'VELVET SILVER',
+    label: 'Velvet Silver',
+    finishName: 'Plata Metalizado Silk',
+    colorHex: '#94A3B8',
+    textColor: 'text-slate-200',
+    tagline: 'Sensación de seda metalizada al tacto con esquinas reforzadas.',
+    glowColor: 'from-slate-400/25 via-slate-600/20 to-transparent',
+    enabled: true,
+  },
+  {
+    id: 'spark-rosa',
+    name: 'SPARK ROSA',
+    productName: 'SPARK ROSA',
+    label: 'Spark Rosa',
+    finishName: 'Fucsia Neón Holográfico',
+    colorHex: '#EC4899',
+    textColor: 'text-pink-400',
+    tagline: 'Destellos de energía vibrante que resaltan sobre cualquier superficie.',
+    glowColor: 'from-pink-600/30 via-purple-600/20 to-transparent',
+    enabled: true,
+  },
+];
+
 
 export async function fetchLiveShowroomProducts(): Promise<ShowroomProduct[]> {
   try {
@@ -518,3 +606,21 @@ export async function fetchLiveShowroomProducts(): Promise<ShowroomProduct[]> {
     return DEFAULT_SHOWROOM_PRODUCTS;
   }
 }
+
+export async function fetchLiveShowroomSwatches(): Promise<import('../types').ShowroomSwatchConfig[]> {
+  try {
+    const res = await fetch('https://casemood.pages.dev/api/settings').catch(() => null);
+    if (!res || !res.ok) return DEFAULT_SWATCH_CONFIGS;
+    const { settings } = (await res.json()) as { settings: Record<string, string> };
+    const raw = settings?.showroom_swatches_config;
+    if (!raw) return DEFAULT_SWATCH_CONFIGS;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      return parsed.filter((s) => s && s.enabled !== false);
+    }
+    return DEFAULT_SWATCH_CONFIGS;
+  } catch {
+    return DEFAULT_SWATCH_CONFIGS;
+  }
+}
+

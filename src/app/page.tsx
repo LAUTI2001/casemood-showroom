@@ -1,4 +1,4 @@
-import { fetchLiveShowroomProducts } from '../data/products';
+import { fetchLiveShowroomProducts, fetchLiveShowroomSwatches } from '../data/products';
 import { ScrollProgressBar } from '../components/ScrollProgressBar';
 import { AppleKeynoteHero } from '../components/AppleKeynoteHero';
 import { StudioMoodSwitcher } from '../components/StudioMoodSwitcher';
@@ -13,7 +13,10 @@ import { AboutSection } from '../components/AboutSection';
 export const revalidate = 60;
 
 export default async function ShowroomPage() {
-  const products = await fetchLiveShowroomProducts();
+  const [products, swatches] = await Promise.all([
+    fetchLiveShowroomProducts(),
+    fetchLiveShowroomSwatches(),
+  ]);
 
   return (
     <div className="flex flex-col w-full bg-[#0A0D14]">
@@ -25,7 +28,7 @@ export default async function ShowroomPage() {
 
       {/* 2. Apple Studio Finish & Color Switcher */}
       <div id="studio" className="scroll-mt-12 w-full">
-        <StudioMoodSwitcher products={products} />
+        <StudioMoodSwitcher products={products} initialSwatches={swatches} />
       </div>
 
       {/* 3. Apple Engineering & Protection Hotspots */}
