@@ -96,8 +96,8 @@ export function AppleKeynoteHero({ products }: AppleKeynoteHeroProps) {
             const isRight = i === 2;
 
             let transformClass = 'z-20 scale-100 sm:scale-105';
-            if (isLeft) transformClass = 'z-10 -translate-x-24 sm:-translate-x-44 -rotate-12 scale-90 opacity-80';
-            if (isRight) transformClass = 'z-10 translate-x-24 sm:translate-x-44 rotate-12 scale-90 opacity-80';
+            if (isLeft) transformClass = 'z-10 -translate-x-16 sm:-translate-x-44 -rotate-6 sm:-rotate-12 scale-85 sm:scale-90 opacity-75 sm:opacity-80';
+            if (isRight) transformClass = 'z-10 translate-x-16 sm:translate-x-44 rotate-6 sm:rotate-12 scale-85 sm:scale-90 opacity-75 sm:opacity-80';
 
             const imgSrc = product.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
 
