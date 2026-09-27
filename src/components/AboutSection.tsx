@@ -42,7 +42,7 @@ export function AboutSection() {
             </h2>
 
             <p className="text-sm sm:text-base leading-relaxed text-brand-muted">
-              Nacimos para romper con las fundas genéricas y aburridas. Diseñamos accesorios
+              Nacimos para romper con las fundas genéricas y aburridas. Traemos accesorios
               que combinan moda, resistencia extrema y una vibra fresca para que lleves tu teléfono
               siempre protegido con el estilo que te representa.
             </p>
