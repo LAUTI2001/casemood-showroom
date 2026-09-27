@@ -1,22 +1,32 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Sparkles, HelpCircle } from 'lucide-react';
 import { CatalogFilters } from './CatalogFilters';
 import { ProductCard } from './ProductCard';
 import { ProductLightboxModal } from './ProductLightboxModal';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
+import { fetchLiveShowroomProducts } from '../data/products';
 import type { ShowroomProduct } from '../types';
 
 interface ShowroomCatalogProps {
   products: ShowroomProduct[];
 }
 
-export function ShowroomCatalog({ products }: ShowroomCatalogProps) {
+export function ShowroomCatalog({ products: initialProducts }: ShowroomCatalogProps) {
+  const [products, setProducts] = useState<ShowroomProduct[]>(initialProducts);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedModel, setSelectedModel] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [modalProduct, setModalProduct] = useState<ShowroomProduct | null>(null);
+
+  useEffect(() => {
+    fetchLiveShowroomProducts()
+      .then((data) => {
+        if (data && data.length > 0) setProducts(data);
+      })
+      .catch(() => {});
+  }, []);
 
   const categories = useMemo(() => {
     const set = new Set(products.map((p) => p.category).filter(Boolean));

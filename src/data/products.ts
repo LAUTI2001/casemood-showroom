@@ -101,8 +101,8 @@ export const DEFAULT_SHOWROOM_PRODUCTS: ShowroomProduct[] = [
 export async function fetchLiveShowroomProducts(): Promise<ShowroomProduct[]> {
   try {
     const [catalogRes, settingsRes] = await Promise.all([
-      fetch('https://casemood.pages.dev/api/catalog', { next: { revalidate: 60 } }).catch(() => null),
-      fetch('https://casemood.pages.dev/api/settings', { next: { revalidate: 60 } }).catch(() => null),
+      fetch('https://casemood.pages.dev/api/catalog').catch(() => null),
+      fetch('https://casemood.pages.dev/api/settings').catch(() => null),
     ]);
 
     if (!catalogRes || !catalogRes.ok) {
