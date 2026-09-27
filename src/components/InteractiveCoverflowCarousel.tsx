@@ -54,7 +54,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
   const storeUrl = getEcommerceProductUrl(currentProduct.name);
   const whatsappUrl = createWhatsAppConsultUrl(currentProduct.displayName || currentProduct.name);
 
-  // Compute visible indexes for desktop coverflow [-2, -1, 0, 1, 2]
+  // Compute visible indexes for 3D coverflow
   const getVisibleIndex = (offset: number) => {
     const total = validProducts.length;
     return (currentIndex + offset + total) % total;
@@ -74,9 +74,9 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
     setIsPaused(false);
     if (touchStartX.current !== null) {
       const diff = touchStartX.current - e.changedTouches[0].clientX;
-      if (diff > 45) {
+      if (diff > 35) {
         nextSlide();
-      } else if (diff < -45) {
+      } else if (diff < -35) {
         prevSlide();
       }
       touchStartX.current = null;
@@ -85,19 +85,19 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
 
   return (
     <section
-      className="relative w-full py-16 sm:py-24 px-4 sm:px-8 overflow-hidden bg-gradient-to-b from-[#121721] via-[#161c28] to-[#121721] border-y border-brand-border/40 select-none"
+      className="relative w-full py-16 sm:py-24 px-2 sm:px-8 overflow-hidden bg-gradient-to-b from-[#121721] via-[#161c28] to-[#121721] border-y border-brand-border/40 select-none"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
       {/* Background Psychedelic Glow Orb */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-30">
-        <div className="h-[350px] w-[350px] sm:h-[650px] sm:w-[650px] rounded-full bg-gradient-to-tr from-brand-yellow/30 via-purple-600/30 to-pink-500/30 blur-[100px] sm:blur-[130px] animate-pulse-glow" />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-35">
+        <div className="h-[380px] w-[380px] sm:h-[650px] sm:w-[650px] rounded-full bg-gradient-to-tr from-brand-yellow/35 via-purple-600/30 to-pink-500/30 blur-[90px] sm:blur-[130px] animate-pulse-glow" />
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center mb-8 sm:mb-12">
-        <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/40 bg-brand-yellow/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-brand-yellow mb-3 backdrop-blur-md">
+      <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center mb-6 sm:mb-12 px-4">
+        <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/40 bg-brand-yellow/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-brand-yellow mb-3 backdrop-blur-md shadow-lg shadow-brand-yellow/10">
           <Zap className="h-3.5 w-3.5 text-brand-yellow animate-bounce-subtle" />
           <span>Carrusel 3D · Diseños en Movimiento</span>
         </div>
@@ -105,18 +105,18 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-3xl leading-tight">
           Deslizá y Explorá el <span className="text-brand-yellow">Lookbook 3D</span>
         </h2>
-        <p className="mt-3 text-xs sm:text-base text-brand-muted max-w-lg">
+        <p className="mt-2 sm:mt-3 text-xs sm:text-base text-brand-muted max-w-lg">
           Tocá las flechas o deslizá para descubrir la colección completa de fundas Case Mood.
         </p>
       </div>
 
-      {/* 3D Coverflow Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto flex items-center justify-center min-h-[320px] sm:min-h-[460px] lg:min-h-[500px]">
-        {/* Far Left Slide (-2) - Desktop only */}
+      {/* 3D Coverflow Stage (Dynamic 3D depth on mobile & desktop) */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto flex items-center justify-center min-h-[340px] sm:min-h-[460px] lg:min-h-[500px]">
+        {/* Far Left Slide (-2) - Desktop */}
         {prevProduct2 && (
           <div
             onClick={() => setCurrentIndex(getVisibleIndex(-2))}
-            className="absolute left-0 sm:left-4 lg:left-8 z-10 hidden md:block cursor-pointer opacity-25 scale-75 blur-[1px] transition-all duration-500 hover:opacity-50 hover:scale-80 -rotate-12"
+            className="absolute left-0 sm:left-4 lg:left-8 z-10 hidden lg:block cursor-pointer opacity-25 scale-75 blur-[1px] transition-all duration-500 hover:opacity-50 hover:scale-80 -rotate-12"
           >
             <div className="relative h-48 w-36 lg:h-64 lg:w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl">
               <Image
@@ -129,30 +129,27 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
           </div>
         )}
 
-        {/* Left Slide (-1) - Desktop only */}
+        {/* Left Slide (-1) - Visible on mobile as tilted side peek */}
         {prevProduct && (
           <div
             onClick={prevSlide}
-            className="absolute left-4 lg:left-24 z-20 hidden md:block cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 -rotate-6"
+            className="absolute -left-6 sm:left-4 lg:left-24 z-20 cursor-pointer opacity-40 sm:opacity-60 scale-75 sm:scale-85 lg:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 -rotate-12 sm:-rotate-6"
           >
-            <div className="relative h-56 w-40 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-3 shadow-2xl">
+            <div className="relative h-52 w-36 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-2.5 sm:p-3 shadow-2xl border border-white/20">
               <Image
                 src={prevProduct.images[0]}
                 alt={prevProduct.displayName}
                 fill
-                className="object-contain p-2"
+                className="object-contain p-1.5 sm:p-2"
               />
-              <div className="absolute inset-0 bg-brand-bg/20 hover:bg-transparent transition-colors" />
+              <div className="absolute inset-0 bg-brand-bg/30 hover:bg-transparent transition-colors" />
             </div>
-            <p className="mt-2 text-center text-xs font-black uppercase tracking-wider text-slate-300 truncate max-w-[150px] mx-auto">
-              {prevProduct.displayName}
-            </p>
           </div>
         )}
 
-        {/* Center Active Slide (0) */}
-        <div className="relative z-30 flex flex-col items-center scale-100 sm:scale-105 transition-all duration-500 px-8 sm:px-0">
-          <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[440px] lg:w-[330px] overflow-hidden rounded-3xl bg-white p-5 sm:p-7 shadow-2xl shadow-brand-yellow/15 border-2 border-brand-yellow/50 animate-float-tilt">
+        {/* Center Active Slide (0) - Full Glory */}
+        <div className="relative z-30 flex flex-col items-center scale-100 sm:scale-105 transition-all duration-500">
+          <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[440px] lg:w-[330px] overflow-hidden rounded-3xl bg-white p-5 sm:p-7 shadow-2xl shadow-brand-yellow/20 border-2 sm:border-3 border-brand-yellow animate-float-tilt">
             {/* Dynamic Angle Crossfade */}
             {images.map((src, i) => {
               const isCurrent = i === activeAngleIndex;
@@ -179,7 +176,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
 
             {/* In-Card Angle Dots */}
             {images.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-slate-950/70 backdrop-blur-md px-3 py-1 rounded-full">
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full border border-white/20">
                 {images.map((_, idx) => (
                   <button
                     key={idx}
@@ -199,32 +196,29 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
           </div>
         </div>
 
-        {/* Right Slide (1) - Desktop only */}
+        {/* Right Slide (1) - Visible on mobile as tilted side peek */}
         {nextProduct && (
           <div
             onClick={nextSlide}
-            className="absolute right-4 lg:right-24 z-20 hidden md:block cursor-pointer opacity-50 sm:opacity-60 scale-85 sm:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 rotate-6"
+            className="absolute -right-6 sm:right-4 lg:right-24 z-20 cursor-pointer opacity-40 sm:opacity-60 scale-75 sm:scale-85 lg:scale-90 transition-all duration-500 hover:opacity-90 hover:scale-95 rotate-12 sm:rotate-6"
           >
-            <div className="relative h-56 w-40 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-3 shadow-2xl">
+            <div className="relative h-52 w-36 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-2.5 sm:p-3 shadow-2xl border border-white/20">
               <Image
                 src={nextProduct.images[0]}
                 alt={nextProduct.displayName}
                 fill
-                className="object-contain p-2"
+                className="object-contain p-1.5 sm:p-2"
               />
-              <div className="absolute inset-0 bg-brand-bg/20 hover:bg-transparent transition-colors" />
+              <div className="absolute inset-0 bg-brand-bg/30 hover:bg-transparent transition-colors" />
             </div>
-            <p className="mt-2 text-center text-xs font-black uppercase tracking-wider text-slate-300 truncate max-w-[150px] mx-auto">
-              {nextProduct.displayName}
-            </p>
           </div>
         )}
 
-        {/* Far Right Slide (2) - Desktop only */}
+        {/* Far Right Slide (2) - Desktop */}
         {nextProduct2 && (
           <div
             onClick={() => setCurrentIndex(getVisibleIndex(2))}
-            className="absolute right-0 sm:right-4 lg:right-8 z-10 hidden md:block cursor-pointer opacity-25 scale-75 blur-[1px] transition-all duration-500 hover:opacity-50 hover:scale-80 rotate-12"
+            className="absolute right-0 sm:right-4 lg:right-8 z-10 hidden lg:block cursor-pointer opacity-25 scale-75 blur-[1px] transition-all duration-500 hover:opacity-50 hover:scale-80 rotate-12"
           >
             <div className="relative h-48 w-36 lg:h-64 lg:w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl">
               <Image
@@ -241,7 +235,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         <button
           type="button"
           onClick={prevSlide}
-          className="absolute left-1 sm:left-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
+          className="absolute left-2 sm:left-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/90 text-white border border-brand-yellow/40 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
           aria-label="Diseño anterior"
         >
           <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -249,7 +243,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
         <button
           type="button"
           onClick={nextSlide}
-          className="absolute right-1 sm:right-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/80 text-white border border-brand-yellow/30 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
+          className="absolute right-2 sm:right-4 z-40 flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-slate-900/90 text-white border border-brand-yellow/40 backdrop-blur-md shadow-2xl hover:bg-brand-yellow hover:text-brand-bg hover:scale-110 active:scale-95 transition-all"
           aria-label="Diseño siguiente"
         >
           <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
@@ -257,25 +251,25 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
       </div>
 
       {/* Active Design Info & CTAs */}
-      <div className="relative z-10 max-w-xl mx-auto text-center mt-6 sm:mt-8 space-y-3">
-        <div className="inline-block rounded-full bg-brand-yellow/15 border border-brand-yellow/40 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-brand-yellow">
+      <div className="relative z-10 max-w-xl mx-auto text-center mt-6 sm:mt-8 space-y-3 px-4">
+        <div className="inline-block rounded-full bg-brand-yellow/15 border border-brand-yellow/40 px-3.5 py-1 text-xs font-black uppercase tracking-wider text-brand-yellow shadow-md">
           {currentProduct.category}
         </div>
 
-        <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight drop-shadow-md">
+        <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white uppercase tracking-tight drop-shadow-md">
           {currentProduct.displayName}
         </h3>
 
-        <p className="text-xs sm:text-base text-brand-muted leading-relaxed font-medium px-4">
+        <p className="text-xs sm:text-base text-brand-muted leading-relaxed font-medium">
           {currentProduct.description}
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 px-4 w-full max-w-xs sm:max-w-none mx-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-3 w-full max-w-xs sm:max-w-none mx-auto">
           <a
             href={storeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full bg-brand-yellow px-6 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/25 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
             <span>Ver en Tienda Oficial</span>
@@ -286,7 +280,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full glass-panel px-5 py-3 text-xs sm:text-sm font-bold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
+            className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full glass-panel px-5 py-3.5 text-xs sm:text-sm font-bold text-slate-200 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
           >
             <MessageCircle className="h-4 w-4 text-emerald-400" />
             <span>Consultar WhatsApp</span>
@@ -307,7 +301,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
                   setCurrentIndex(idx);
                   setActiveAngleIndex(0);
                 }}
-                className={`group relative h-12 w-10 sm:h-16 sm:w-14 shrink-0 overflow-hidden rounded-xl bg-white p-1 transition-all duration-300 ${
+                className={`group relative h-13 w-11 sm:h-16 sm:w-14 shrink-0 overflow-hidden rounded-xl bg-white p-1 transition-all duration-300 ${
                   isActive
                     ? 'ring-2 ring-brand-yellow scale-110 shadow-lg shadow-brand-yellow/30'
                     : 'opacity-40 hover:opacity-80 hover:scale-105'
