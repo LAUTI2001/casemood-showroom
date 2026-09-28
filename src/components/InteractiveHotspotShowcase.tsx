@@ -3,71 +3,72 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { Shield, Plus } from 'lucide-react';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import type { ShowroomProduct } from '../types';
 
 interface InteractiveHotspotShowcaseProps {
   product?: ShowroomProduct;
 }
 
-interface HotspotItem {
-  id: number;
-  shortLabel: string;
-  topPercent: number;
-  leftPercent: number;
-  title: string;
-  subtitle: string;
-  description: string;
-  icon: string;
-}
-
-const HOTSPOTS: HotspotItem[] = [
-  {
-    id: 1,
-    shortLabel: 'Cámara',
-    topPercent: 22,
-    leftPercent: 32,
-    title: 'Bisel Elevado de 1.5mm',
-    subtitle: 'Protección Integral de Cámara',
-    description: 'El marco sobresale milimétricamente para evitar que los lentes rocen o se rayen al apoyar el celular en cualquier superficie.',
-    icon: '📸',
-  },
-  {
-    id: 2,
-    shortLabel: 'Air-Cushion',
-    topPercent: 12,
-    leftPercent: 82,
-    title: 'Esquinas Air-Cushion',
-    subtitle: 'Absorción de Impactos 360°',
-    description: 'Micro-cámaras de aire perimetrales que disipan la fuerza de caídas de hasta 2 metros protegiendo la pantalla y el chasis.',
-    icon: '🛡️',
-  },
-  {
-    id: 3,
-    shortLabel: 'Color UV',
-    topPercent: 54,
-    leftPercent: 48,
-    title: 'Impresión Ultra-HD UV',
-    subtitle: 'Fidelidad de Color Permanente',
-    description: 'Pigmentos curados bajo luz ultravioleta. Los colores mantienen su brillo y saturación intactos, sin desteñirse ni descascararse.',
-    icon: '🎨',
-  },
-  {
-    id: 4,
-    shortLabel: 'Grip',
-    topPercent: 82,
-    leftPercent: 70,
-    title: 'Textura Soft-Touch',
-    subtitle: 'Agarre Seguro & Anti-Huellas',
-    description: 'Acabado suave al tacto que no resbala de las manos ni acumula marcas de dedos o transpiración.',
-    icon: '✨',
-  },
-];
-
 export function InteractiveHotspotShowcase({ product }: InteractiveHotspotShowcaseProps) {
+  const { texts } = useShowroomConfig();
   const [activeHotspotId, setActiveHotspotId] = useState<number>(1);
 
-  const activeHotspot = HOTSPOTS.find((h) => h.id === activeHotspotId) || HOTSPOTS[0];
-  const caseImg = product?.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1790527620/casemood-productos/ofbyhfqwjbiwakoailuq.jpg';
+  const hotspots = [
+    {
+      id: 1,
+      shortLabel: 'Cámara',
+      topPercent: 22,
+      leftPercent: 32,
+      title: texts.hotspot1Title || 'Bordes de Cámara Elevados',
+      subtitle: 'Protección Integral de Cámara',
+      description:
+        texts.hotspot1Desc ||
+        'El marco biselado de 1.8mm evita que los lentes toquen superficies y se rayen al apoyar el celular.',
+      icon: '📸',
+    },
+    {
+      id: 2,
+      shortLabel: 'Air-Cushion',
+      topPercent: 12,
+      leftPercent: 82,
+      title: texts.hotspot2Title || 'TPU Anti-Shock Perimetral',
+      subtitle: 'Absorción de Impactos 360°',
+      description:
+        texts.hotspot2Desc ||
+        'Bumper perimetral con micro-cámaras de aire que disipan la fuerza de caídas de hasta 2 metros.',
+      icon: '🛡️',
+    },
+    {
+      id: 3,
+      shortLabel: 'Calce',
+      topPercent: 54,
+      leftPercent: 48,
+      title: texts.hotspot3Title || 'Calce y Botoneras Milimétricas',
+      subtitle: 'Corte Láser & Acceso Total',
+      description:
+        texts.hotspot3Desc ||
+        'Corte láser exacto con respuesta táctil suave y acceso libre a puertos de carga y parlantes.',
+      icon: '⚡',
+    },
+    {
+      id: 4,
+      shortLabel: 'Color HD',
+      topPercent: 82,
+      leftPercent: 70,
+      title: texts.hotspot4Title || 'Impresión Ultra HD Anti-Desgaste',
+      subtitle: 'Fidelidad de Color Permanente',
+      description:
+        texts.hotspot4Desc ||
+        'Tintas curadas UV que no se decoloran, no se rayan ni se ponen amarillas con el uso diario.',
+      icon: '🎨',
+    },
+  ];
+
+  const activeHotspot = hotspots.find((h) => h.id === activeHotspotId) || hotspots[0];
+  const caseImg =
+    product?.images[0] ||
+    'https://res.cloudinary.com/tehmhtfm/image/upload/v1790527620/casemood-productos/ofbyhfqwjbiwakoailuq.jpg';
 
   return (
     <section className="relative w-full py-16 sm:py-24 px-4 sm:px-8 bg-[#090C12] overflow-hidden border-b border-white/10 select-none">
@@ -79,20 +80,21 @@ export function InteractiveHotspotShowcase({ product }: InteractiveHotspotShowca
         <div className="flex flex-col items-center text-center mb-8 sm:mb-14">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/30 bg-brand-yellow/10 px-4 py-1 text-xs font-semibold text-brand-yellow mb-3">
             <Shield className="h-3.5 w-3.5" />
-            <span>Ingeniería &amp; Detalle</span>
+            <span>{texts.hotspotsBadge || 'Ingeniería & Detalle'}</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-            Cada milímetro tiene un <span className="text-brand-yellow">propósito</span>
+            {texts.hotspotsTitle || 'Cada milímetro cuenta.'}
           </h2>
           <p className="mt-3 text-xs sm:text-base text-slate-400 max-w-xl">
-            Tocá los puntos interactivos sobre la funda para descubrir cómo combinamos arte de vanguardia con protección militar.
+            {texts.hotspotsSubtitle ||
+              'Tocá los puntos interactivos sobre la funda para descubrir cómo combinamos estética con protección militar.'}
           </p>
         </div>
 
         {/* Mobile Quick Selector Tabs */}
         <div className="lg:hidden flex items-center justify-center gap-2 flex-wrap mb-6">
-          {HOTSPOTS.map((h) => {
+          {hotspots.map((h) => {
             const isCurrent = h.id === activeHotspotId;
             return (
               <button
@@ -127,7 +129,7 @@ export function InteractiveHotspotShowcase({ product }: InteractiveHotspotShowca
                 />
 
                 {/* Pulsing Hotspot Pins */}
-                {HOTSPOTS.map((hotspot) => {
+                {hotspots.map((hotspot) => {
                   const isActive = hotspot.id === activeHotspotId;
                   return (
                     <button
@@ -182,7 +184,7 @@ export function InteractiveHotspotShowcase({ product }: InteractiveHotspotShowca
 
           {/* Right: Desktop Feature Details Cards (4-row list) */}
           <div className="hidden lg:flex lg:col-span-5 flex-col gap-3.5">
-            {HOTSPOTS.map((hotspot) => {
+            {hotspots.map((hotspot) => {
               const isActive = hotspot.id === activeHotspotId;
               return (
                 <div

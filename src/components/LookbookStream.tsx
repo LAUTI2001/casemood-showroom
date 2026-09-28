@@ -1,10 +1,10 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { Sparkles, ArrowDown, Compass } from 'lucide-react';
 import { GiantProductShowcase } from './GiantProductShowcase';
-import { fetchLiveShowroomProducts } from '../data/products';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import { CASEMOOD_STORE_URL } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
@@ -13,16 +13,9 @@ interface LookbookStreamProps {
 }
 
 export function LookbookStream({ initialProducts }: LookbookStreamProps) {
-  const [products, setProducts] = useState<ShowroomProduct[]>(initialProducts);
+  const { texts, products: contextProducts } = useShowroomConfig();
+  const products = contextProducts.length > 0 ? contextProducts : initialProducts;
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchLiveShowroomProducts()
-      .then((data) => {
-        if (data && data.length > 0) setProducts(data);
-      })
-      .catch(() => {});
-  }, []);
 
   const categories = useMemo(() => {
     const set = new Set(products.map((p) => p.category).filter(Boolean));
@@ -65,7 +58,7 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
 
         <div className="inline-flex items-center gap-1.5 rounded-full border border-brand-yellow/30 bg-brand-yellow/10 px-4 py-1 text-xs font-black uppercase tracking-wider text-brand-yellow mb-3 backdrop-blur-md">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Case Mood · Galería de Diseños</span>
+          <span>{texts.lookbookBadge || 'Case Mood · Galería de Diseños'}</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-4xl leading-tight">
@@ -73,8 +66,8 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
         </h1>
 
         <p className="mt-4 text-sm sm:text-lg text-brand-muted max-w-xl leading-relaxed">
-          Deslizá y descubrí en pantalla completa cada una de nuestras estampas exclusivas.
-          Diseños a pleno con toda la personalidad de Case Mood.
+          {texts.lookbookTitle ||
+            'Deslizá y descubrí en pantalla completa cada una de nuestras estampas exclusivas.'}
         </p>
 
         {/* Category Filter Pills (No counts) */}
@@ -117,33 +110,30 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
         </div>
       </section>
 
-      {/* Giant Full-Screen Cases Stream: One design after another (No counts) */}
-      <div className="w-full">
+      {/* Giant Full-Screen Cases Stream */}
+      <div className="space-y-16 sm:space-y-24 pb-20">
         {filtered.map((product, idx) => (
-          <GiantProductShowcase
-            key={product.id || product.name}
-            product={product}
-            index={idx}
-          />
+          <GiantProductShowcase key={product.id || product.name} product={product} index={idx} />
         ))}
       </div>
 
-      {/* Bottom Floating Lookbook Nav CTA */}
-      <div className="py-16 text-center bg-brand-bg-deep border-t border-brand-border/40 px-4">
-        <h3 className="text-2xl sm:text-3xl font-black text-white">
-          ¿Te gustó algún diseño?
-        </h3>
-        <p className="mt-2 text-xs sm:text-sm text-brand-muted max-w-md mx-auto">
-          Podés conseguirlo directamente ingresando a nuestra tienda online oficial.
+      {/* Final Catalog CTA */}
+      <div className="mx-auto max-w-3xl px-4 py-12 text-center border-t border-brand-border/60">
+        <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-yellow/15 text-brand-yellow mb-4">
+          <Compass className="h-6 w-6" />
+        </div>
+        <h3 className="text-2xl sm:text-3xl font-black text-white">¿Te gustó algún diseño?</h3>
+        <p className="mt-2 text-sm text-brand-muted">
+          Encontrá el stock en tiempo real y todos los modelos de celular compatibles en la tienda oficial.
         </p>
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-6 flex items-center justify-center">
           <a
             href={CASEMOOD_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-2xl bg-brand-yellow px-7 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
+            className="inline-flex items-center gap-2 rounded-full bg-brand-yellow px-8 py-3.5 text-sm font-black text-brand-bg hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all shadow-xl shadow-brand-yellow/20"
           >
-            Ir a la Tienda Online Oficial
+            <span>Explorar Tienda Completa</span>
           </a>
         </div>
       </div>

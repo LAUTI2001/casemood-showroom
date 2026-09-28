@@ -607,6 +607,85 @@ export async function fetchLiveShowroomProducts(): Promise<ShowroomProduct[]> {
   }
 }
 
+export const DEFAULT_SHOWROOM_TEXTS: import('../types').ShowroomTextsConfig = {
+  heroBadge: 'Presentamos Case Mood',
+  heroHeadline1: 'Diseñadas para destacar.',
+  heroHeadline2: 'Construidas para proteger.',
+  heroDescription:
+    'Explorá nuestras fundas de diseño exclusivo con protección de grado superior, calce milimétrico y la mejor onda para tu celular.',
+  heroCtaExplore: 'Explorar Showroom',
+  heroCtaStore: 'Ir a la Tienda Oficial',
+
+  studioBadge: 'Studio Mood Switcher',
+  studioTitle: 'Elegí tu Mood. Sentí el Acabado.',
+  studioSubtitle:
+    'Tocá cada color para ver cómo se transforma la funda en tiempo real y descubrir sus detalles.',
+
+  hotspotsBadge: 'Ingeniería Case Mood',
+  hotspotsTitle: 'Cada milímetro cuenta.',
+  hotspotsSubtitle:
+    'Tocá los puntos interactivos para descubrir por qué nuestras fundas protegen más sin perder estilo.',
+  hotspot1Title: 'Bordes de Cámara Elevados',
+  hotspot1Desc: 'Marco biselado de 1.8mm que evita que los lentes toquen superficies y se rayen.',
+  hotspot2Title: 'TPU Anti-Shock Perimetral',
+  hotspot2Desc: 'Bumper con amortiguación de impacto en caídas de hasta 2 metros.',
+  hotspot3Title: 'Calce y Botoneras Milimétricas',
+  hotspot3Desc: 'Corte láser exacto con respuesta táctil suave y acceso libre a puertos.',
+  hotspot4Title: 'Impresión Ultra HD Anti-Desgaste',
+  hotspot4Desc: 'Tintas curadas UV que no se decoloran, no se rayan ni se ponen amarillas.',
+
+  bentoBadge: 'Colecciones',
+  bentoTitle: 'Diseñadas para cada Mood',
+  bentoSubtitle:
+    'Cuatro estéticas distintas pensadas para acompañar tu vibra en cada momento.',
+
+  cineBadge: 'Lo Más Destacado',
+  cineTitle: 'Momentos que marcan estilo.',
+  cineSubtitle: 'Una mirada cinematográfica a nuestras fundas más elegidas.',
+
+  coverflowBadge: 'Carrusel 3D · Diseños en Movimiento',
+  coverflowTitle: 'Deslizá y Explorá el Lookbook 3D',
+  coverflowSubtitle:
+    'Tocá las flechas o deslizá para descubrir la colección completa de fundas Case Mood.',
+
+  lookbookBadge: 'Galería de Diseños',
+  lookbookTitle: 'Diseños a pleno con toda la personalidad de Case Mood.',
+  lookbookSubtitle: 'Explorá todas nuestras fundas en alta definición.',
+
+  aboutBadge: 'Conocé Case Mood',
+  aboutTitle: 'Más que una funda, la personalidad de tu teléfono.',
+  aboutParagraph:
+    'Nacimos para romper con las fundas genéricas y aburridas. Traemos accesorios que combinan moda, resistencia extrema y una vibra fresca para que lleves tu teléfono siempre protegido con el estilo que te representa.',
+  aboutMascotTitle: 'Creado con pasión por el detalle',
+  aboutMascotSubtitle: 'Seguinos en Instagram @casemood__',
+  aboutPillar1Title: 'Protección Grado Superior',
+  aboutPillar1Desc: 'Bordes elevados que cuidan la pantalla y el lente de la cámara contra caídas y rayones.',
+  aboutPillar2Title: 'Materiales Premium',
+  aboutPillar2Desc: 'TPU flexible con placa de policarbonato rígida para absorción óptima de impactos.',
+  aboutPillar3Title: 'Calce y Botoneras Exactas',
+  aboutPillar3Desc: 'Acceso perfecto a puertos de carga, parlantes y respuesta suave al tacto de los botones.',
+  aboutPillar4Title: 'Impresión Ultra HD',
+  aboutPillar4Desc: 'Colores vibrantes que no se borran, no se rayan ni se ponen amarillos con el uso.',
+
+  footerDescription:
+    'Showroom oficial de fundas y accesorios premium para celular. Calidad, protección y diseño para acompañar tu estilo todos los días.',
+  footerCopyrightText: 'Hecho con ❤️ para potenciar tu estilo',
+};
+
+export async function fetchLiveShowroomTexts(): Promise<import('../types').ShowroomTextsConfig> {
+  try {
+    const res = await fetch('https://casemood.pages.dev/api/settings').catch(() => null);
+    if (!res || !res.ok) return DEFAULT_SHOWROOM_TEXTS;
+    const { settings } = (await res.json()) as { settings: Record<string, string> };
+    const raw = settings?.showroom_texts_config;
+    if (!raw) return DEFAULT_SHOWROOM_TEXTS;
+    const parsed = JSON.parse(raw);
+    return { ...DEFAULT_SHOWROOM_TEXTS, ...parsed };
+  } catch {
+    return DEFAULT_SHOWROOM_TEXTS;
+  }
+}
+
 export async function fetchLiveShowroomSwatches(): Promise<import('../types').ShowroomSwatchConfig[]> {
   try {
     const res = await fetch('https://casemood.pages.dev/api/settings').catch(() => null);
@@ -623,4 +702,5 @@ export async function fetchLiveShowroomSwatches(): Promise<import('../types').Sh
     return DEFAULT_SWATCH_CONFIGS;
   }
 }
+
 

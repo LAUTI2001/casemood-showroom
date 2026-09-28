@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { ArrowUpRight, Layers, Sparkles } from 'lucide-react';
+import { ArrowUpRight, Layers } from 'lucide-react';
 import { CASEMOOD_STORE_URL } from '../lib/whatsapp';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import type { ShowroomProduct } from '../types';
 
 interface AppleBentoGridProps {
@@ -10,6 +11,8 @@ interface AppleBentoGridProps {
 }
 
 export function AppleBentoGrid({ products }: AppleBentoGridProps) {
+  const { texts } = useShowroomConfig();
+
   const bentoItems = [
     {
       badge: 'Serie Exclusiva',
@@ -60,14 +63,15 @@ export function AppleBentoGrid({ products }: AppleBentoGridProps) {
         <div className="flex flex-col items-center text-center mb-10 sm:mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/30 bg-brand-yellow/10 px-4 py-1 text-xs font-black uppercase tracking-wider text-brand-yellow mb-3 shadow-lg shadow-brand-yellow/10">
             <Layers className="h-3.5 w-3.5" />
-            <span>Colecciones Insignia</span>
+            <span>{texts.bentoBadge || 'Colecciones Insignia'}</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-            Diseñadas para cada <span className="text-brand-yellow">Mood</span>
+            {texts.bentoTitle || 'Diseñadas para cada Mood'}
           </h2>
           <p className="mt-2 sm:mt-3 text-xs sm:text-base text-slate-400 max-w-lg">
-            Cuatro líneas conceptuales con acabados exclusivos creados para transformar tu celular en una extensión de tu estilo.
+            {texts.bentoSubtitle ||
+              'Cuatro líneas conceptuales con acabados exclusivos creados para transformar tu celular en una extensión de tu estilo.'}
           </p>
         </div>
 

@@ -3,13 +3,16 @@
 import Image from 'next/image';
 import { ShoppingBag, ExternalLink, MessageCircle, ChevronDown, Sparkles } from 'lucide-react';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import type { ShowroomProduct } from '../types';
 
 interface AppleKeynoteHeroProps {
   products: ShowroomProduct[];
 }
 
-export function AppleKeynoteHero({ products }: AppleKeynoteHeroProps) {
+export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHeroProps) {
+  const { texts, products: contextProducts } = useShowroomConfig();
+  const products = contextProducts.length > 0 ? contextProducts : initialProducts;
   const heroCases = products.slice(0, 3);
 
   return (
@@ -46,7 +49,7 @@ export function AppleKeynoteHero({ products }: AppleKeynoteHeroProps) {
         {/* Apple-style pill badge */}
         <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/40 bg-brand-yellow/10 px-3.5 py-1 text-[11px] sm:text-xs font-black uppercase tracking-wider text-brand-yellow backdrop-blur-xl mb-3 shadow-lg shadow-brand-yellow/10">
           <Sparkles className="h-3 w-3 text-brand-yellow animate-spin-slow" />
-          <span>Lookbook &amp; Galería 3D</span>
+          <span>{texts.heroBadge || 'Lookbook & Galería 3D'}</span>
           <Sparkles className="h-3 w-3 text-brand-yellow animate-spin-slow" />
         </div>
 
@@ -55,10 +58,12 @@ export function AppleKeynoteHero({ products }: AppleKeynoteHeroProps) {
           CaseMood.
         </h1>
         <p className="mt-2 sm:mt-4 text-xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-brand-yellow to-slate-200 max-w-3xl leading-tight">
-          Diseñadas para destacar. Construidas para proteger.
+          {texts.heroHeadline1 || 'Diseñadas para destacar.'}{' '}
+          <span className="text-brand-yellow">{texts.heroHeadline2 || 'Construidas para proteger.'}</span>
         </p>
         <p className="mt-2 sm:mt-4 text-xs sm:text-lg text-slate-400 max-w-xl font-medium leading-relaxed px-2">
-          Vestí tu celular con fundas de impacto visual, calce milimétrico y protección integral contra caídas.
+          {texts.heroDescription ||
+            'Vestí tu celular con fundas de impacto visual, calce milimétrico y protección integral contra caídas.'}
         </p>
 
         {/* Apple-style Pill Actions */}
@@ -70,7 +75,7 @@ export function AppleKeynoteHero({ products }: AppleKeynoteHeroProps) {
             className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-8 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/30 transition-all duration-300 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
           >
             <ShoppingBag className="h-4 w-4" />
-            <span>Comprar en Tienda Oficial</span>
+            <span>{texts.heroCtaStore || 'Comprar en Tienda Oficial'}</span>
             <ExternalLink className="h-3.5 w-3.5 opacity-70" />
           </a>
 

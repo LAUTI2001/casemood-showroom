@@ -1,50 +1,57 @@
+'use client';
+
 import Image from 'next/image';
 import { Shield, Sparkles, Layers, Zap, Heart } from 'lucide-react';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 
 export function AboutSection() {
+  const { texts } = useShowroomConfig();
+
   const pillars = [
     {
       icon: Shield,
-      title: 'Protección Grado Superior',
-      desc: 'Bordes elevados que cuidan la pantalla y el lente de la cámara contra caídas y rayones.',
+      title: texts.aboutPillar1Title || 'Protección Grado Superior',
+      desc: texts.aboutPillar1Desc || 'Bordes elevados que cuidan la pantalla y el lente de la cámara contra caídas y rayones.',
     },
     {
       icon: Layers,
-      title: 'Materiales Premium',
-      desc: 'TPU flexible con placa de policarbonato rígida para absorción óptima de impactos.',
+      title: texts.aboutPillar2Title || 'Materiales Premium',
+      desc: texts.aboutPillar2Desc || 'TPU flexible con placa de policarbonato rígida para absorción óptima de impactos.',
     },
     {
       icon: Zap,
-      title: 'Calce y Botoneras Exactas',
-      desc: 'Acceso perfecto a puertos de carga, parlantes y respuesta suave al tacto de los botones.',
+      title: texts.aboutPillar3Title || 'Calce y Botoneras Exactas',
+      desc: texts.aboutPillar3Desc || 'Acceso perfecto a puertos de carga, parlantes y respuesta suave al tacto de los botones.',
     },
     {
       icon: Sparkles,
-      title: 'Impresión Ultra HD',
-      desc: 'Colores vibrantes que no se borran, no se rayan ni se ponen amarillos con el uso.',
+      title: texts.aboutPillar4Title || 'Impresión Ultra HD',
+      desc: texts.aboutPillar4Desc || 'Colores vibrantes que no se borran, no se rayan ni se ponen amarillos con el uso.',
     },
   ];
 
   return (
-    <section id="sobre-nosotros" className="relative overflow-hidden py-14 sm:py-20 border-t border-brand-border/40">
+    <section id="sobre-nosotros" className="relative overflow-hidden py-14 sm:py-20 border-t border-brand-border/40 select-none">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           {/* Left Column: Story & Mascot Duo */}
           <div className="lg:col-span-6 space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full bg-brand-sky/15 border border-brand-sky/30 px-3 py-1 text-xs font-black uppercase tracking-wider text-brand-sky">
               <Heart className="h-3.5 w-3.5 fill-current" />
-              <span>Conocé Case Mood</span>
+              <span>{texts.aboutBadge || 'Conocé Case Mood'}</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-black tracking-tight text-white leading-tight">
-              Más que una funda, la{' '}
-              <span className="text-brand-yellow">personalidad</span> de tu teléfono.
+              {texts.aboutTitle || (
+                <>
+                  Más que una funda, la <span className="text-brand-yellow">personalidad</span> de tu teléfono.
+                </>
+              )}
             </h2>
 
-            <p className="text-sm sm:text-base leading-relaxed text-brand-muted">
-              Nacimos para romper con las fundas genéricas y aburridas. Traemos accesorios
-              que combinan moda, resistencia extrema y una vibra fresca para que lleves tu teléfono
-              siempre protegido con el estilo que te representa.
+            <p className="text-sm sm:text-base leading-relaxed text-brand-muted font-normal">
+              {texts.aboutParagraph ||
+                'Nacimos para romper con las fundas genéricas y aburridas. Traemos accesorios que combinan moda, resistencia extrema y una vibra fresca para que lleves tu teléfono siempre protegido con el estilo que te representa.'}
             </p>
 
             {/* Duo Mascots Box */}
@@ -59,8 +66,10 @@ export function AboutSection() {
               </div>
 
               <div>
-                <p className="text-xs font-bold text-white">Creado con pasión por el detalle</p>
-                <p className="text-[11px] text-brand-muted">Seguinos en Instagram <span className="text-brand-yellow font-bold">@casemood__</span></p>
+                <p className="text-xs font-bold text-white">{texts.aboutMascotTitle || 'Creado con pasión por el detalle'}</p>
+                <p className="text-[11px] text-brand-muted">
+                  {texts.aboutMascotSubtitle || 'Seguinos en Instagram @casemood__'}
+                </p>
               </div>
             </div>
           </div>

@@ -4,13 +4,17 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Play, Pause, ShoppingBag, ExternalLink, MessageCircle, Sparkles } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import type { ShowroomProduct } from '../types';
 
 interface AppleCineCarouselProps {
   products: ShowroomProduct[];
 }
 
-export function AppleCineCarousel({ products }: AppleCineCarouselProps) {
+export function AppleCineCarousel({ products: initialProducts }: AppleCineCarouselProps) {
+  const { texts, products: contextProducts } = useShowroomConfig();
+  const products = contextProducts.length > 0 ? contextProducts : initialProducts;
+
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const touchStartX = useRef<number | null>(null);
@@ -66,10 +70,10 @@ export function AppleCineCarousel({ products }: AppleCineCarouselProps) {
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-yellow mb-2">
               <Sparkles className="h-3.5 w-3.5" />
-              <span>Highlights de Temporada</span>
+              <span>{texts.cineBadge || 'Highlights de Temporada'}</span>
             </div>
             <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
-              Los Más Elegidos
+              {texts.cineTitle || 'Los Más Elegidos'}
             </h2>
           </div>
 
@@ -125,7 +129,7 @@ export function AppleCineCarousel({ products }: AppleCineCarouselProps) {
                   className="flex items-center gap-2 rounded-full bg-brand-yellow px-7 py-3 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/20 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95 transition-all"
                 >
                   <ShoppingBag className="h-4 w-4" />
-                  <span>Comprar en Tienda</span>
+                  <span>Ver en Tienda</span>
                   <ExternalLink className="h-3.5 w-3.5 opacity-70" />
                 </a>
 
@@ -133,63 +137,55 @@ export function AppleCineCarousel({ products }: AppleCineCarouselProps) {
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs sm:text-sm font-semibold text-white hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
+                  className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/20 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
                 >
                   <MessageCircle className="h-4 w-4 text-emerald-400" />
-                  <span>WhatsApp</span>
+                  <span>Consultar Stock</span>
                 </a>
               </div>
             </div>
 
-            {/* Right Column: Giant Floating Hero Case */}
-            <div className="lg:col-span-5 flex justify-center py-4">
-              <div className="relative aspect-[3/4] h-64 w-48 sm:h-80 sm:w-60 lg:h-[420px] lg:w-[310px] overflow-hidden rounded-3xl bg-white p-5 sm:p-7 shadow-2xl shadow-black/80 border border-white/20 transition-all duration-700 hover:scale-105 animate-float-tilt">
-                <div className="relative h-full w-full">
-                  <Image
-                    src={current.images[0]}
-                    alt={current.displayName}
-                    fill
-                    sizes="(min-width: 1024px) 310px, 240px"
-                    className="object-contain p-2"
-                    priority
-                  />
-                </div>
+            {/* Right Column: Giant Artwork Showcase */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[440px] lg:w-[330px] overflow-hidden rounded-3xl bg-white p-5 sm:p-7 shadow-2xl shadow-black/80 border-2 border-white/20 transition-transform duration-700 hover:scale-105">
+                <Image
+                  src={current.images[0]}
+                  alt={current.displayName}
+                  fill
+                  sizes="(min-width: 1024px) 330px, 280px"
+                  className="object-contain p-2"
+                  priority
+                />
               </div>
             </div>
           </div>
 
-          {/* Capsule Progress Bar Indicators (Apple TV+ Style) */}
-          <div className="relative z-10 flex items-center gap-2.5 mt-8 pt-4 border-t border-white/10">
-            <button
-              type="button"
-              onClick={() => setIsPlaying(!isPlaying)}
-              className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all mr-2 shrink-0"
-              aria-label={isPlaying ? 'Pausar' : 'Reproducir'}
-            >
-              {isPlaying ? <Pause className="h-3.5 w-3.5" /> : <Play className="h-3.5 w-3.5 ml-0.5" />}
-            </button>
-
-            {cineProducts.map((_, i) => {
-              const isActive = i === activeIndex;
-              return (
+          {/* Bottom Progress Bar & Play/Pause Controller */}
+          <div className="mt-8 sm:mt-12 flex items-center justify-between border-t border-white/10 pt-6">
+            <div className="flex items-center gap-2">
+              {cineProducts.map((_, i) => (
                 <button
                   key={i}
                   type="button"
-                  onClick={() => {
-                    setActiveIndex(i);
-                    setIsPlaying(false);
-                  }}
-                  className="group relative h-1.5 flex-1 rounded-full overflow-hidden bg-white/20 transition-all"
+                  onClick={() => setActiveIndex(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === activeIndex
+                      ? 'w-10 sm:w-14 bg-brand-yellow shadow-md shadow-brand-yellow/30'
+                      : 'w-2 sm:w-3 bg-white/20 hover:bg-white/40'
+                  }`}
                   aria-label={`Ir al diseño ${i + 1}`}
-                >
-                  <div
-                    className={`h-full rounded-full transition-all duration-300 ${
-                      isActive ? 'bg-brand-yellow w-full' : 'w-0 group-hover:w-full group-hover:bg-white/50'
-                    }`}
-                  />
-                </button>
-              );
-            })}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsPlaying(!isPlaying)}
+              className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors"
+              aria-label={isPlaying ? 'Pausar rotación' : 'Reproducir rotación'}
+            >
+              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 ml-0.5" />}
+            </button>
           </div>
         </div>
       </div>

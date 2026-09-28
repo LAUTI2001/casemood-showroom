@@ -11,13 +11,17 @@ import {
   Zap,
 } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import type { ShowroomProduct } from '../types';
 
 interface InteractiveCoverflowCarouselProps {
   products: ShowroomProduct[];
 }
 
-export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowCarouselProps) {
+export function InteractiveCoverflowCarousel({ products: initialProducts }: InteractiveCoverflowCarouselProps) {
+  const { texts, products: contextProducts } = useShowroomConfig();
+  const products = contextProducts.length > 0 ? contextProducts : initialProducts;
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [activeAngleIndex, setActiveAngleIndex] = useState(0);
@@ -46,10 +50,12 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
 
   if (validProducts.length === 0) return null;
 
-  const currentProduct = validProducts[currentIndex];
-  const images = currentProduct.images.length > 0
-    ? currentProduct.images
-    : ['https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg'];
+  const safeIndex = currentIndex < validProducts.length ? currentIndex : 0;
+  const currentProduct = validProducts[safeIndex];
+  const images =
+    currentProduct.images.length > 0
+      ? currentProduct.images
+      : ['https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg'];
 
   const storeUrl = getEcommerceProductUrl(currentProduct.name);
   const whatsappUrl = createWhatsAppConsultUrl(currentProduct.displayName || currentProduct.name);
@@ -57,7 +63,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
   // Compute visible indexes for 3D coverflow
   const getVisibleIndex = (offset: number) => {
     const total = validProducts.length;
-    return (currentIndex + offset + total) % total;
+    return (safeIndex + offset + total) % total;
   };
 
   const prevProduct2 = validProducts[getVisibleIndex(-2)];
@@ -99,14 +105,19 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
       <div className="relative z-10 max-w-6xl mx-auto flex flex-col items-center text-center mb-6 sm:mb-12 px-4">
         <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/40 bg-brand-yellow/10 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-brand-yellow mb-3 backdrop-blur-md shadow-lg shadow-brand-yellow/10">
           <Zap className="h-3.5 w-3.5 text-brand-yellow animate-bounce-subtle" />
-          <span>Carrusel 3D · Diseños en Movimiento</span>
+          <span>{texts.coverflowBadge || 'Carrusel 3D · Diseños en Movimiento'}</span>
         </div>
 
         <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white max-w-3xl leading-tight">
-          Deslizá y Explorá el <span className="text-brand-yellow">Lookbook 3D</span>
+          {texts.coverflowTitle || (
+            <>
+              Deslizá y Explorá el <span className="text-brand-yellow">Lookbook 3D</span>
+            </>
+          )}
         </h2>
         <p className="mt-2 sm:mt-3 text-xs sm:text-base text-brand-muted max-w-lg">
-          Tocá las flechas o deslizá para descubrir la colección completa de fundas Case Mood.
+          {texts.coverflowSubtitle ||
+            'Tocá las flechas o deslizá para descubrir la colección completa de fundas Case Mood.'}
         </p>
       </div>
 
@@ -292,7 +303,7 @@ export function InteractiveCoverflowCarousel({ products }: InteractiveCoverflowC
       <div className="relative z-10 max-w-4xl mx-auto mt-8 sm:mt-10 overflow-x-auto py-2 mask-fade-edges scrollbar-none">
         <div className="flex items-center justify-center gap-2 sm:gap-2.5 min-w-max px-4">
           {validProducts.map((p, idx) => {
-            const isActive = idx === currentIndex;
+            const isActive = idx === safeIndex;
             return (
               <button
                 key={p.id + idx}

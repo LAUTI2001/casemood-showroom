@@ -1,11 +1,16 @@
+'use client';
+
 import Image from 'next/image';
 import { MessageCircle, ShoppingBag, Heart, ExternalLink } from 'lucide-react';
 import { InstagramIcon } from './icons/InstagramIcon';
 import { CASEMOOD_INSTAGRAM, CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
+import { useShowroomConfig } from '../context/ShowroomConfigContext';
 
 export function Footer() {
+  const { texts } = useShowroomConfig();
+
   return (
-    <footer className="border-t border-brand-border/60 bg-brand-bg-deep text-brand-muted pb-20 sm:pb-8 pt-12">
+    <footer className="border-t border-brand-border/60 bg-brand-bg-deep text-brand-muted pb-20 sm:pb-8 pt-12 select-none">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center pb-8 border-b border-brand-border/40">
           {/* Brand Column */}
@@ -17,8 +22,8 @@ export function Footer() {
               <span className="text-xl font-black text-white tracking-tight">CASE MOOD</span>
             </div>
             <p className="text-xs text-brand-muted max-w-sm leading-relaxed">
-              Showroom oficial de fundas y accesorios premium para celular.
-              Calidad, protección y diseño para acompañar tu estilo todos los días.
+              {texts.footerDescription ||
+                'Showroom oficial de fundas y accesorios premium para celular. Calidad, protección y diseño para acompañar tu estilo todos los días.'}
             </p>
           </div>
 
@@ -61,7 +66,7 @@ export function Footer() {
         <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-brand-muted">
           <p>© {new Date().getFullYear()} Case Mood. Todos los derechos reservados.</p>
           <p className="flex items-center gap-1">
-            Diseñado con <Heart className="h-3 w-3 text-brand-red fill-current" /> para potenciar tu estilo
+            {texts.footerCopyrightText || 'Hecho con ❤️ para potenciar tu estilo'}
           </p>
         </div>
       </div>
