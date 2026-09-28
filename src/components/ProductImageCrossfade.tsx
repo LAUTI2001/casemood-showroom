@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 
 interface ProductImageCrossfadeProps {
   images: string[];
@@ -76,7 +77,7 @@ export function ProductImageCrossfade({
           >
             <div className="relative h-full w-full">
               <Image
-                src={src}
+                src={optimizeCloudinaryUrl(src, 700)}
                 alt={`${alt} - ángulo ${index + 1}`}
                 fill
                 sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 50vw"

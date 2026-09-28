@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Sparkles, ExternalLink, MessageCircle, ChevronLeft, ChevronRight, ShoppingBag } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
 interface GiantProductShowcaseProps {
@@ -183,7 +184,7 @@ export function GiantProductShowcase({ product, index }: GiantProductShowcasePro
               >
                 <div className="relative h-full w-full">
                   <Image
-                    src={src}
+                    src={optimizeCloudinaryUrl(src, 900)}
                     alt={`${product.displayName} - foto ${i + 1}`}
                     fill
                     sizes="(min-width: 1024px) 560px, (min-width: 640px) 480px, 280px"

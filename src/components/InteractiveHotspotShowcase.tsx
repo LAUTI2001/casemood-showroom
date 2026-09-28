@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Shield, Plus } from 'lucide-react';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
 interface InteractiveHotspotShowcaseProps {
@@ -121,7 +122,7 @@ export function InteractiveHotspotShowcase({ product }: InteractiveHotspotShowca
             <div className="relative aspect-[3/4] h-72 w-52 sm:h-96 sm:w-72 lg:h-[500px] lg:w-[370px] overflow-hidden rounded-3xl bg-white p-5 sm:p-8 shadow-2xl shadow-black/90 border border-white/20">
               <div className="relative h-full w-full">
                 <Image
-                  src={caseImg}
+                  src={optimizeCloudinaryUrl(caseImg, 900)}
                   alt="Case Mood Engineering"
                   fill
                   sizes="370px"

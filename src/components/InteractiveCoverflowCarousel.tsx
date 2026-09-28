@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
 interface InteractiveCoverflowCarouselProps {
@@ -131,7 +132,7 @@ export function InteractiveCoverflowCarousel({ products: initialProducts }: Inte
           >
             <div className="relative h-48 w-36 lg:h-64 lg:w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl">
               <Image
-                src={prevProduct2.images[0]}
+                src={optimizeCloudinaryUrl(prevProduct2.images[0], 500)}
                 alt={prevProduct2.displayName}
                 fill
                 className="object-contain p-2"
@@ -148,7 +149,7 @@ export function InteractiveCoverflowCarousel({ products: initialProducts }: Inte
           >
             <div className="relative h-52 w-36 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-2.5 sm:p-3 shadow-2xl border border-white/20">
               <Image
-                src={prevProduct.images[0]}
+                src={optimizeCloudinaryUrl(prevProduct.images[0], 600)}
                 alt={prevProduct.displayName}
                 fill
                 className="object-contain p-1.5 sm:p-2"
@@ -173,7 +174,7 @@ export function InteractiveCoverflowCarousel({ products: initialProducts }: Inte
                 >
                   <div className="relative h-full w-full">
                     <Image
-                      src={src}
+                      src={optimizeCloudinaryUrl(src, 800)}
                       alt={`${currentProduct.displayName} - foto ${i + 1}`}
                       fill
                       sizes="(min-width: 1024px) 330px, (min-width: 640px) 290px, 210px"
@@ -215,7 +216,7 @@ export function InteractiveCoverflowCarousel({ products: initialProducts }: Inte
           >
             <div className="relative h-52 w-36 sm:h-72 sm:w-52 lg:h-80 lg:w-60 overflow-hidden rounded-2xl bg-white p-2.5 sm:p-3 shadow-2xl border border-white/20">
               <Image
-                src={nextProduct.images[0]}
+                src={optimizeCloudinaryUrl(nextProduct.images[0], 600)}
                 alt={nextProduct.displayName}
                 fill
                 className="object-contain p-1.5 sm:p-2"
@@ -233,7 +234,7 @@ export function InteractiveCoverflowCarousel({ products: initialProducts }: Inte
           >
             <div className="relative h-48 w-36 lg:h-64 lg:w-48 overflow-hidden rounded-2xl bg-white p-3 shadow-xl">
               <Image
-                src={nextProduct2.images[0]}
+                src={optimizeCloudinaryUrl(nextProduct2.images[0], 500)}
                 alt={nextProduct2.displayName}
                 fill
                 className="object-contain p-2"

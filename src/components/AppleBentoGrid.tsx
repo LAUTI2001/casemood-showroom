@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ArrowUpRight, Layers } from 'lucide-react';
 import { CASEMOOD_STORE_URL } from '../lib/whatsapp';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
 interface AppleBentoGridProps {
@@ -98,7 +99,7 @@ export function AppleBentoGrid({ products }: AppleBentoGridProps) {
               {/* Floating Case Art (Overflowing & Beautiful on Both Mobile & Desktop) */}
               <div className="absolute -right-4 -bottom-6 sm:-right-6 sm:-bottom-8 h-56 w-44 sm:h-76 sm:w-60 transition-transform duration-700 group-hover:scale-110 group-hover:-rotate-3">
                 <Image
-                  src={item.imgSrc}
+                  src={optimizeCloudinaryUrl(item.imgSrc, 700)}
                   alt={item.title}
                   fill
                   sizes="(min-width: 640px) 240px, 180px"

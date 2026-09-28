@@ -6,6 +6,7 @@ import { ShoppingBag, MessageCircle, ExternalLink, Sparkles, Check } from 'lucid
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import { DEFAULT_SWATCH_CONFIGS } from '../data/products';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct, ShowroomSwatchConfig } from '../types';
 
 interface StudioMoodSwitcherProps {
@@ -92,7 +93,7 @@ export function StudioMoodSwitcher({ products: initialProducts, initialSwatches 
                 >
                   <div className="relative h-full w-full">
                     <Image
-                      src={src}
+                      src={optimizeCloudinaryUrl(src, 800)}
                       alt={`${matchingProduct?.displayName || targetProductName} - ${i + 1}`}
                       fill
                       sizes="(min-width: 1024px) 340px, 260px"

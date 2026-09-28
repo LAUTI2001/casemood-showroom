@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { ShoppingBag, ExternalLink, MessageCircle, ChevronDown, Sparkles } from 'lucide-react';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
+import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
 interface AppleKeynoteHeroProps {
@@ -115,7 +116,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
             >
               <div className="relative aspect-[3/4] h-60 w-42 sm:h-84 sm:w-60 lg:h-96 lg:w-68 overflow-hidden rounded-3xl bg-white p-4 sm:p-6 shadow-2xl shadow-black/90 border-2 border-white/30">
                 <Image
-                  src={imgSrc}
+                  src={optimizeCloudinaryUrl(imgSrc, 800)}
                   alt={product.displayName}
                   fill
                   className="object-contain p-2 transition-transform duration-500 hover:scale-105"
