@@ -1,11 +1,19 @@
 'use client';
 
 import Image from 'next/image';
-import { ShoppingBag, ExternalLink, MessageCircle, ChevronDown, Sparkles } from 'lucide-react';
+import { ShoppingBag, ExternalLink, ChevronDown, Sparkles } from 'lucide-react';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 import { useShowroomConfig } from '../context/ShowroomConfigContext';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
+
+function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} fill="currentColor" aria-hidden="true">
+      <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.703 4.61 1.912 6.47L4 29l7.72-1.876A11.94 11.94 0 0 0 16.001 27C22.63 27 28 21.627 28 15S22.63 3 16.001 3Zm0 21.75c-1.94 0-3.75-.552-5.283-1.505l-.379-.232-4.583 1.114 1.15-4.463-.248-.394A9.71 9.71 0 0 1 5.25 15c0-5.937 4.813-10.75 10.751-10.75S26.75 9.063 26.75 15 21.938 24.75 16.001 24.75Zm5.86-8.06c-.32-.16-1.895-.936-2.19-1.042-.294-.107-.508-.16-.722.16-.213.32-.828 1.042-1.016 1.256-.187.213-.374.24-.694.08-.32-.16-1.35-.498-2.573-1.588-.951-.848-1.593-1.895-1.78-2.215-.187-.32-.02-.493.14-.653.144-.144.32-.374.481-.56.16-.187.213-.32.32-.534.107-.213.053-.4-.027-.56-.08-.16-.722-1.74-.99-2.383-.26-.626-.525-.54-.722-.55l-.615-.011c-.213 0-.56.08-.854.4-.294.32-1.12 1.095-1.12 2.67s1.147 3.096 1.307 3.31c.16.213 2.257 3.446 5.468 4.833.764.33 1.36.527 1.825.674.767.244 1.465.21 2.017.127.615-.092 1.895-.775 2.163-1.523.267-.747.267-1.388.187-1.523-.08-.134-.294-.213-.614-.373Z" />
+    </svg>
+  );
+}
 
 interface AppleKeynoteHeroProps {
   products: ShowroomProduct[];
@@ -17,14 +25,14 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
   const heroCases = products.slice(0, 3);
 
   return (
-    <section className="relative min-h-[92vh] sm:min-h-[95vh] w-full flex flex-col justify-between items-center pt-8 sm:pt-12 pb-10 sm:pb-16 px-4 sm:px-8 overflow-hidden bg-[#0A0D14] select-none">
-      {/* Studio Lighting Radial Glows & Aurora */}
-      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[800px] h-[380px] sm:h-[500px] bg-radial from-brand-yellow/20 via-purple-600/15 to-transparent blur-[80px] sm:blur-[120px] animate-pulse-glow" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[900px] h-[300px] sm:h-[400px] bg-radial from-sky-500/15 via-transparent to-transparent blur-[90px] sm:blur-[140px]" />
+    <section className="relative min-h-[92vh] sm:min-h-[96vh] w-full flex flex-col justify-between items-center pt-8 sm:pt-14 pb-10 sm:pb-16 px-4 sm:px-8 overflow-hidden bg-[#0A0D14] select-none">
+      {/* Studio Lighting Radial Glows & Aurora Keynote Lighting */}
+      <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[900px] h-[380px] sm:h-[550px] bg-radial from-amber-400/20 via-purple-600/15 to-transparent blur-[80px] sm:blur-[130px] animate-pulse-glow" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[380px] sm:w-[950px] h-[300px] sm:h-[450px] bg-radial from-sky-500/15 via-transparent to-transparent blur-[90px] sm:blur-[150px]" />
 
-      {/* Subtle Giant Background Typography */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.04] select-none">
-        <span className="text-[24vw] font-black tracking-tighter text-white whitespace-nowrap leading-none">
+      {/* Subtle Giant Background Metallic Typography */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03] select-none">
+        <span className="text-[26vw] font-black tracking-tighter text-white whitespace-nowrap leading-none">
           CASEMOOD
         </span>
       </div>
@@ -47,22 +55,24 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
           </div>
         </div>
 
-        {/* Apple-style pill badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-brand-yellow/40 bg-brand-yellow/10 px-3.5 py-1 text-[11px] sm:text-xs font-black uppercase tracking-wider text-brand-yellow backdrop-blur-xl mb-3 shadow-lg shadow-brand-yellow/10">
-          <Sparkles className="h-3 w-3 text-brand-yellow animate-spin-slow" />
-          <span>{texts.heroBadge || 'Lookbook & Galería 3D'}</span>
-          <Sparkles className="h-3 w-3 text-brand-yellow animate-spin-slow" />
+        {/* Torras / Apple-style Top Eyebrow Badge */}
+        <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-1.5 text-[11px] sm:text-xs font-black uppercase tracking-wider text-amber-300 backdrop-blur-xl mb-3 shadow-lg shadow-amber-400/10">
+          <Sparkles className="h-3 w-3 text-amber-300 animate-spin-slow" />
+          <span>{texts.heroBadge || 'Elevated Protection for What Lies Ahead'}</span>
+          <Sparkles className="h-3 w-3 text-amber-300 animate-spin-slow" />
         </div>
 
-        {/* Master Keynote Headline */}
-        <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white leading-tight">
-          CaseMood.
+        {/* Monumental Keynote Headline (AIR PRO / CASE MOOD PRO Aesthetic) */}
+        <h1 className="text-5xl sm:text-8xl lg:text-9xl font-black tracking-tight text-white leading-none">
+          CASE MOOD <span className="bg-gradient-to-r from-amber-300 via-white to-slate-400 bg-clip-text text-transparent">PRO</span>
         </h1>
-        <p className="mt-2 sm:mt-4 text-xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-brand-yellow to-slate-200 max-w-3xl leading-tight">
+
+        <p className="mt-3 sm:mt-5 text-xl sm:text-3xl lg:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-amber-200 to-slate-300 max-w-3xl leading-tight">
           {texts.heroHeadline1 || 'Diseñadas para destacar.'}{' '}
-          <span className="text-brand-yellow">{texts.heroHeadline2 || 'Construidas para proteger.'}</span>
+          <span className="text-amber-400">{texts.heroHeadline2 || 'Construidas para proteger.'}</span>
         </p>
-        <p className="mt-2 sm:mt-4 text-xs sm:text-lg text-slate-400 max-w-xl font-medium leading-relaxed px-2">
+
+        <p className="mt-2 sm:mt-4 text-xs sm:text-base text-slate-400 max-w-xl font-medium leading-relaxed px-2">
           {texts.heroDescription ||
             'Vestí tu celular con fundas de impacto visual, calce milimétrico y protección integral contra caídas.'}
         </p>
@@ -73,7 +83,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
             href={CASEMOOD_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-8 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/30 transition-all duration-300 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
+            className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-full bg-amber-400 px-8 py-3.5 text-xs sm:text-sm font-black text-slate-950 shadow-xl shadow-amber-400/30 transition-all duration-300 hover:bg-amber-300 hover:scale-105 active:scale-95"
           >
             <ShoppingBag className="h-4 w-4" />
             <span>{texts.heroCtaStore || 'Ir a la Tienda Oficial'}</span>
@@ -86,7 +96,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
             rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-xs sm:text-sm font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/20 hover:border-emerald-400 hover:text-emerald-400 active:scale-95"
           >
-            <MessageCircle className="h-4 w-4 text-emerald-400" />
+            <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
             <span>Consultar por WhatsApp</span>
           </a>
         </div>
@@ -123,7 +133,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
                   priority
                 />
                 {isCenter && (
-                  <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-950/90 border border-brand-yellow/50 backdrop-blur-md px-3 py-0.5 text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-brand-yellow shadow-lg">
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-950/90 border border-amber-400/50 backdrop-blur-md px-3 py-0.5 text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-amber-300 shadow-lg">
                     {product.displayName}
                   </div>
                 )}
@@ -136,7 +146,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
       {/* Subtle Scroll Indicator */}
       <div className="relative z-10 flex flex-col items-center gap-1.5 text-slate-500 text-xs font-semibold animate-bounce-subtle">
         <span>Explorá la Colección</span>
-        <ChevronDown className="h-4 w-4 text-brand-yellow" />
+        <ChevronDown className="h-4 w-4 text-amber-400" />
       </div>
     </section>
   );
