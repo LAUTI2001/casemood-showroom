@@ -140,7 +140,7 @@ export function AppleCineCarousel({ products: initialProducts }: AppleCineCarous
                   className="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/20 hover:border-emerald-400 hover:text-emerald-400 active:scale-95 transition-all"
                 >
                   <MessageCircle className="h-4 w-4 text-emerald-400" />
-                  <span>Consultar Stock</span>
+                  <span>Consultar WhatsApp</span>
                 </a>
               </div>
             </div>
