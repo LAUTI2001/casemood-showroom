@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Navbar } from '../components/Navbar';
+import { AvantGardeNavbar } from '../components/AvantGardeNavbar';
 import { Footer } from '../components/Footer';
 import { FloatingMobileDock } from '../components/FloatingMobileDock';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://casemood.pages.dev'),
-  title: 'Case Mood · Showroom Oficial | Vidriera de Diseños',
-  description: 'Explorá los diseños exclusivos de Case Mood. Fundas con personalidad, protección contra caídas y calce de alta precisión.',
-  keywords: ['fundas de celular', 'case mood', 'fundas de diseño', 'cases argentina'],
+  title: 'Case Mood · Showroom Oficial de Autor | Experiencia Artística',
+  description: 'Explorá los diseños exclusivos y de autor de Case Mood. Fundas con personalidad, estampas psicodélicas, protección contra caídas y calce de alta precisión.',
+  keywords: ['fundas de celular', 'case mood', 'fundas de diseño', 'cases argentina', 'diseño de autor'],
   authors: [{ name: 'Case Mood' }],
   icons: {
     icon: '/favicon.svg',
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Case Mood · Showroom Oficial de Fundas',
-    description: 'Viste tu celular con la vibra y el estilo que va con vos. Colección exclusiva Case Mood.',
+    title: 'Case Mood · Showroom de Vanguardia',
+    description: 'Vestí tu celular con la vibra, el color y el arte que va con vos. Colección exclusiva Case Mood.',
     url: 'https://casemood.pages.dev',
     siteName: 'Case Mood Showroom',
     images: [
@@ -40,8 +40,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-brand-bg text-brand-text antialiased">
-        <Navbar />
+      <body className="min-h-screen flex flex-col bg-[#140E17] text-[#FDFBF7] antialiased selection:bg-pink-500 selection:text-white">
+        <AvantGardeNavbar />
         <main className="flex-1">{children}</main>
         <Footer />
         <FloatingMobileDock />
