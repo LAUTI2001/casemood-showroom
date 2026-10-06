@@ -11,7 +11,6 @@ import { AestheticKineticManifesto } from '../components/AestheticKineticManifes
 import { FloatingArtisanCollage } from '../components/FloatingArtisanCollage';
 import { LiquidCoverflowStream } from '../components/LiquidCoverflowStream';
 import { SensoryMoodChamber } from '../components/SensoryMoodChamber';
-import { InteractiveLayerSculpture } from '../components/InteractiveLayerSculpture';
 import { AboutSection } from '../components/AboutSection';
 
 export const revalidate = 60;
@@ -34,7 +33,7 @@ export default async function ShowroomPage() {
         {/* Scroll Progress Glow Bar */}
         <ScrollProgressBar />
 
-        {/* 1. Hero Principal: Experiencia Artística, Psicodélica y Monumental */}
+        {/* 1. Hero Principal: Experiencia CASEMOOD Monumental */}
         {sections.hero !== false && (
           <PsychedelicArtHero products={products} />
         )}
@@ -42,21 +41,18 @@ export default async function ShowroomPage() {
         {/* 2. Manifiesto Cinético Tipográfico */}
         <AestheticKineticManifesto />
 
-        {/* 3. Mural de Inspiración: Galería de Autor Asimétrica & Collage 3D */}
+        {/* 3. Mural de Diseños: Galería Asimétrica & Collage 3D */}
         <FloatingArtisanCollage products={products} />
 
-        {/* 4. Lookbook Líquido: Doble Carrusel Paralelo en Direcciones Opuestas */}
+        {/* 4. Lookbook Dinámico: Doble Carrusel Paralelo en Direcciones Opuestas */}
         <LiquidCoverflowStream products={products} />
 
-        {/* 5. Cámara Sensorial: Atmósferas Cromáticas & Selector de Moods */}
+        {/* 5. Selector de Colores & Acabados */}
         {sections.studio !== false && (
           <SensoryMoodChamber products={products} />
         )}
 
-        {/* 6. Escultura 3D: Despiece Estructural Interactivo en 4 Capas */}
-        <InteractiveLayerSculpture />
-
-        {/* 7. Sobre CaseMood (Opcional) */}
+        {/* 6. Sobre CaseMood (Opcional) */}
         {sections.about && (
           <div id="sobre-nosotros" className="scroll-mt-20 w-full">
             <AboutSection />

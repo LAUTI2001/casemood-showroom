@@ -49,9 +49,6 @@ export function AvantGardeNavbar() {
           <a href="#atmospheres" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
             Colores
           </a>
-          <a href="#escultura-3d" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Protección 3D
-          </a>
         </nav>
 
         {/* Right: Discrete Action Buttons */}
