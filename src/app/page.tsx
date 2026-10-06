@@ -11,7 +11,6 @@ import { SpotlightShowcase } from '../components/SpotlightShowcase';
 import { StudioMoodSwitcher } from '../components/StudioMoodSwitcher';
 import { InteractiveCoverflowCarousel } from '../components/InteractiveCoverflowCarousel';
 import { AboutSection } from '../components/AboutSection';
-import { Footer } from '../components/Footer';
 
 export const revalidate = 60;
 
@@ -65,9 +64,6 @@ export default async function ShowroomPage() {
             <AboutSection />
           </div>
         )}
-
-        {/* 6. Footer con Enlace Directo a la Tienda */}
-        <Footer />
       </div>
     </ShowroomConfigProvider>
   );

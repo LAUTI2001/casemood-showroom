@@ -6,9 +6,9 @@ import { FloatingMobileDock } from '../components/FloatingMobileDock';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://casemood.pages.dev'),
-  title: 'Case Mood · Showroom Oficial | Fundas y Accesorios para Celular',
-  description: 'Descubrí los diseños exclusivos de Case Mood. Fundas con personalidad, protección contra caídas y calce exacto para iPhone y Samsung. Compra directa en tienda online o por WhatsApp.',
-  keywords: ['fundas de celular', 'case mood', 'fundas iphone', 'fundas samsung', 'cases argentina'],
+  title: 'Case Mood · Showroom Oficial | Vidriera de Diseños',
+  description: 'Explorá los diseños exclusivos de Case Mood. Fundas con personalidad, protección contra caídas y calce de alta precisión.',
+  keywords: ['fundas de celular', 'case mood', 'fundas de diseño', 'cases argentina'],
   authors: [{ name: 'Case Mood' }],
   icons: {
     icon: '/favicon.svg',

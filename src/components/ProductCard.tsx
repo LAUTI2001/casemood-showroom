@@ -53,13 +53,10 @@ export function ProductCard({ product, onOpenModal, priority = false }: ProductC
           </div>
         </div>
 
-        {/* Category & Name */}
-        <div className="mt-3.5 flex items-center justify-between gap-2">
+        {/* Category */}
+        <div className="mt-3.5 flex items-center gap-2">
           <span className="rounded-md bg-brand-bg-deep px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-sky">
             {product.category}
-          </span>
-          <span className="text-[10px] font-semibold text-brand-muted">
-            {product.models.length} modelos
           </span>
         </div>
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Image from 'next/image';
-import { X, ChevronLeft, ChevronRight, ShoppingBag, MessageCircle, ExternalLink, Sparkles, Smartphone, Check } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, ShoppingBag, MessageCircle, ExternalLink, Sparkles } from 'lucide-react';
 import { createWhatsAppConsultUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
@@ -14,13 +14,11 @@ interface ProductLightboxModalProps {
 
 export function ProductLightboxModal({ product, open, onClose }: ProductLightboxModalProps) {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
-  const [selectedModel, setSelectedModel] = useState<string>('');
   const touchStartX = useRef<number | null>(null);
 
   useEffect(() => {
     if (product) {
       setActiveImageIndex(0);
-      setSelectedModel(product.models[0] || '');
     }
   }, [product]);
 
@@ -186,35 +184,6 @@ export function ProductLightboxModal({ product, open, onClose }: ProductLightbox
               <p className="text-sm leading-relaxed text-brand-muted">
                 {product.description}
               </p>
-
-              {/* Compatible Models Selector */}
-              {product.models && product.models.length > 0 && (
-                <div className="space-y-2 pt-2">
-                  <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white">
-                    <Smartphone className="h-3.5 w-3.5 text-brand-yellow" />
-                    <span>Modelos compatibles:</span>
-                  </label>
-                  <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">
-                    {product.models.map((m) => {
-                      const isSelected = selectedModel === m;
-                      return (
-                        <button
-                          key={m}
-                          type="button"
-                          onClick={() => setSelectedModel(m)}
-                          className={`rounded-lg border px-2.5 py-1 text-xs font-bold transition-all ${
-                            isSelected
-                              ? 'border-brand-yellow bg-brand-yellow text-brand-bg shadow-sm'
-                              : 'border-brand-border bg-brand-bg text-brand-muted hover:border-brand-yellow/60 hover:text-white'
-                          }`}
-                        >
-                          {m}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
             </div>
 
             {/* Actions Buttons */}

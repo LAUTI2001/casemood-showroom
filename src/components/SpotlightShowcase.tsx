@@ -153,23 +153,7 @@ export function SpotlightShowcase({ products }: { products: ShowroomProduct[] })
 
 
 
-            {/* Model Pills (preview up to 5) */}
-            {current.models && current.models.length > 0 && (
-              <div className="mt-4 flex flex-wrap items-center justify-center lg:justify-start gap-1.5">
-                <span className="text-[10px] uppercase font-bold text-white/40 mr-1">Modelos:</span>
-                {current.models.slice(0, 5).map((m) => (
-                  <span
-                    key={m}
-                    className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 text-[10px] font-semibold text-white/80"
-                  >
-                    {m}
-                  </span>
-                ))}
-                {current.models.length > 5 && (
-                  <span className="text-[10px] text-white/50">+{current.models.length - 5} más</span>
-                )}
-              </div>
-            )}
+
 
             {/* Action Buttons */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
