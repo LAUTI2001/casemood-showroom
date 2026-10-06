@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, Sparkles, ChevronDown, Compass, Heart } from 'lucide-react';
+import { ShoppingBag, Sparkles, ChevronDown, Compass } from 'lucide-react';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
@@ -43,15 +43,15 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
       onMouseLeave={handleMouseLeave}
       className="relative min-h-[96vh] sm:min-h-screen w-full flex flex-col justify-between items-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-8 overflow-hidden bg-[#140E17] select-none perspective-1000"
     >
-      {/* Liquid Mesh Background Orbs (Warm Pink, Terracotta, Mustard, Sage) */}
+      {/* Liquid Mesh Background Orbs */}
       <div className="pointer-events-none absolute top-10 left-10 w-[350px] sm:w-[650px] h-[350px] sm:h-[650px] rounded-full bg-pink-500/25 blur-[120px] sm:blur-[160px] animate-blob-1" />
       <div className="pointer-events-none absolute bottom-10 right-10 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] rounded-full bg-amber-400/20 blur-[130px] sm:blur-[180px] animate-blob-2" />
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-emerald-600/15 blur-[140px] animate-blob-3" />
 
-      {/* Floating Graphic Stamps / Stickers */}
+      {/* Floating Graphic Stamps */}
       <div className="pointer-events-none absolute top-32 left-6 sm:left-16 z-20 hidden sm:flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-500/15 px-4 py-1.5 text-xs font-black uppercase text-pink-300 backdrop-blur-xl -rotate-6 shadow-xl animate-float-1">
         <Sparkles className="h-3.5 w-3.5 text-pink-300" />
-        <span>100% Diseño de Autor</span>
+        <span>Diseños Exclusivos</span>
       </div>
 
       <div className="pointer-events-none absolute top-40 right-6 sm:right-20 z-20 hidden sm:flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-4 py-1.5 text-xs font-black uppercase text-amber-300 backdrop-blur-xl rotate-6 shadow-xl animate-float-2">
@@ -64,18 +64,17 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
         {/* Editorial Eyebrow */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-1.5 text-xs font-black uppercase tracking-widest text-slate-200 backdrop-blur-2xl shadow-xl mb-4 sm:mb-6">
           <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin-slow" />
-          <span>Manifiesto Visual · Edición de Vanguardia</span>
+          <span>Colección Oficial · Fundas de Diseño</span>
           <Sparkles className="h-3.5 w-3.5 text-pink-300 animate-spin-slow" />
         </div>
 
-        {/* Monumental Avant-Garde Typography */}
-        <h1 className="font-display text-5xl sm:text-8xl lg:text-9xl font-black tracking-tight text-white leading-none">
-          ARTE PARA <br />
-          <span className="animate-pastel-text italic font-normal">LLEVAR.</span>
+        {/* Monumental Headline */}
+        <h1 className="font-display text-6xl sm:text-9xl lg:text-[10.5rem] font-black tracking-tight text-white leading-none">
+          CASE<span className="animate-pastel-text italic font-normal">MOOD</span>
         </h1>
 
         <p className="mt-4 sm:mt-6 text-base sm:text-2xl font-bold text-slate-200 max-w-2xl leading-relaxed">
-          Fusionamos estampas psicodélicas, texturas táctiles y protección anti-impacto en piezas de diseño irrepetibles.
+          Diseñadas para destacar tu estilo y proteger tu celular contra caídas todos los días.
         </p>
 
         {/* Liquid Action CTAs */}
@@ -87,7 +86,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
             className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-amber-300 via-pink-400 to-rose-400 px-8 py-4 text-xs sm:text-sm font-black text-slate-950 shadow-2xl shadow-pink-500/30 transition-all duration-300 hover:scale-105 active:scale-95"
           >
             <ShoppingBag className="h-4 w-4" />
-            <span>Explorar Tienda Oficial</span>
+            <span>Ir a la Tienda Oficial</span>
           </a>
 
           <a
@@ -139,7 +138,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
                   className="object-contain p-2 drop-shadow-[0_25px_40px_rgba(0,0,0,0.85)] transition-transform duration-500 hover:scale-105"
                 />
 
-                {/* Floating Aesthetic Name Stamp */}
+                {/* Floating Case Name Stamp */}
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-950/90 border border-white/25 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-amber-300 shadow-xl backdrop-blur-md">
                   {product.displayName}
                 </div>
@@ -151,7 +150,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
 
       {/* Subtle Scroll Down Prompt */}
       <div className="relative z-10 flex flex-col items-center gap-1.5 text-slate-400 text-xs font-bold animate-bounce-subtle">
-        <span>Sumergite en la Galería</span>
+        <span>Explorá la Colección</span>
         <ChevronDown className="h-4 w-4 text-pink-400" />
       </div>
     </section>

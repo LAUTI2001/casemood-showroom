@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { ShoppingBag, MessageCircle, Sparkles, Compass } from 'lucide-react';
+import { ShoppingBag, MessageCircle } from 'lucide-react';
 import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 
 function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
@@ -33,24 +33,24 @@ export function AvantGardeNavbar() {
               CASE MOOD
             </span>
             <span className="text-[9px] font-extrabold uppercase tracking-widest text-pink-400 leading-none">
-              Artisan Showroom
+              Showroom Oficial
             </span>
           </div>
         </a>
 
-        {/* Center: Editorial Nav Links */}
+        {/* Center: Clean Nav Links */}
         <nav className="hidden md:flex items-center gap-1 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs font-bold text-slate-300">
           <a href="#mural" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Galería de Autor
+            Novedades
           </a>
           <a href="#carrusel-doble" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Lookbook Líquido
+            Colección
           </a>
           <a href="#atmospheres" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Atmósferas
+            Colores
           </a>
           <a href="#escultura-3d" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Despiece 3D
+            Protección 3D
           </a>
         </nav>
 

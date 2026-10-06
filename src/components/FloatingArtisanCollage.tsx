@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Sparkles, ArrowUpRight, ShoppingBag, Eye, Heart } from 'lucide-react';
+import { Sparkles, ArrowUpRight, ShoppingBag } from 'lucide-react';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import { CASEMOOD_STORE_URL, getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
@@ -34,7 +34,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
       {/* Giant Faded Artistic Watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03]">
         <span className="font-display text-[22vw] font-black tracking-tighter text-white whitespace-nowrap leading-none">
-          CREATIVE
+          CASEMOOD
         </span>
       </div>
 
@@ -43,15 +43,15 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
         <div className="flex flex-col items-center text-center mb-16 sm:mb-24">
           <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/40 bg-pink-500/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-pink-300 backdrop-blur-2xl mb-4 shadow-xl">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Galería de Autor · Contemporary Design</span>
+            <span>Colección Destacada · Diseños Exclusivos</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight">
-            Mural de <span className="animate-pastel-text italic font-normal">Inspiración</span>
+            Elegí tu <span className="animate-pastel-text italic font-normal">Estilo</span>
           </h2>
 
           <p className="mt-3 text-xs sm:text-base text-slate-300 max-w-lg font-medium">
-            Obras de diseño contemporáneo concebidas para transformar tu celular en una pieza de arte portátil.
+            Fundas con personalidad propia, calce milimétrico y protección reforzada contra golpes.
           </p>
         </div>
 
@@ -60,7 +60,6 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
           {displayItems.map((product, idx) => {
             const theme = cardThemes[idx % cardThemes.length];
             const imgSrc = product.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
-            const storeUrl = getEcommerceProductUrl(product.name);
 
             return (
               <div
@@ -68,7 +67,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
                 onClick={() => setSelectedProduct(product)}
                 className={`group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b ${theme.bg} p-6 sm:p-8 border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-700 hover:scale-105 hover:z-30 cursor-pointer ${theme.border} ${theme.rotate}`}
               >
-                {/* Chromatic Hover Halo Explosion */}
+                {/* Chromatic Hover Halo */}
                 <div className={`pointer-events-none absolute -inset-10 rounded-full ${theme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl`} />
 
                 {/* Top Badge & Number */}
@@ -77,7 +76,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
                     {product.category}
                   </span>
                   <span className="text-xs font-bold text-slate-400">
-                    Art. 0{idx + 1}
+                    0{idx + 1}
                   </span>
                 </div>
 
@@ -103,7 +102,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
                   </p>
 
                   <div className="pt-2 flex items-center justify-center gap-1.5 text-xs font-black text-pink-300 group-hover:text-amber-300 transition-colors">
-                    <span>Apreciar Obra</span>
+                    <span>Ver detalles</span>
                     <ArrowUpRight className="h-3.5 w-3.5" />
                   </div>
                 </div>
@@ -121,7 +120,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
             className="flex items-center gap-3 rounded-full bg-gradient-to-r from-amber-300 via-pink-400 to-rose-400 px-9 py-4 text-xs sm:text-sm font-black text-slate-950 shadow-2xl shadow-pink-500/25 hover:scale-105 active:scale-95 transition-all"
           >
             <ShoppingBag className="h-4 w-4" />
-            <span>Ver Catálogo Completo en la Tienda</span>
+            <span>Ver Catálogo Completo en la Tienda Oficial</span>
           </a>
         </div>
       </div>

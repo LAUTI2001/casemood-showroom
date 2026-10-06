@@ -1,9 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { Sparkles, ArrowUpRight, ShoppingBag } from 'lucide-react';
+import { Sparkles, ArrowUpRight } from 'lucide-react';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
-import { CASEMOOD_STORE_URL, getEcommerceProductUrl } from '../lib/whatsapp';
+import { getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
 interface LiquidCoverflowStreamProps {
@@ -28,7 +28,7 @@ export function LiquidCoverflowStream({ products }: LiquidCoverflowStreamProps) 
       <div className="flex flex-col items-center text-center mb-14 sm:mb-20 px-4">
         <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-amber-300 backdrop-blur-2xl shadow-xl mb-3">
           <Sparkles className="h-3.5 w-3.5" />
-          <span>Lookbook Líquido · Parallel Streams</span>
+          <span>Lookbook Dinámico · Modelos en Tendencia</span>
         </div>
 
         <h2 className="font-display text-4xl sm:text-7xl font-black text-white tracking-tight leading-tight">
@@ -36,7 +36,7 @@ export function LiquidCoverflowStream({ products }: LiquidCoverflowStreamProps) 
         </h2>
 
         <p className="mt-2 text-xs sm:text-base text-slate-300 max-w-lg font-medium">
-          Dos corrientes paralelas de diseño que se cruzan continuamente en el espacio.
+          Deslizá para descubrir la variedad de colores, estampas y acabados de CaseMood.
         </p>
       </div>
 

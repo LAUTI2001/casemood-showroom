@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Sparkles, ShoppingBag, MessageCircle, ExternalLink, Check, Palette } from 'lucide-react';
+import { ShoppingBag, MessageCircle, ExternalLink, Check, Palette } from 'lucide-react';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import { createWhatsAppConsultUrl, getEcommerceProductUrl } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
@@ -22,9 +22,9 @@ const MOOD_CHAMBER_OPTIONS: MoodChamberOption[] = [
   {
     id: 'pastel-dream',
     name: 'Pastel Dream',
-    moodTitle: 'Etéreo, Rosa & Lavanda',
+    moodTitle: 'Rosa, Lavanda & Reflejos',
     productName: 'AURORA',
-    tagline: 'Reflejos suaves y destellos prismáticos para iluminar cada día.',
+    tagline: 'Tonos suaves y destellos pastel para darle frescura a tu teléfono.',
     paletteHex: ['#F472B6', '#FDE047', '#C084FC', '#6EE7B7'],
     gradientBg: 'from-pink-950/40 via-purple-950/30 to-[#140E17]',
     glowColor: 'rgba(244, 114, 182, 0.35)',
@@ -34,7 +34,7 @@ const MOOD_CHAMBER_OPTIONS: MoodChamberOption[] = [
     name: 'Wine Royale',
     moodTitle: 'Borgoña Profundo & Satinado',
     productName: 'WINE ROYALE',
-    tagline: 'Elegancia absoluta en tono vino tinto con acabado aterciopelado.',
+    tagline: 'Elegancia en tono vino tinto con acabado satinado anti-marcas.',
     paletteHex: ['#881337', '#BE123C', '#F5C518', '#FDA4AF'],
     gradientBg: 'from-rose-950/50 via-red-950/30 to-[#140E17]',
     glowColor: 'rgba(190, 18, 60, 0.4)',
@@ -44,7 +44,7 @@ const MOOD_CHAMBER_OPTIONS: MoodChamberOption[] = [
     name: 'Wild & Earth',
     moodTitle: 'Mostaza, Ocre & Terracota',
     productName: 'WILD',
-    tagline: 'Estampas orgánicas y terrosas inspiradas en la naturaleza indómita.',
+    tagline: 'Estampados cálidos y terrosos con textura antideslizante.',
     paletteHex: ['#D97706', '#92400E', '#FBBF24', '#78350F'],
     gradientBg: 'from-amber-950/50 via-orange-950/30 to-[#140E17]',
     glowColor: 'rgba(217, 119, 6, 0.35)',
@@ -54,7 +54,7 @@ const MOOD_CHAMBER_OPTIONS: MoodChamberOption[] = [
     name: 'Wave 3D',
     moodTitle: 'Negro Carbón & Relieve Táctil',
     productName: 'WAVE BLACK',
-    tagline: 'Ondulaciones ergonómicas que se sienten en la palma de tu mano.',
+    tagline: 'Ondulaciones ergonómicas que se adaptan naturalmente a la mano.',
     paletteHex: ['#1E293B', '#334155', '#F5C518', '#0F172A'],
     gradientBg: 'from-slate-900/60 via-slate-950/40 to-[#140E17]',
     glowColor: 'rgba(245, 197, 24, 0.25)',
@@ -99,11 +99,11 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
         {/* Header */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-slate-200 backdrop-blur-2xl mb-4 shadow-xl">
           <Palette className="h-3.5 w-3.5 text-amber-300" />
-          <span>Atmósfera Sensorial · Mood Chamber</span>
+          <span>Selector de Colores & Acabados</span>
         </div>
 
         <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight">
-          Sentí tu <span className="animate-pastel-text italic font-normal">{activeMood.name}</span>
+          Encontrá tu <span className="animate-pastel-text italic font-normal">{activeMood.name}</span>
         </h2>
 
         <p className="mt-3 text-xs sm:text-lg text-slate-200 max-w-lg font-medium">
