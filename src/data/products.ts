@@ -705,4 +705,26 @@ export async function fetchLiveShowroomSwatches(): Promise<import('../types').Sh
   }
 }
 
+export const DEFAULT_SHOWROOM_SECTIONS: import('../types').ShowroomSectionsConfig = {
+  hero: true,
+  spotlight: true,
+  studio: true,
+  coverflow: true,
+  about: false,
+};
+
+export async function fetchLiveShowroomSections(): Promise<import('../types').ShowroomSectionsConfig> {
+  try {
+    const res = await fetch('https://casemood.pages.dev/api/settings').catch(() => null);
+    if (!res || !res.ok) return DEFAULT_SHOWROOM_SECTIONS;
+    const { settings } = (await res.json()) as { settings: Record<string, string> };
+    const raw = settings?.showroom_sections_config;
+    if (!raw) return DEFAULT_SHOWROOM_SECTIONS;
+    const parsed = JSON.parse(raw);
+    return { ...DEFAULT_SHOWROOM_SECTIONS, ...parsed };
+  } catch {
+    return DEFAULT_SHOWROOM_SECTIONS;
+  }
+}
+
 

@@ -47,6 +47,14 @@ export interface RawCatalogProduct {
   order?: number;
   active: boolean;
 }
+export interface ShowroomSectionsConfig {
+  hero: boolean;
+  spotlight: boolean;
+  studio: boolean;
+  coverflow: boolean;
+  about: boolean;
+}
+
 export interface ShowroomTextsConfig {
   // 1. Hero Principal
   heroBadge: string;
@@ -56,12 +64,17 @@ export interface ShowroomTextsConfig {
   heroCtaExplore: string;
   heroCtaStore: string;
 
-  // 2. Studio Mood Switcher
+  // 2. Spotlight Novedades (Visuales Gigantes)
+  spotlightBadge?: string;
+  spotlightTitle?: string;
+  spotlightSubtitle?: string;
+
+  // 3. Studio Mood Switcher
   studioBadge: string;
   studioTitle: string;
   studioSubtitle: string;
 
-  // 3. Hotspots / Detalles
+  // 4. Hotspots / Detalles
   hotspotsBadge: string;
   hotspotsTitle: string;
   hotspotsSubtitle: string;
@@ -74,27 +87,27 @@ export interface ShowroomTextsConfig {
   hotspot4Title: string;
   hotspot4Desc: string;
 
-  // 4. Bento Grid
+  // 5. Bento Grid
   bentoBadge: string;
   bentoTitle: string;
   bentoSubtitle: string;
 
-  // 5. Cine Highlights
+  // 6. Cine Highlights
   cineBadge: string;
   cineTitle: string;
   cineSubtitle: string;
 
-  // 6. Coverflow 3D
+  // 7. Coverflow 3D
   coverflowBadge: string;
   coverflowTitle: string;
   coverflowSubtitle: string;
 
-  // 7. Lookbook Stream
+  // 8. Lookbook Stream
   lookbookBadge: string;
   lookbookTitle: string;
   lookbookSubtitle: string;
 
-  // 8. Sobre Nosotros
+  // 9. Sobre Nosotros
   aboutBadge: string;
   aboutTitle: string;
   aboutParagraph: string;
@@ -109,7 +122,7 @@ export interface ShowroomTextsConfig {
   aboutPillar4Title: string;
   aboutPillar4Desc: string;
 
-  // 9. Footer
+  // 10. Footer
   footerDescription: string;
   footerCopyrightText: string;
 }
