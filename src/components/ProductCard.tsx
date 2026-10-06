@@ -76,16 +76,11 @@ export function ProductCard({ product, onOpenModal, priority = false }: ProductC
         </p>
       </div>
 
-      {/* Footer / Price & Store Link */}
+      {/* Footer / Store Link & Details */}
       <div className="mt-4 border-t border-brand-border/60 pt-3.5 flex items-center justify-between gap-3">
-        <div>
-          <span className="block text-[10px] font-semibold uppercase tracking-wider text-brand-muted">
-            Precio
-          </span>
-          <span className="text-lg font-black text-brand-yellow">
-            ${product.price.toLocaleString('es-AR')}
-          </span>
-        </div>
+        <span className="text-[11px] font-bold text-brand-muted">
+          Diseño Exclusivo
+        </span>
 
         <div className="flex items-center gap-2">
           <button
@@ -102,10 +97,10 @@ export function ProductCard({ product, onOpenModal, priority = false }: ProductC
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 rounded-xl bg-brand-yellow px-3.5 py-2 text-xs font-black text-brand-bg shadow-sm transition-all hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
-            title="Comprar en Tienda Oficial"
+            title="Ver en Tienda Oficial"
           >
             <ShoppingBag className="h-3.5 w-3.5" />
-            <span>Tienda</span>
+            <span>Ver en Tienda</span>
             <ExternalLink className="h-3 w-3 opacity-60" />
           </a>
         </div>

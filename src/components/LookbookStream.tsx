@@ -124,7 +124,7 @@ export function LookbookStream({ initialProducts }: LookbookStreamProps) {
         </div>
         <h3 className="text-2xl sm:text-3xl font-black text-white">¿Te gustó algún diseño?</h3>
         <p className="mt-2 text-sm text-brand-muted">
-          Encontrá el stock en tiempo real y todos los modelos de celular compatibles en la tienda oficial.
+          Encontrá todos los modelos de celular compatibles en la tienda oficial.
         </p>
         <div className="mt-6 flex items-center justify-center">
           <a

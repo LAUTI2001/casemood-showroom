@@ -76,7 +76,7 @@ export function AppleKeynoteHero({ products: initialProducts }: AppleKeynoteHero
             className="w-full sm:w-auto flex items-center justify-center gap-2.5 rounded-full bg-brand-yellow px-8 py-3.5 text-xs sm:text-sm font-black text-brand-bg shadow-xl shadow-brand-yellow/30 transition-all duration-300 hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
           >
             <ShoppingBag className="h-4 w-4" />
-            <span>{texts.heroCtaStore || 'Comprar en Tienda Oficial'}</span>
+            <span>{texts.heroCtaStore || 'Ir a la Tienda Oficial'}</span>
             <ExternalLink className="h-3.5 w-3.5 opacity-70" />
           </a>
 

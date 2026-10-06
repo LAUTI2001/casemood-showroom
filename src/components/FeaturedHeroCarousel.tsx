@@ -63,10 +63,6 @@ export function FeaturedHeroCarousel({ products, onOpenModal }: FeaturedHeroCaro
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">
-              <span className="rounded-xl bg-brand-bg-deep px-3.5 py-2 text-xl font-black text-brand-yellow border border-brand-border">
-                ${current.price.toLocaleString('es-AR')}
-              </span>
-
               <a
                 href={current.storeUrl}
                 target="_blank"
@@ -74,7 +70,7 @@ export function FeaturedHeroCarousel({ products, onOpenModal }: FeaturedHeroCaro
                 className="flex items-center gap-2 rounded-xl bg-brand-yellow px-5 py-2.5 text-xs font-black text-brand-bg shadow-md transition-all hover:bg-brand-yellow-hover hover:scale-105 active:scale-95"
               >
                 <ShoppingBag className="h-4 w-4" />
-                <span>Comprar en Tienda</span>
+                <span>Ver en Tienda Oficial</span>
                 <ExternalLink className="h-3.5 w-3.5 opacity-60" />
               </a>
 

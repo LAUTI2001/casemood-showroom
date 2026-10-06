@@ -151,15 +151,7 @@ export function SpotlightShowcase({ products }: { products: ShowroomProduct[] })
                 `Diseño exclusivo ${current.name} con protección reforzada y calce exacto.`}
             </p>
 
-            {/* Price Tag */}
-            {current.price > 0 && (
-              <div className="mt-4 flex items-baseline justify-center lg:justify-start gap-2">
-                <span className="text-2xl sm:text-3xl font-black text-amber-300">
-                  ${current.price.toLocaleString('es-AR')}
-                </span>
-                <span className="text-xs text-white/50 font-medium">precio oficial</span>
-              </div>
-            )}
+
 
             {/* Model Pills (preview up to 5) */}
             {current.models && current.models.length > 0 && (

@@ -182,14 +182,6 @@ export function ProductLightboxModal({ product, open, onClose }: ProductLightbox
                 </h2>
               </div>
 
-              {/* Price Banner */}
-              <div className="rounded-2xl border border-brand-border/80 bg-brand-bg-deep/70 p-4">
-                <p className="text-xs font-semibold text-brand-muted uppercase tracking-wider">Precio en Tienda Oficial</p>
-                <p className="mt-1 text-3xl font-black text-brand-yellow">
-                  ${product.price.toLocaleString('es-AR')}
-                </p>
-              </div>
-
               {/* Description */}
               <p className="text-sm leading-relaxed text-brand-muted">
                 {product.description}
@@ -200,7 +192,7 @@ export function ProductLightboxModal({ product, open, onClose }: ProductLightbox
                 <div className="space-y-2 pt-2">
                   <label className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-white">
                     <Smartphone className="h-3.5 w-3.5 text-brand-yellow" />
-                    <span>Seleccioná tu modelo:</span>
+                    <span>Modelos compatibles:</span>
                   </label>
                   <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">
                     {product.models.map((m) => {
@@ -235,7 +227,7 @@ export function ProductLightboxModal({ product, open, onClose }: ProductLightbox
                 className="group flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-yellow px-5 py-3.5 text-sm font-black text-brand-bg shadow-lg shadow-brand-yellow/20 transition-all hover:bg-brand-yellow-hover hover:scale-[1.02] active:scale-[0.98]"
               >
                 <ShoppingBag className="h-4.5 w-4.5" />
-                <span>Comprar en Tienda Oficial</span>
+                <span>Ver en Tienda Oficial</span>
                 <ExternalLink className="h-3.5 w-3.5 opacity-60 group-hover:opacity-100" />
               </a>
 
