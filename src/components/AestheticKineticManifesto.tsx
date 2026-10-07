@@ -28,29 +28,30 @@ export function AestheticKineticManifesto() {
   const row2 = [...manifestoItemsRow2, ...manifestoItemsRow2, ...manifestoItemsRow2];
 
   return (
-    <section className="relative w-full py-16 sm:py-28 bg-[#0E0911] overflow-hidden select-none border-b border-white/10 mask-fade-edges">
-      {/* Atmospheric Background Lifestyle Card 2 (Left Backing) */}
-      <div className="pointer-events-none absolute -top-8 left-4 sm:left-16 z-0 w-36 sm:w-56 aspect-[3/4] rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md -rotate-12 shadow-2xl opacity-25 sm:opacity-40">
+    <section className="relative w-full py-20 sm:py-36 bg-[#0E0911] overflow-hidden select-none border-b border-white/10 mask-fade-edges">
+      {/* ========================================================= */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND POSTERS 🌟 */}
+      {/* ========================================================= */}
+      <div className="pointer-events-none absolute -top-16 -left-12 sm:left-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-60">
         <Image
           src="/lifestyle/lifestyle-2.jpg"
           alt="CaseMood Atmosphere Parisienne"
           fill
-          sizes="(min-width: 1024px) 240px, 150px"
-          className="object-cover"
+          sizes="(min-width: 1024px) 580px, 300px"
+          className="object-cover filter contrast-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
-      {/* Atmospheric Background Lifestyle Card 7 (Right Backing) */}
-      <div className="pointer-events-none absolute -bottom-8 right-4 sm:right-16 z-0 w-36 sm:w-56 aspect-[3/4] rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md rotate-12 shadow-2xl opacity-25 sm:opacity-40">
+      <div className="pointer-events-none absolute -bottom-16 -right-12 sm:right-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-60">
         <Image
           src="/lifestyle/lifestyle-7.jpg"
           alt="CaseMood Atmosphere Burgundy Stars"
           fill
-          sizes="(min-width: 1024px) 240px, 150px"
-          className="object-cover"
+          sizes="(min-width: 1024px) 580px, 300px"
+          className="object-cover filter contrast-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
       {/* Row 1: Leftward Infinite Flow */}

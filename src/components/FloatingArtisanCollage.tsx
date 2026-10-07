@@ -12,46 +12,60 @@ interface FloatingArtisanCollageProps {
 }
 
 export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps) {
-  const displayItems = products.slice(0, 9);
+  // Show 15 fundas for extensive variety
+  const displayItems = products.slice(0, 15);
   const [selectedProduct, setSelectedProduct] = useState<ShowroomProduct | null>(null);
 
   // Artistic organic styling variations
   const cardThemes = [
-    { bg: 'from-pink-500/20 via-rose-950/30 to-transparent', border: 'hover:border-pink-400', glow: 'bg-pink-500/30', rotate: '-rotate-2 sm:-rotate-4', badge: 'text-pink-300 bg-pink-500/15 border-pink-400/30' },
-    { bg: 'from-amber-500/20 via-yellow-950/30 to-transparent', border: 'hover:border-amber-400', glow: 'bg-amber-500/30', rotate: 'rotate-3 sm:rotate-5', badge: 'text-amber-300 bg-amber-500/15 border-amber-400/30' },
-    { bg: 'from-emerald-500/20 via-teal-950/30 to-transparent', border: 'hover:border-emerald-400', glow: 'bg-emerald-500/30', rotate: '-rotate-3 sm:-rotate-5', badge: 'text-emerald-300 bg-emerald-500/15 border-emerald-400/30' },
-    { bg: 'from-purple-500/20 via-fuchsia-950/30 to-transparent', border: 'hover:border-purple-400', glow: 'bg-purple-500/30', rotate: 'rotate-2 sm:rotate-4', badge: 'text-purple-300 bg-purple-500/15 border-purple-400/30' },
-    { bg: 'from-orange-500/20 via-amber-950/30 to-transparent', border: 'hover:border-orange-400', glow: 'bg-orange-500/30', rotate: '-rotate-4 sm:-rotate-6', badge: 'text-orange-300 bg-orange-500/15 border-orange-400/30' },
-    { bg: 'from-cyan-500/20 via-blue-950/30 to-transparent', border: 'hover:border-cyan-400', glow: 'bg-cyan-500/30', rotate: 'rotate-3 sm:rotate-6', badge: 'text-cyan-300 bg-cyan-500/15 border-cyan-400/30' },
+    { bg: 'from-pink-500/20 via-rose-950/30 to-transparent', border: 'hover:border-pink-400', glow: 'bg-pink-500/30', rotate: '-rotate-2 sm:-rotate-3', badge: 'text-pink-300 bg-pink-500/15 border-pink-400/30' },
+    { bg: 'from-amber-500/20 via-yellow-950/30 to-transparent', border: 'hover:border-amber-400', glow: 'bg-amber-500/30', rotate: 'rotate-2 sm:rotate-4', badge: 'text-amber-300 bg-amber-500/15 border-amber-400/30' },
+    { bg: 'from-emerald-500/20 via-teal-950/30 to-transparent', border: 'hover:border-emerald-400', glow: 'bg-emerald-500/30', rotate: '-rotate-2 sm:-rotate-4', badge: 'text-emerald-300 bg-emerald-500/15 border-emerald-400/30' },
+    { bg: 'from-purple-500/20 via-fuchsia-950/30 to-transparent', border: 'hover:border-purple-400', glow: 'bg-purple-500/30', rotate: 'rotate-2 sm:rotate-3', badge: 'text-purple-300 bg-purple-500/15 border-purple-400/30' },
+    { bg: 'from-orange-500/20 via-amber-950/30 to-transparent', border: 'hover:border-orange-400', glow: 'bg-orange-500/30', rotate: '-rotate-3 sm:-rotate-4', badge: 'text-orange-300 bg-orange-500/15 border-orange-400/30' },
+    { bg: 'from-cyan-500/20 via-blue-950/30 to-transparent', border: 'hover:border-cyan-400', glow: 'bg-cyan-500/30', rotate: 'rotate-2 sm:rotate-4', badge: 'text-cyan-300 bg-cyan-500/15 border-cyan-400/30' },
   ];
 
   return (
     <section id="mural" className="relative w-full py-24 sm:py-36 px-4 sm:px-6 lg:px-8 bg-[#120D15] overflow-hidden select-none border-b border-white/10">
       {/* Dynamic Background Fluid Orbs */}
-      <div className="pointer-events-none absolute top-1/3 right-10 w-[500px] h-[500px] rounded-full bg-pink-500/15 blur-[150px] animate-blob-1" />
-      <div className="pointer-events-none absolute bottom-10 left-10 w-[600px] h-[600px] rounded-full bg-amber-400/15 blur-[160px] animate-blob-2" />
+      <div className="pointer-events-none absolute top-1/4 right-10 w-[600px] h-[600px] rounded-full bg-pink-500/15 blur-[160px] animate-blob-1" />
+      <div className="pointer-events-none absolute bottom-1/4 left-10 w-[700px] h-[700px] rounded-full bg-amber-400/15 blur-[180px] animate-blob-2" />
 
-      {/* Atmospheric Lifestyle Side Ambient Floats */}
-      <div className="pointer-events-none absolute top-1/4 -left-16 sm:left-4 z-0 w-48 sm:w-64 aspect-[3/4] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md -rotate-12 shadow-2xl opacity-30 sm:opacity-50">
+      {/* ========================================================= */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND LIFESTYLE POSTERS 🌟 */}
+      {/* ========================================================= */}
+      <div className="pointer-events-none absolute top-12 -left-20 sm:-left-10 lg:left-2 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
           src="/lifestyle/lifestyle-3.jpg"
           alt="Atmosphere Coast"
           fill
-          sizes="(min-width: 1024px) 280px, 180px"
-          className="object-cover"
+          sizes="(min-width: 1024px) 620px, 320px"
+          className="object-cover filter contrast-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
-      <div className="pointer-events-none absolute bottom-1/4 -right-16 sm:right-4 z-0 w-48 sm:w-64 aspect-[3/4] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md rotate-12 shadow-2xl opacity-30 sm:opacity-50">
+      <div className="pointer-events-none absolute top-1/2 -right-20 sm:-right-10 lg:right-2 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
           src="/lifestyle/lifestyle-8.jpg"
           alt="Atmosphere Seaside"
           fill
-          sizes="(min-width: 1024px) 280px, 180px"
+          sizes="(min-width: 1024px) 620px, 320px"
+          className="object-cover filter contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-20 -left-16 sm:left-4 z-0 w-60 sm:w-[420px] lg:w-[540px] aspect-[3/4] rounded-[48px] overflow-hidden border border-white/15 bg-white/[0.03] backdrop-blur-md rotate-6 shadow-2xl opacity-35 sm:opacity-60">
+        <Image
+          src="/lifestyle/lifestyle-10.jpg"
+          alt="Atmosphere Picnic"
+          fill
+          sizes="(min-width: 1024px) 540px, 300px"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
       {/* Giant Faded Artistic Watermark */}
@@ -66,7 +80,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
         <div className="flex flex-col items-center text-center mb-16 sm:mb-24">
           <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/40 bg-pink-500/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-pink-300 backdrop-blur-2xl mb-4 shadow-xl">
             <Sparkles className="h-3.5 w-3.5" />
-            <span>Colección Destacada · Diseños Exclusivos</span>
+            <span>Colección Destacada · Diseños Exclusivos ({displayItems.length} Modelos)</span>
           </div>
 
           <h2 className="font-display text-4xl sm:text-7xl lg:text-8xl font-black text-white tracking-tight leading-tight">
@@ -84,14 +98,19 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
             const theme = cardThemes[idx % cardThemes.length];
             const imgSrc = product.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
 
-            // Insert an ambient lookbook panel after item 2 and item 5
-            const showLifestyleCardAfter = idx === 2 ? '/lifestyle/lifestyle-4.jpg' : null;
+            // Insert large lifestyle lookbook panels inside the grid flow
+            const lifestyleInterleave =
+              idx === 2
+                ? { src: '/lifestyle/lifestyle-4.jpg', alt: 'Night & Stars Editorial' }
+                : idx === 7
+                ? { src: '/lifestyle/lifestyle-9.jpg', alt: 'Denim & Stars Lookbook' }
+                : null;
 
             return (
               <div key={product.id + idx} className="contents">
                 <div
                   onClick={() => setSelectedProduct(product)}
-                  className={`group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b ${theme.bg} p-6 sm:p-8 border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-700 hover:scale-105 hover:z-30 cursor-pointer ${theme.border} ${theme.rotate}`}
+                  className={`group relative overflow-hidden rounded-[38px] sm:rounded-[48px] bg-gradient-to-b ${theme.bg} p-6 sm:p-8 border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-700 hover:scale-105 hover:z-30 cursor-pointer ${theme.border} ${theme.rotate}`}
                 >
                   {/* Chromatic Hover Halo */}
                   <div className={`pointer-events-none absolute -inset-10 rounded-full ${theme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl`} />
@@ -106,14 +125,14 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
                     </span>
                   </div>
 
-                  {/* Floating Central Phone Case */}
-                  <div className="relative aspect-[3/4] w-full max-w-[240px] sm:max-w-[270px] mx-auto overflow-hidden rounded-[28px] bg-white/[0.06] p-5 flex items-center justify-center border border-white/10 my-3 transition-transform duration-700 group-hover:scale-105">
+                  {/* Floating Central Phone Case with Luxury Porcelain Frame */}
+                  <div className="relative aspect-[3/4] w-full max-w-[240px] sm:max-w-[280px] mx-auto overflow-hidden rounded-[30px] bg-gradient-to-b from-[#FAF8F5] to-[#F1EDE5] p-5 flex items-center justify-center border-2 border-white/40 shadow-[0_15px_35px_rgba(0,0,0,0.4)] my-3 transition-transform duration-700 group-hover:scale-105">
                     <Image
                       src={optimizeCloudinaryUrl(imgSrc, 700)}
                       alt={product.displayName}
                       fill
-                      sizes="(min-width: 1024px) 270px, 200px"
-                      className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] transition-transform duration-700 group-hover:scale-110"
+                      sizes="(min-width: 1024px) 280px, 220px"
+                      className="object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.45)] transition-transform duration-700 group-hover:scale-110"
                     />
                   </div>
 
@@ -134,15 +153,15 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
                   </div>
                 </div>
 
-                {/* Dispersed Lifestyle Photo Card inside the Flow */}
-                {showLifestyleCardAfter && (
-                  <div className="group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b from-purple-500/20 via-pink-950/20 to-transparent p-3 sm:p-4 border border-white/15 backdrop-blur-2xl shadow-2xl rotate-2 sm:rotate-3 transition-all duration-700 hover:scale-105 hover:border-white/30">
-                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] bg-slate-950">
+                {/* Dispersed Grand Lifestyle Photo Card inside the Flow */}
+                {lifestyleInterleave && (
+                  <div className="group relative overflow-hidden rounded-[38px] sm:rounded-[48px] bg-gradient-to-b from-purple-500/20 via-pink-950/20 to-transparent p-3 sm:p-4 border border-white/20 backdrop-blur-2xl shadow-2xl rotate-2 sm:rotate-3 transition-all duration-700 hover:scale-105 hover:border-white/40">
+                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[30px] sm:rounded-[40px] bg-slate-950">
                       <Image
-                        src={showLifestyleCardAfter}
-                        alt="CaseMood Editorial Atmosphere"
+                        src={lifestyleInterleave.src}
+                        alt={lifestyleInterleave.alt}
                         fill
-                        sizes="(min-width: 1024px) 400px, 90vw"
+                        sizes="(min-width: 1024px) 450px, 90vw"
                         className="object-cover filter contrast-105 transition-transform duration-1000 group-hover:scale-105"
                       />
                       <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
@@ -186,12 +205,12 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
               ✕
             </button>
 
-            <div className="relative aspect-[3/4] h-72 sm:h-96 w-full mx-auto my-4 flex items-center justify-center">
+            <div className="relative aspect-[3/4] h-72 sm:h-96 w-full mx-auto my-4 rounded-3xl bg-[#FAF8F5] p-6 flex items-center justify-center overflow-hidden border border-white/20">
               <Image
                 src={optimizeCloudinaryUrl(selectedProduct.images[0], 1200)}
                 alt={selectedProduct.displayName}
                 fill
-                className="object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.9)]"
+                className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)]"
               />
             </div>
 

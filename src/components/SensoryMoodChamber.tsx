@@ -92,19 +92,21 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
       {/* Liquid Ambient Light Reactive Orb */}
       <div
         style={{ backgroundColor: activeMood.glowColor }}
-        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[600px] sm:h-[900px] rounded-full blur-[160px] transition-all duration-1000 opacity-60"
+        className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1000px] h-[700px] sm:h-[1000px] rounded-full blur-[180px] transition-all duration-1000 opacity-60"
       />
 
-      {/* Atmospheric Background Lifestyle Card 10 (Floating in Environment) */}
-      <div className="pointer-events-none absolute bottom-16 right-4 sm:right-16 z-0 w-44 sm:w-64 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md rotate-6 shadow-2xl opacity-35 sm:opacity-55">
+      {/* ========================================================= */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND LIFESTYLE POSTER 🌟 */}
+      {/* ========================================================= */}
+      <div className="pointer-events-none absolute bottom-10 -right-16 sm:right-6 lg:right-12 z-0 w-64 sm:w-[480px] lg:w-[600px] aspect-[4/5] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-6 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
           src="/lifestyle/lifestyle-10.jpg"
           alt="CaseMood Atmosphere Cherry Street"
           fill
-          sizes="(min-width: 1024px) 260px, 180px"
-          className="object-cover"
+          sizes="(min-width: 1024px) 600px, 320px"
+          className="object-cover filter contrast-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl flex flex-col items-center text-center">
@@ -122,9 +124,9 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
           {activeMood.tagline}
         </p>
 
-        {/* Central Giant Phone Case with Reactive Ambient Backlight */}
+        {/* Central Giant Phone Case with Reactive Ambient Backlight and Porcelain Frame */}
         <div className="relative my-10 sm:my-16 flex flex-col items-center">
-          <div className="relative aspect-[3/4] h-80 w-56 sm:h-[440px] sm:w-[320px] lg:h-[480px] lg:w-[350px] overflow-hidden rounded-[40px] bg-gradient-to-b from-white/[0.15] via-white/[0.05] to-transparent p-6 sm:p-8 backdrop-blur-2xl border-2 border-white/25 shadow-[0_30px_90px_rgba(0,0,0,0.95)] transition-all duration-700 hover:scale-105">
+          <div className="relative aspect-[3/4] h-80 w-56 sm:h-[460px] sm:w-[340px] lg:h-[500px] lg:w-[370px] overflow-hidden rounded-[44px] sm:rounded-[56px] bg-gradient-to-b from-[#FDFBF7] via-[#F6F2EC] to-[#EFEAE2] p-6 sm:p-8 backdrop-blur-2xl border-4 border-white/70 shadow-[0_35px_100px_rgba(0,0,0,0.95)] transition-all duration-700 hover:scale-105">
             {images.map((src, i) => {
               const isCurrent = i === activeAngleIdx;
               return (
@@ -139,8 +141,8 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
                       src={optimizeCloudinaryUrl(src, 900)}
                       alt={`${currentProduct?.displayName} - Foto ${i + 1}`}
                       fill
-                      sizes="(min-width: 1024px) 350px, 280px"
-                      className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.9)]"
+                      sizes="(min-width: 1024px) 370px, 280px"
+                      className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)]"
                       priority
                     />
                   </div>
@@ -150,7 +152,7 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
 
             {/* Angle Dots inside Card */}
             {images.length > 1 && (
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-black/80 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex items-center gap-2 bg-slate-950/85 backdrop-blur-md px-3.5 py-1 rounded-full border border-white/20">
                 {images.map((_, idx) => (
                   <button
                     key={idx}

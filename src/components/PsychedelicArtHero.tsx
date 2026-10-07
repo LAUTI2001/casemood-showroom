@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import { ShoppingBag, Sparkles, ChevronDown, Compass, ShieldCheck, Heart, Zap, ArrowRight } from 'lucide-react';
-import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl, getEcommerceProductUrl } from '../lib/whatsapp';
+import { ShoppingBag, Sparkles, ChevronDown, Compass, ShieldCheck, Heart, Zap } from 'lucide-react';
+import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
 import type { ShowroomProduct } from '../types';
 
@@ -15,7 +15,7 @@ function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
   );
 }
 
-// Curated Surtdas Config for the Interactive Giant Spotlight
+// 12 Curated Surtidas for the Interactive Giant Spotlight & Quick Tray
 interface SpotlightHeroItem {
   name: string;
   category: string;
@@ -74,6 +74,54 @@ const SPOTLIGHT_SURTIDAS: SpotlightHeroItem[] = [
     badge: '🐚 Inspiración Marina',
     tagline: 'Estampas marinas y ondas oceánicas',
   },
+  {
+    name: 'CRYSTAL FLEUR',
+    category: 'Aesthetic',
+    moodColor: '#EC4899',
+    glowColor: 'from-pink-400/45 via-rose-500/30 to-indigo-500/10',
+    badge: '🌸 Relieve Botánico',
+    tagline: 'Transparencia de alta densidad con flores',
+  },
+  {
+    name: 'WAVE WITHE',
+    category: 'Minimalista',
+    moodColor: '#E2E8F0',
+    glowColor: 'from-slate-200/35 via-slate-400/20 to-transparent',
+    badge: '🤍 Relieve 3D',
+    tagline: 'Ondas marfil ergonómicas ultra-resistentes',
+  },
+  {
+    name: 'SPARK ROSA',
+    category: 'Pop & Vibes',
+    moodColor: '#F43F5E',
+    glowColor: 'from-fuchsia-500/45 via-pink-600/30 to-amber-400/10',
+    badge: '⚡ Chispas Neón',
+    tagline: 'Destellos holográficos para resaltar tu outfit',
+  },
+  {
+    name: 'STICKERS',
+    category: 'Pop & Vibes',
+    moodColor: '#A855F7',
+    glowColor: 'from-purple-500/45 via-pink-500/30 to-cyan-500/10',
+    badge: '🎨 Scrapbook Pop',
+    tagline: 'Collage icónico con personajes urbanos',
+  },
+  {
+    name: 'STREET',
+    category: 'Streetwear',
+    moodColor: '#64748B',
+    glowColor: 'from-slate-500/40 via-purple-900/30 to-transparent',
+    badge: '🛹 Streetwear Bold',
+    tagline: 'Identidad urbana con marco anti-impacto',
+  },
+  {
+    name: 'UNIVERSO',
+    category: 'Aesthetic',
+    moodColor: '#6366F1',
+    glowColor: 'from-indigo-600/45 via-purple-600/35 to-pink-500/10',
+    badge: '✨ Estrellas & Cosmos',
+    tagline: 'Constelaciones con profundidad galáctica',
+  },
 ];
 
 interface PsychedelicArtHeroProps {
@@ -126,39 +174,65 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative min-h-[96vh] sm:min-h-screen w-full flex flex-col justify-between items-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-8 overflow-hidden bg-[#140E17] select-none perspective-1000"
+      className="relative min-h-[96vh] sm:min-h-screen w-full flex flex-col justify-between items-center pt-24 sm:pt-28 pb-12 sm:pb-20 px-4 sm:px-8 overflow-hidden bg-[#140E17] select-none perspective-1000"
     >
-      {/* Dynamic Background Fluid Orbs Reactive to Active Case */}
+      {/* Dynamic Background Fluid Glow Reactive to Active Case */}
       <div
-        className={`pointer-events-none absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] sm:w-[1100px] h-[500px] sm:h-[700px] rounded-full bg-radial ${activeSpotlight.glowColor} blur-[160px] sm:blur-[200px] transition-all duration-1000`}
+        className={`pointer-events-none absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] sm:w-[1300px] h-[600px] sm:h-[900px] rounded-full bg-radial ${activeSpotlight.glowColor} blur-[180px] sm:blur-[220px] transition-all duration-1000`}
       />
-      <div className="pointer-events-none absolute top-10 left-10 w-[350px] h-[350px] rounded-full bg-pink-500/20 blur-[140px] animate-blob-1" />
-      <div className="pointer-events-none absolute bottom-10 right-10 w-[350px] h-[350px] rounded-full bg-amber-400/20 blur-[140px] animate-blob-2" />
 
-      {/* Atmospheric Background Lifestyle Card 1 (Left Flank) */}
-      <div className="pointer-events-none absolute top-28 -left-14 sm:left-4 lg:left-12 z-0 w-44 sm:w-60 lg:w-72 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md -rotate-6 shadow-2xl opacity-35 sm:opacity-55 lg:opacity-70 animate-float-1">
+      {/* ========================================================= */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND POSTERS (MAXI LIFESTYLE) 🌟 */}
+      {/* ========================================================= */}
+
+      {/* Giant Background Lifestyle 1 (Left Backing - Huge Scale) */}
+      <div className="pointer-events-none absolute top-16 -left-20 sm:-left-10 lg:left-4 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] sm:aspect-[4/5] rounded-[48px] sm:rounded-[64px] overflow-hidden border-2 border-white/20 bg-white/[0.04] backdrop-blur-xl -rotate-6 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-45 sm:opacity-65 lg:opacity-80 animate-float-1">
         <Image
           src="/lifestyle/lifestyle-1.jpg"
           alt="CaseMood Atmosphere Left"
           fill
-          sizes="(min-width: 1024px) 300px, 180px"
-          className="object-cover filter contrast-105"
+          sizes="(min-width: 1024px) 620px, 350px"
+          className="object-cover filter contrast-110 saturate-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       </div>
 
-      {/* Atmospheric Background Lifestyle Card 6 (Right Flank) */}
-      <div className="pointer-events-none absolute top-36 -right-14 sm:right-4 lg:right-12 z-0 w-44 sm:w-60 lg:w-72 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md rotate-6 shadow-2xl opacity-35 sm:opacity-55 lg:opacity-70 animate-float-2">
+      {/* Giant Background Lifestyle 6 (Right Backing - Huge Scale) */}
+      <div className="pointer-events-none absolute top-24 -right-20 sm:-right-10 lg:right-4 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] sm:aspect-[4/5] rounded-[48px] sm:rounded-[64px] overflow-hidden border-2 border-white/20 bg-white/[0.04] backdrop-blur-xl rotate-6 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-45 sm:opacity-65 lg:opacity-80 animate-float-2">
         <Image
           src="/lifestyle/lifestyle-6.jpg"
           alt="CaseMood Atmosphere Right"
           fill
-          sizes="(min-width: 1024px) 300px, 180px"
-          className="object-cover filter contrast-105"
+          sizes="(min-width: 1024px) 620px, 350px"
+          className="object-cover filter contrast-110 saturate-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+      </div>
+
+      {/* Deep Background Lifestyle 2 (Lower Left Atmosphere) */}
+      <div className="pointer-events-none absolute -bottom-10 left-10 lg:left-32 z-0 hidden lg:block w-80 aspect-[3/4] rounded-[40px] overflow-hidden border border-white/15 bg-white/[0.02] backdrop-blur-md rotate-12 shadow-2xl opacity-40">
+        <Image
+          src="/lifestyle/lifestyle-2.jpg"
+          alt="CaseMood Atmosphere Parisienne"
+          fill
+          sizes="320px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+      </div>
+
+      {/* Deep Background Lifestyle 7 (Lower Right Atmosphere) */}
+      <div className="pointer-events-none absolute -bottom-10 right-10 lg:right-32 z-0 hidden lg:block w-80 aspect-[3/4] rounded-[40px] overflow-hidden border border-white/15 bg-white/[0.02] backdrop-blur-md -rotate-12 shadow-2xl opacity-40">
+        <Image
+          src="/lifestyle/lifestyle-7.jpg"
+          alt="CaseMood Atmosphere Burgundy"
+          fill
+          sizes="320px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
       </div>
 
       {/* Main Title & Editorial Statement */}
@@ -166,7 +240,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
         {/* Editorial Eyebrow */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-5 py-1.5 text-xs font-black uppercase tracking-widest text-slate-200 backdrop-blur-2xl shadow-xl mb-3 sm:mb-5">
           <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin-slow" />
-          <span>Colección Oficial · Diseños Exclusivos</span>
+          <span>Colección Oficial · Fundas de Diseño</span>
           <Sparkles className="h-3.5 w-3.5 text-pink-300 animate-spin-slow" />
         </div>
 
@@ -206,7 +280,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
       {/* ========================================================= */}
       {/* 🌟 LA FUNDA GIGANTE & ESCENARIO DE SURTIDAS INTERACTIVO 🌟 */}
       {/* ========================================================= */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto my-6 sm:my-10 flex flex-col items-center">
+      <div className="relative z-10 w-full max-w-6xl mx-auto my-6 sm:my-10 flex flex-col items-center">
         {/* Giant Case 3D Stage with Interactive Floating Stickers */}
         <div
           onMouseEnter={() => setIsAutoPlaying(false)}
@@ -214,42 +288,42 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
             transform: `rotateY(${parallax.x}deg) rotateX(${-parallax.y}deg)`,
             transition: 'transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
           }}
-          className="relative flex items-center justify-center h-[380px] sm:h-[500px] lg:h-[560px] w-full max-w-md mx-auto transform-style-3d group"
+          className="relative flex items-center justify-center h-[400px] sm:h-[540px] lg:h-[600px] w-full max-w-lg mx-auto transform-style-3d group"
         >
           {/* Floating Hologram Rim Light */}
           <div
             style={{
-              boxShadow: `0 35px 90px -15px ${activeSpotlight.moodColor}60`,
+              boxShadow: `0 40px 100px -10px ${activeSpotlight.moodColor}70`,
             }}
-            className="absolute inset-x-8 inset-y-4 rounded-[56px] transition-all duration-700 pointer-events-none"
+            className="absolute inset-x-6 inset-y-4 rounded-[60px] transition-all duration-700 pointer-events-none"
           />
 
           {/* Floating Sticker 1: Shockproof (Top Left) */}
-          <div className="absolute -top-4 -left-6 sm:-left-16 z-30 flex items-center gap-1.5 rounded-full bg-slate-950/90 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-amber-300 backdrop-blur-xl shadow-2xl -rotate-12 transition-transform duration-300 hover:scale-110">
+          <div className="absolute -top-4 -left-6 sm:-left-16 z-30 flex items-center gap-1.5 rounded-full bg-slate-950/95 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-amber-300 backdrop-blur-xl shadow-2xl -rotate-12 transition-transform duration-300 hover:scale-110">
             <ShieldCheck className="h-3.5 w-3.5 text-amber-300" />
             <span>Anti-Shock 360°</span>
           </div>
 
           {/* Floating Sticker 2: Premium Grip (Top Right) */}
-          <div className="absolute -top-2 -right-6 sm:-right-16 z-30 flex items-center gap-1.5 rounded-full bg-slate-950/90 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-pink-300 backdrop-blur-xl shadow-2xl rotate-12 transition-transform duration-300 hover:scale-110">
+          <div className="absolute -top-2 -right-6 sm:-right-16 z-30 flex items-center gap-1.5 rounded-full bg-slate-950/95 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-pink-300 backdrop-blur-xl shadow-2xl rotate-12 transition-transform duration-300 hover:scale-110">
             <Zap className="h-3.5 w-3.5 text-pink-300" />
             <span>Soft-Touch Grip</span>
           </div>
 
           {/* Floating Sticker 3: Calce Milimétrico (Bottom Left) */}
-          <div className="absolute -bottom-4 -left-4 sm:-left-12 z-30 hidden sm:flex items-center gap-1.5 rounded-full bg-slate-950/90 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-emerald-300 backdrop-blur-xl shadow-2xl rotate-6 transition-transform duration-300 hover:scale-110">
+          <div className="absolute -bottom-4 -left-4 sm:-left-12 z-30 hidden sm:flex items-center gap-1.5 rounded-full bg-slate-950/95 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-emerald-300 backdrop-blur-xl shadow-2xl rotate-6 transition-transform duration-300 hover:scale-110">
             <Compass className="h-3.5 w-3.5 text-emerald-300" />
             <span>Calce Milimétrico</span>
           </div>
 
           {/* Floating Sticker 4: Edición Oficial (Bottom Right) */}
-          <div className="absolute -bottom-2 -right-4 sm:-right-12 z-30 hidden sm:flex items-center gap-1.5 rounded-full bg-slate-950/90 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-purple-300 backdrop-blur-xl shadow-2xl -rotate-6 transition-transform duration-300 hover:scale-110">
+          <div className="absolute -bottom-2 -right-4 sm:-right-12 z-30 hidden sm:flex items-center gap-1.5 rounded-full bg-slate-950/95 border border-white/30 px-3.5 py-1.5 text-[11px] font-black uppercase text-purple-300 backdrop-blur-xl shadow-2xl -rotate-6 transition-transform duration-300 hover:scale-110">
             <Heart className="h-3.5 w-3.5 text-purple-300" />
             <span>{activeSpotlight.badge}</span>
           </div>
 
-          {/* THE GIANT PHONE CASE DISPLAY (Solid Luxury Porcelain Frame - Zero White Artifacts) */}
-          <div className="relative aspect-[3/4] h-[340px] sm:h-[460px] lg:h-[500px] w-[250px] sm:w-[340px] lg:w-[370px] overflow-hidden rounded-[46px] sm:rounded-[56px] bg-gradient-to-b from-[#FDFBF7] via-[#F6F2EC] to-[#EFEAE2] p-6 sm:p-8 border-4 border-white/60 shadow-[0_30px_90px_rgba(0,0,0,0.9)] flex items-center justify-center transition-all duration-700 hover:scale-105">
+          {/* THE MONUMENTAL GIANT PHONE CASE DISPLAY (Solid Luxury Porcelain Frame - Zero White Artifacts) */}
+          <div className="relative aspect-[3/4] h-[360px] sm:h-[490px] lg:h-[540px] w-[260px] sm:w-[360px] lg:w-[400px] overflow-hidden rounded-[48px] sm:rounded-[60px] bg-gradient-to-b from-[#FDFBF7] via-[#F6F2EC] to-[#EFEAE2] p-6 sm:p-9 border-4 border-white/70 shadow-[0_35px_100px_rgba(0,0,0,0.95)] flex items-center justify-center transition-all duration-700 hover:scale-105">
             {/* Animated Glossy Sheen Overlay */}
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
 
@@ -257,32 +331,38 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
             <div className="relative h-full w-full">
               <Image
                 key={activeSpotlight.name}
-                src={optimizeCloudinaryUrl(currentImage, 1000)}
+                src={optimizeCloudinaryUrl(currentImage, 1100)}
                 alt={`Funda Gigante CaseMood - ${activeSpotlight.name}`}
                 fill
                 priority
-                className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.55)] transition-all duration-500 animate-fade-in"
+                className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.6)] transition-all duration-500 animate-fade-in"
               />
             </div>
 
             {/* Floating Model Badge in Case Base */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-950/90 border border-white/20 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-amber-300 shadow-2xl backdrop-blur-md">
+            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-slate-950/95 border border-white/25 px-4 py-1.5 text-xs font-black uppercase tracking-wider text-amber-300 shadow-2xl backdrop-blur-md">
               {currentProduct?.displayName || activeSpotlight.name}
             </div>
           </div>
         </div>
 
         {/* ========================================================= */}
-        {/* SURTIDAS SELECTOR BAR (Interactive Quick-Switch Buttons) */}
+        {/* EXPANDED SURTIDAS SELECTOR (12 Fundas con Mini-Preview Tray) */}
         {/* ========================================================= */}
-        <div className="mt-8 sm:mt-10 flex flex-col items-center gap-3 w-full px-2">
-          <span className="text-[11px] sm:text-xs font-black uppercase tracking-widest text-slate-300">
-            Tocá una estampa para cambiar la funda en vivo:
-          </span>
+        <div className="mt-8 sm:mt-12 flex flex-col items-center gap-4 w-full px-2">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-3.5 w-3.5 text-amber-300 animate-spin-slow" />
+            <span className="text-xs sm:text-sm font-black uppercase tracking-widest text-slate-200">
+              Colección Surtida · Tocá para cambiar en vivo ({SPOTLIGHT_SURTIDAS.length} Modelos)
+            </span>
+          </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 max-w-2xl p-2 rounded-full bg-black/50 border border-white/20 backdrop-blur-2xl shadow-2xl">
+          {/* Interactive Mini-Case Thumbnails Gallery Tray */}
+          <div className="flex items-center gap-2.5 sm:gap-3.5 overflow-x-auto max-w-5xl w-full py-3 px-2 sm:px-4 no-scrollbar">
             {SPOTLIGHT_SURTIDAS.map((item, idx) => {
               const isSel = idx === activeIdx;
+              const prod = products.find((p) => p.name.toUpperCase() === item.name.toUpperCase()) || products[0];
+              const thumbImg = prod?.images?.[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
 
               return (
                 <button
@@ -296,24 +376,30 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
                     setActiveIdx(idx);
                     setIsAutoPlaying(false);
                   }}
-                  className={`flex items-center gap-2 rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs font-black uppercase tracking-wider transition-all duration-300 ${
+                  className={`group relative flex flex-col items-center rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 shrink-0 transition-all duration-300 border cursor-pointer ${
                     isSel
-                      ? 'bg-white text-slate-950 shadow-xl scale-105'
-                      : 'text-white/75 hover:text-white hover:bg-white/10'
+                      ? 'bg-white/20 border-amber-300 scale-110 shadow-xl shadow-amber-400/20'
+                      : 'bg-black/50 border-white/15 hover:bg-white/10 hover:scale-105'
                   }`}
                 >
-                  <span
-                    style={{ backgroundColor: item.moodColor }}
-                    className={`h-2.5 w-2.5 rounded-full shadow-sm transition-transform ${isSel ? 'scale-125 ring-2 ring-slate-950' : ''}`}
-                  />
-                  <span>{item.name}</span>
+                  <div className="relative aspect-[3/4] h-14 w-11 sm:h-20 sm:w-15 rounded-xl sm:rounded-2xl bg-[#FAF8F5] p-1 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src={optimizeCloudinaryUrl(thumbImg, 200)}
+                      alt={item.name}
+                      fill
+                      className="object-contain p-0.5"
+                    />
+                  </div>
+                  <span className={`text-[10px] sm:text-[11px] font-black uppercase mt-1 tracking-tight ${isSel ? 'text-amber-300' : 'text-slate-300 group-hover:text-white'}`}>
+                    {item.name}
+                  </span>
                 </button>
               );
             })}
           </div>
 
-          <p className="text-xs text-slate-400 font-medium mt-1">
-            {activeSpotlight.tagline}
+          <p className="text-xs sm:text-sm text-slate-300 font-medium">
+            {activeSpotlight.tagline} · <span className="text-amber-300 font-bold">{activeSpotlight.badge}</span>
           </p>
         </div>
       </div>
