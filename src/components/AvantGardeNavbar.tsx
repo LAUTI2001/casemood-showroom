@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { ShoppingBag, MessageCircle } from 'lucide-react';
-import { CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
+import { ShoppingBag } from 'lucide-react';
+import { InstagramIcon } from './icons/InstagramIcon';
+import { CASEMOOD_INSTAGRAM, CASEMOOD_STORE_URL, createGeneralWhatsAppUrl } from '../lib/whatsapp';
 
 function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
   return (
@@ -14,10 +15,10 @@ function WhatsAppIcon({ className = 'h-4 w-4' }: { className?: string }) {
 
 export function AvantGardeNavbar() {
   return (
-    <header className="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-5xl select-none">
-      <div className="flex items-center justify-between rounded-full border border-white/20 bg-[#1A121E]/80 px-3.5 sm:px-6 py-2.5 backdrop-blur-2xl shadow-[0_12px_45px_rgba(0,0,0,0.8)] transition-all hover:border-pink-400/40">
-        {/* Left: Mascot & Brand Mark */}
-        <a href="#" className="flex items-center gap-2.5 group">
+    <header className="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 w-[96%] max-w-6xl select-none">
+      <div className="flex items-center justify-between gap-2 sm:gap-4 rounded-full border border-white/20 bg-[#1A121E]/85 px-3 sm:px-6 py-2 sm:py-2.5 backdrop-blur-2xl shadow-[0_16px_50px_rgba(0,0,0,0.85)] transition-all hover:border-pink-400/40">
+        {/* Left: Brand Logo & Title */}
+        <a href="#" className="flex items-center gap-2 sm:gap-2.5 group shrink-0">
           <div className="relative h-8 w-8 sm:h-9 sm:w-9 overflow-hidden rounded-full border-2 border-amber-300 bg-white p-0.5 shadow-md shadow-amber-400/20 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110">
             <Image
               src="/brand/logo-cool.jpeg"
@@ -29,48 +30,54 @@ export function AvantGardeNavbar() {
           </div>
 
           <div className="flex flex-col">
-            <span className="font-display text-sm sm:text-base font-black tracking-tight text-white group-hover:text-amber-300 transition-colors uppercase">
+            <span className="font-display text-xs sm:text-base font-black tracking-tight text-white group-hover:text-amber-300 transition-colors uppercase">
               CASE MOOD
             </span>
-            <span className="text-[9px] font-extrabold uppercase tracking-widest text-pink-400 leading-none">
+            <span className="text-[8px] sm:text-[9px] font-extrabold uppercase tracking-widest text-pink-400 leading-none hidden xs:inline">
               Showroom Oficial
             </span>
           </div>
         </a>
 
-        {/* Center: Clean Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 rounded-full bg-white/5 border border-white/10 px-3 py-1 text-xs font-bold text-slate-300">
-          <a href="#mural" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Novedades
+        {/* Right: The 3 Action Buttons (Instagram, WhatsApp, Tienda Oficial) */}
+        <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+          {/* 1. Instagram Button */}
+          <a
+            href={CASEMOOD_INSTAGRAM}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs font-bold text-white hover:bg-pink-500/20 hover:border-pink-400 hover:text-pink-300 transition-all active:scale-95"
+            aria-label="Instagram @casemood__"
+            title="Seguinos en Instagram"
+          >
+            <InstagramIcon className="h-4 w-4 text-pink-400 shrink-0" />
+            <span className="hidden sm:inline">Instagram</span>
           </a>
-          <a href="#carrusel-doble" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Colección
-          </a>
-          <a href="#atmospheres" className="px-3 py-1 rounded-full hover:text-white hover:bg-white/10 transition-all">
-            Colores
-          </a>
-        </nav>
 
-        {/* Right: Discrete Action Buttons */}
-        <div className="flex items-center gap-2 sm:gap-3">
+          {/* 2. WhatsApp Button */}
           <a
             href={createGeneralWhatsAppUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 sm:px-4 py-2 text-xs font-bold text-white hover:bg-emerald-500/20 hover:border-emerald-400 hover:text-emerald-300 transition-all active:scale-95"
+            className="flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-2.5 sm:px-4 py-1.5 sm:py-2 text-xs font-bold text-white hover:bg-emerald-500/20 hover:border-emerald-400 hover:text-emerald-300 transition-all active:scale-95"
+            aria-label="WhatsApp Oficial"
+            title="Consultar por WhatsApp"
           >
-            <WhatsAppIcon className="h-3.5 w-3.5 text-[#25D366]" />
+            <WhatsAppIcon className="h-4 w-4 text-[#25D366] shrink-0" />
             <span className="hidden sm:inline">WhatsApp</span>
           </a>
 
+          {/* 3. Tienda Oficial Button */}
           <a
             href={CASEMOOD_STORE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-300 via-pink-400 to-rose-400 px-4 sm:px-5 py-2 text-xs font-black text-slate-950 shadow-lg shadow-pink-500/20 transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-amber-300 via-pink-400 to-rose-400 px-3.5 sm:px-5 py-1.5 sm:py-2 text-xs font-black text-slate-950 shadow-lg shadow-pink-500/25 transition-all hover:scale-105 active:scale-95"
+            aria-label="Ir a la Tienda Oficial"
+            title="Ir a la Tienda Oficial"
           >
-            <ShoppingBag className="h-3.5 w-3.5" />
-            <span>Tienda</span>
+            <ShoppingBag className="h-3.5 w-3.5 shrink-0" />
+            <span>Tienda Oficial</span>
           </a>
         </div>
       </div>

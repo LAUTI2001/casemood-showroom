@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AvantGardeNavbar } from '../components/AvantGardeNavbar';
 import { Footer } from '../components/Footer';
-import { FloatingMobileDock } from '../components/FloatingMobileDock';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://casemood.pages.dev'),
@@ -44,7 +43,6 @@ export default function RootLayout({
         <AvantGardeNavbar />
         <main className="flex-1">{children}</main>
         <Footer />
-        <FloatingMobileDock />
       </body>
     </html>
   );
