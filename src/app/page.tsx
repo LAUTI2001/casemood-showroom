@@ -9,6 +9,7 @@ import { ScrollProgressBar } from '../components/ScrollProgressBar';
 import { PsychedelicArtHero } from '../components/PsychedelicArtHero';
 import { AestheticKineticManifesto } from '../components/AestheticKineticManifesto';
 import { FloatingArtisanCollage } from '../components/FloatingArtisanCollage';
+import { LifestyleAtmosphereShowcase } from '../components/LifestyleAtmosphereShowcase';
 import { LiquidCoverflowStream } from '../components/LiquidCoverflowStream';
 import { SensoryMoodChamber } from '../components/SensoryMoodChamber';
 import { AboutSection } from '../components/AboutSection';
@@ -44,15 +45,18 @@ export default async function ShowroomPage() {
         {/* 3. Mural de Diseños: Galería Asimétrica & Collage 3D */}
         <FloatingArtisanCollage products={products} />
 
-        {/* 4. Lookbook Dinámico: Doble Carrusel Paralelo en Direcciones Opuestas */}
+        {/* 4. Fotos de Entorno & Lifestyle (Atmósfera Pura sin hipervínculos) */}
+        <LifestyleAtmosphereShowcase />
+
+        {/* 5. Lookbook Dinámico: Doble Carrusel Paralelo en Direcciones Opuestas */}
         <LiquidCoverflowStream products={products} />
 
-        {/* 5. Selector de Colores & Acabados */}
+        {/* 6. Selector de Colores & Acabados */}
         {sections.studio !== false && (
           <SensoryMoodChamber products={products} />
         )}
 
-        {/* 6. Sobre CaseMood (Opcional) */}
+        {/* 7. Sobre CaseMood (Opcional) */}
         {sections.about && (
           <div id="sobre-nosotros" className="scroll-mt-20 w-full">
             <AboutSection />
