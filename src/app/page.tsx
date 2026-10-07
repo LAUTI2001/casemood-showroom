@@ -9,7 +9,6 @@ import { ScrollProgressBar } from '../components/ScrollProgressBar';
 import { PsychedelicArtHero } from '../components/PsychedelicArtHero';
 import { AestheticKineticManifesto } from '../components/AestheticKineticManifesto';
 import { FloatingArtisanCollage } from '../components/FloatingArtisanCollage';
-import { LifestyleAtmosphereShowcase } from '../components/LifestyleAtmosphereShowcase';
 import { LiquidCoverflowStream } from '../components/LiquidCoverflowStream';
 import { SensoryMoodChamber } from '../components/SensoryMoodChamber';
 import { AboutSection } from '../components/AboutSection';
@@ -34,29 +33,26 @@ export default async function ShowroomPage() {
         {/* Scroll Progress Glow Bar */}
         <ScrollProgressBar />
 
-        {/* 1. Hero Principal: Experiencia CASEMOOD Monumental */}
+        {/* 1. Hero Principal con Fotos de Entorno Flotantes de Fondo (lifestyle-1 & lifestyle-6) */}
         {sections.hero !== false && (
           <PsychedelicArtHero products={products} />
         )}
 
-        {/* 2. Manifiesto Cinético Tipográfico */}
+        {/* 2. Manifiesto Cinético con Fotos de Entorno Flotantes de Fondo (lifestyle-2 & lifestyle-7) */}
         <AestheticKineticManifesto />
 
-        {/* 3. Mural de Diseños: Galería Asimétrica & Collage 3D */}
+        {/* 3. Mural de Diseños con Fotos de Entorno Dispersadas (lifestyle-3, lifestyle-8 & lifestyle-4) */}
         <FloatingArtisanCollage products={products} />
 
-        {/* 4. Fotos de Entorno & Lifestyle (Atmósfera Pura sin hipervínculos) */}
-        <LifestyleAtmosphereShowcase />
-
-        {/* 5. Lookbook Dinámico: Doble Carrusel Paralelo en Direcciones Opuestas */}
+        {/* 4. Lookbook Dinámico: Doble Carrusel con Fotos de Fondo (lifestyle-5 & lifestyle-9) */}
         <LiquidCoverflowStream products={products} />
 
-        {/* 6. Selector de Colores & Acabados */}
+        {/* 5. Selector de Colores & Acabados con Foto de Entorno (lifestyle-10) */}
         {sections.studio !== false && (
           <SensoryMoodChamber products={products} />
         )}
 
-        {/* 7. Sobre CaseMood (Opcional) */}
+        {/* 6. Sobre CaseMood (Opcional) */}
         {sections.about && (
           <div id="sobre-nosotros" className="scroll-mt-20 w-full">
             <AboutSection />

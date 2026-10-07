@@ -48,13 +48,39 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
       <div className="pointer-events-none absolute bottom-10 right-10 w-[350px] sm:w-[700px] h-[350px] sm:h-[700px] rounded-full bg-amber-400/20 blur-[130px] sm:blur-[180px] animate-blob-2" />
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] rounded-full bg-emerald-600/15 blur-[140px] animate-blob-3" />
 
+      {/* Atmospheric Background Lifestyle Card 1 (Left Flank) */}
+      <div className="pointer-events-none absolute top-28 -left-12 sm:left-4 lg:left-12 z-0 w-48 sm:w-64 lg:w-76 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md -rotate-6 shadow-2xl opacity-40 sm:opacity-60 lg:opacity-75 animate-float-1">
+        <Image
+          src="/lifestyle/lifestyle-1.jpg"
+          alt="CaseMood Atmosphere Left"
+          fill
+          sizes="(min-width: 1024px) 320px, 200px"
+          className="object-cover filter contrast-105"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
+      {/* Atmospheric Background Lifestyle Card 6 (Right Flank) */}
+      <div className="pointer-events-none absolute top-36 -right-12 sm:right-4 lg:right-12 z-0 w-48 sm:w-64 lg:w-76 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md rotate-6 shadow-2xl opacity-40 sm:opacity-60 lg:opacity-75 animate-float-2">
+        <Image
+          src="/lifestyle/lifestyle-6.jpg"
+          alt="CaseMood Atmosphere Right"
+          fill
+          sizes="(min-width: 1024px) 320px, 200px"
+          className="object-cover filter contrast-105"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
       {/* Floating Graphic Stamps */}
-      <div className="pointer-events-none absolute top-32 left-6 sm:left-16 z-20 hidden sm:flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-500/15 px-4 py-1.5 text-xs font-black uppercase text-pink-300 backdrop-blur-xl -rotate-6 shadow-xl animate-float-1">
+      <div className="pointer-events-none absolute top-24 left-6 sm:left-24 z-20 hidden sm:flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-500/15 px-4 py-1.5 text-xs font-black uppercase text-pink-300 backdrop-blur-xl -rotate-6 shadow-xl animate-float-1">
         <Sparkles className="h-3.5 w-3.5 text-pink-300" />
         <span>Diseños Exclusivos</span>
       </div>
 
-      <div className="pointer-events-none absolute top-40 right-6 sm:right-20 z-20 hidden sm:flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-4 py-1.5 text-xs font-black uppercase text-amber-300 backdrop-blur-xl rotate-6 shadow-xl animate-float-2">
+      <div className="pointer-events-none absolute top-32 right-6 sm:right-28 z-20 hidden sm:flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/15 px-4 py-1.5 text-xs font-black uppercase text-amber-300 backdrop-blur-xl rotate-6 shadow-xl animate-float-2">
         <Compass className="h-3.5 w-3.5 text-amber-300" />
         <span>Calce Milimétrico & Shock Proof</span>
       </div>

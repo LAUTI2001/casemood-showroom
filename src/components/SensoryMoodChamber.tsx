@@ -95,6 +95,18 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
         className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[600px] sm:h-[900px] rounded-full blur-[160px] transition-all duration-1000 opacity-60"
       />
 
+      {/* Atmospheric Background Lifestyle Card 10 (Floating in Environment) */}
+      <div className="pointer-events-none absolute bottom-16 right-4 sm:right-16 z-0 w-44 sm:w-64 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/15 bg-white/[0.04] backdrop-blur-md rotate-6 shadow-2xl opacity-35 sm:opacity-55">
+        <Image
+          src="/lifestyle/lifestyle-10.jpg"
+          alt="CaseMood Atmosphere Cherry Street"
+          fill
+          sizes="(min-width: 1024px) 260px, 180px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
       <div className="relative z-10 mx-auto max-w-6xl flex flex-col items-center text-center">
         {/* Header */}
         <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-slate-200 backdrop-blur-2xl mb-4 shadow-xl">

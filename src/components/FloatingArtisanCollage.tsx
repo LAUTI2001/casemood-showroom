@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { Sparkles, ArrowUpRight, ShoppingBag } from 'lucide-react';
 import { optimizeCloudinaryUrl } from '../lib/cloudinaryUrl';
-import { CASEMOOD_STORE_URL, getEcommerceProductUrl } from '../lib/whatsapp';
+import { CASEMOOD_STORE_URL } from '../lib/whatsapp';
 import type { ShowroomProduct } from '../types';
 
 interface FloatingArtisanCollageProps {
@@ -12,7 +12,7 @@ interface FloatingArtisanCollageProps {
 }
 
 export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps) {
-  const displayItems = products.slice(0, 10);
+  const displayItems = products.slice(0, 9);
   const [selectedProduct, setSelectedProduct] = useState<ShowroomProduct | null>(null);
 
   // Artistic organic styling variations
@@ -31,6 +31,29 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
       <div className="pointer-events-none absolute top-1/3 right-10 w-[500px] h-[500px] rounded-full bg-pink-500/15 blur-[150px] animate-blob-1" />
       <div className="pointer-events-none absolute bottom-10 left-10 w-[600px] h-[600px] rounded-full bg-amber-400/15 blur-[160px] animate-blob-2" />
 
+      {/* Atmospheric Lifestyle Side Ambient Floats */}
+      <div className="pointer-events-none absolute top-1/4 -left-16 sm:left-4 z-0 w-48 sm:w-64 aspect-[3/4] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md -rotate-12 shadow-2xl opacity-30 sm:opacity-50">
+        <Image
+          src="/lifestyle/lifestyle-3.jpg"
+          alt="Atmosphere Coast"
+          fill
+          sizes="(min-width: 1024px) 280px, 180px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
+      <div className="pointer-events-none absolute bottom-1/4 -right-16 sm:right-4 z-0 w-48 sm:w-64 aspect-[3/4] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md rotate-12 shadow-2xl opacity-30 sm:opacity-50">
+        <Image
+          src="/lifestyle/lifestyle-8.jpg"
+          alt="Atmosphere Seaside"
+          fill
+          sizes="(min-width: 1024px) 280px, 180px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
       {/* Giant Faded Artistic Watermark */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.03]">
         <span className="font-display text-[22vw] font-black tracking-tighter text-white whitespace-nowrap leading-none">
@@ -38,7 +61,7 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
         </span>
       </div>
 
-      <div className="relative mx-auto max-w-7xl">
+      <div className="relative mx-auto max-w-7xl z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 sm:mb-24">
           <div className="inline-flex items-center gap-2 rounded-full border border-pink-400/40 bg-pink-500/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-pink-300 backdrop-blur-2xl mb-4 shadow-xl">
@@ -55,57 +78,77 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
           </p>
         </div>
 
-        {/* Asymmetrical Floating Bento Collage */}
+        {/* Asymmetrical Floating Bento Collage with Weaved Lifestyle Atmosphere Panels */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 items-center">
           {displayItems.map((product, idx) => {
             const theme = cardThemes[idx % cardThemes.length];
             const imgSrc = product.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
 
+            // Insert an ambient lookbook panel after item 2 and item 5
+            const showLifestyleCardAfter = idx === 2 ? '/lifestyle/lifestyle-4.jpg' : null;
+
             return (
-              <div
-                key={product.id + idx}
-                onClick={() => setSelectedProduct(product)}
-                className={`group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b ${theme.bg} p-6 sm:p-8 border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-700 hover:scale-105 hover:z-30 cursor-pointer ${theme.border} ${theme.rotate}`}
-              >
-                {/* Chromatic Hover Halo */}
-                <div className={`pointer-events-none absolute -inset-10 rounded-full ${theme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl`} />
+              <div key={product.id + idx} className="contents">
+                <div
+                  onClick={() => setSelectedProduct(product)}
+                  className={`group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b ${theme.bg} p-6 sm:p-8 border border-white/15 backdrop-blur-2xl shadow-2xl transition-all duration-700 hover:scale-105 hover:z-30 cursor-pointer ${theme.border} ${theme.rotate}`}
+                >
+                  {/* Chromatic Hover Halo */}
+                  <div className={`pointer-events-none absolute -inset-10 rounded-full ${theme.glow} opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl`} />
 
-                {/* Top Badge & Number */}
-                <div className="relative z-10 flex items-center justify-between mb-4">
-                  <span className={`inline-block text-[10px] sm:text-[11px] font-black uppercase tracking-widest px-3.5 py-1 rounded-full border ${theme.badge}`}>
-                    {product.category}
-                  </span>
-                  <span className="text-xs font-bold text-slate-400">
-                    0{idx + 1}
-                  </span>
-                </div>
+                  {/* Top Badge & Number */}
+                  <div className="relative z-10 flex items-center justify-between mb-4">
+                    <span className={`inline-block text-[10px] sm:text-[11px] font-black uppercase tracking-widest px-3.5 py-1 rounded-full border ${theme.badge}`}>
+                      {product.category}
+                    </span>
+                    <span className="text-xs font-bold text-slate-400">
+                      0{idx + 1}
+                    </span>
+                  </div>
 
-                {/* Floating Central Phone Case */}
-                <div className="relative aspect-[3/4] w-full max-w-[240px] sm:max-w-[270px] mx-auto overflow-hidden rounded-[28px] bg-white/[0.06] p-5 flex items-center justify-center border border-white/10 my-3 transition-transform duration-700 group-hover:scale-105">
-                  <Image
-                    src={optimizeCloudinaryUrl(imgSrc, 700)}
-                    alt={product.displayName}
-                    fill
-                    sizes="(min-width: 1024px) 270px, 200px"
-                    className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
+                  {/* Floating Central Phone Case */}
+                  <div className="relative aspect-[3/4] w-full max-w-[240px] sm:max-w-[270px] mx-auto overflow-hidden rounded-[28px] bg-white/[0.06] p-5 flex items-center justify-center border border-white/10 my-3 transition-transform duration-700 group-hover:scale-105">
+                    <Image
+                      src={optimizeCloudinaryUrl(imgSrc, 700)}
+                      alt={product.displayName}
+                      fill
+                      sizes="(min-width: 1024px) 270px, 200px"
+                      className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)] transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
 
-                {/* Bottom Title & Action Trigger */}
-                <div className="relative z-10 space-y-2 text-center pt-2">
-                  <h3 className="font-display text-2xl sm:text-3xl font-black text-white uppercase tracking-tight group-hover:text-amber-300 transition-colors">
-                    {product.displayName}
-                  </h3>
+                  {/* Bottom Title & Action Trigger */}
+                  <div className="relative z-10 space-y-2 text-center pt-2">
+                    <h3 className="font-display text-2xl sm:text-3xl font-black text-white uppercase tracking-tight group-hover:text-amber-300 transition-colors">
+                      {product.displayName}
+                    </h3>
 
-                  <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed font-medium">
-                    {product.description}
-                  </p>
+                    <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed font-medium">
+                      {product.description}
+                    </p>
 
-                  <div className="pt-2 flex items-center justify-center gap-1.5 text-xs font-black text-pink-300 group-hover:text-amber-300 transition-colors">
-                    <span>Ver detalles</span>
-                    <ArrowUpRight className="h-3.5 w-3.5" />
+                    <div className="pt-2 flex items-center justify-center gap-1.5 text-xs font-black text-pink-300 group-hover:text-amber-300 transition-colors">
+                      <span>Ver detalles</span>
+                      <ArrowUpRight className="h-3.5 w-3.5" />
+                    </div>
                   </div>
                 </div>
+
+                {/* Dispersed Lifestyle Photo Card inside the Flow */}
+                {showLifestyleCardAfter && (
+                  <div className="group relative overflow-hidden rounded-[36px] sm:rounded-[44px] bg-gradient-to-b from-purple-500/20 via-pink-950/20 to-transparent p-3 sm:p-4 border border-white/15 backdrop-blur-2xl shadow-2xl rotate-2 sm:rotate-3 transition-all duration-700 hover:scale-105 hover:border-white/30">
+                    <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] bg-slate-950">
+                      <Image
+                        src={showLifestyleCardAfter}
+                        alt="CaseMood Editorial Atmosphere"
+                        fill
+                        sizes="(min-width: 1024px) 400px, 90vw"
+                        className="object-cover filter contrast-105 transition-transform duration-1000 group-hover:scale-105"
+                      />
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+                    </div>
+                  </div>
+                )}
               </div>
             );
           })}

@@ -24,8 +24,32 @@ export function LiquidCoverflowStream({ products }: LiquidCoverflowStreamProps) 
       <div className="pointer-events-none absolute top-10 left-1/4 w-[500px] h-[500px] bg-radial from-pink-600/20 via-rose-950/20 to-transparent blur-[140px] animate-blob-1" />
       <div className="pointer-events-none absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-radial from-amber-500/20 via-orange-950/20 to-transparent blur-[140px] animate-blob-2" />
 
+      {/* Atmospheric Background Lifestyle Card 5 (Top Left Flank) */}
+      <div className="pointer-events-none absolute top-12 left-4 sm:left-12 z-0 w-44 sm:w-64 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md -rotate-6 shadow-2xl opacity-30 sm:opacity-50">
+        <Image
+          src="/lifestyle/lifestyle-5.jpg"
+          alt="CaseMood Atmosphere Urban Coffee"
+          fill
+          sizes="(min-width: 1024px) 260px, 180px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
+      {/* Atmospheric Background Lifestyle Card 9 (Bottom Right Flank) */}
+      <div className="pointer-events-none absolute bottom-12 right-4 sm:right-12 z-0 w-44 sm:w-64 aspect-[4/5] rounded-[36px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md rotate-6 shadow-2xl opacity-30 sm:opacity-50">
+        <Image
+          src="/lifestyle/lifestyle-9.jpg"
+          alt="CaseMood Atmosphere Denim Flatlay"
+          fill
+          sizes="(min-width: 1024px) 260px, 180px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
       {/* Header */}
-      <div className="flex flex-col items-center text-center mb-14 sm:mb-20 px-4">
+      <div className="relative z-10 flex flex-col items-center text-center mb-14 sm:mb-20 px-4">
         <div className="inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/10 px-5 py-1.5 text-xs font-black uppercase tracking-wider text-amber-300 backdrop-blur-2xl shadow-xl mb-3">
           <Sparkles className="h-3.5 w-3.5" />
           <span>Lookbook Dinámico · Modelos en Tendencia</span>
@@ -41,7 +65,7 @@ export function LiquidCoverflowStream({ products }: LiquidCoverflowStreamProps) 
       </div>
 
       {/* Stream 1: Leftward Infinite Flow */}
-      <div className="flex overflow-hidden py-4">
+      <div className="relative z-10 flex overflow-hidden py-4">
         <div className="animate-marquee-left flex gap-6 sm:gap-8 items-center">
           {topStream.map((p, idx) => {
             const imgSrc = p.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';
@@ -85,7 +109,7 @@ export function LiquidCoverflowStream({ products }: LiquidCoverflowStreamProps) 
       </div>
 
       {/* Stream 2: Rightward Infinite Flow */}
-      <div className="flex overflow-hidden py-4">
+      <div className="relative z-10 flex overflow-hidden py-4">
         <div className="animate-marquee-right flex gap-6 sm:gap-8 items-center">
           {bottomStream.map((p, idx) => {
             const imgSrc = p.images[0] || 'https://res.cloudinary.com/tehmhtfm/image/upload/v1786833046/casemood-productos/ir1qmltsh2af2joov7ov.jpg';

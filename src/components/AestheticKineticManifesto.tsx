@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { Sparkles, Star } from 'lucide-react';
 
 export function AestheticKineticManifesto() {
@@ -27,9 +28,33 @@ export function AestheticKineticManifesto() {
   const row2 = [...manifestoItemsRow2, ...manifestoItemsRow2, ...manifestoItemsRow2];
 
   return (
-    <section className="relative w-full py-16 sm:py-24 bg-[#0E0911] overflow-hidden select-none border-b border-white/10 mask-fade-edges">
+    <section className="relative w-full py-16 sm:py-28 bg-[#0E0911] overflow-hidden select-none border-b border-white/10 mask-fade-edges">
+      {/* Atmospheric Background Lifestyle Card 2 (Left Backing) */}
+      <div className="pointer-events-none absolute -top-8 left-4 sm:left-16 z-0 w-36 sm:w-56 aspect-[3/4] rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md -rotate-12 shadow-2xl opacity-25 sm:opacity-40">
+        <Image
+          src="/lifestyle/lifestyle-2.jpg"
+          alt="CaseMood Atmosphere Parisienne"
+          fill
+          sizes="(min-width: 1024px) 240px, 150px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
+      {/* Atmospheric Background Lifestyle Card 7 (Right Backing) */}
+      <div className="pointer-events-none absolute -bottom-8 right-4 sm:right-16 z-0 w-36 sm:w-56 aspect-[3/4] rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.03] backdrop-blur-md rotate-12 shadow-2xl opacity-25 sm:opacity-40">
+        <Image
+          src="/lifestyle/lifestyle-7.jpg"
+          alt="CaseMood Atmosphere Burgundy Stars"
+          fill
+          sizes="(min-width: 1024px) 240px, 150px"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      </div>
+
       {/* Row 1: Leftward Infinite Flow */}
-      <div className="flex overflow-hidden py-3">
+      <div className="relative z-10 flex overflow-hidden py-3">
         <div className="animate-marquee-left flex gap-8 sm:gap-14 items-center whitespace-nowrap">
           {row1.map((text, idx) => (
             <div key={`m1-${idx}`} className="flex items-center gap-6 sm:gap-10">
@@ -43,7 +68,7 @@ export function AestheticKineticManifesto() {
       </div>
 
       {/* Row 2: Rightward Infinite Flow */}
-      <div className="flex overflow-hidden py-3">
+      <div className="relative z-10 flex overflow-hidden py-3">
         <div className="animate-marquee-right flex gap-8 sm:gap-14 items-center whitespace-nowrap">
           {row2.map((text, idx) => (
             <div key={`m2-${idx}`} className="flex items-center gap-6 sm:gap-10">
