@@ -96,8 +96,19 @@ export function SensoryMoodChamber({ products }: SensoryMoodChamberProps) {
       />
 
       {/* ========================================================= */}
-      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND LIFESTYLE POSTER 🌟 */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND LIFESTYLE POSTERS 🌟 */}
       {/* ========================================================= */}
+      <div className="pointer-events-none absolute top-10 -left-16 sm:left-6 lg:left-12 z-0 w-64 sm:w-[480px] lg:w-[600px] aspect-[4/5] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-6 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
+        <Image
+          src="/lifestyle/lifestyle-4.jpg"
+          alt="CaseMood Atmosphere Night Stars"
+          fill
+          sizes="(min-width: 1024px) 600px, 320px"
+          className="object-cover filter contrast-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
+      </div>
+
       <div className="pointer-events-none absolute bottom-10 -right-16 sm:right-6 lg:right-12 z-0 w-64 sm:w-[480px] lg:w-[600px] aspect-[4/5] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-6 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
           src="/lifestyle/lifestyle-10.jpg"

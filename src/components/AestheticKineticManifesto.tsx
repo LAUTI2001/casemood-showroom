@@ -30,12 +30,12 @@ export function AestheticKineticManifesto() {
   return (
     <section className="relative w-full py-20 sm:py-36 bg-[#0E0911] overflow-hidden select-none border-b border-white/10 mask-fade-edges">
       {/* ========================================================= */}
-      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND POSTERS 🌟 */}
+      {/* 🌟 GIGANTIC ATMOSPHERIC BACKGROUND POSTERS (NEW EDITORIAL) 🌟 */}
       {/* ========================================================= */}
-      <div className="pointer-events-none absolute -top-16 -left-12 sm:left-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-60">
+      <div className="pointer-events-none absolute -top-16 -left-12 sm:left-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65">
         <Image
-          src="/lifestyle/lifestyle-2.jpg"
-          alt="CaseMood Atmosphere Parisienne"
+          src="/lifestyle/lifestyle-11.jpg"
+          alt="CaseMood Atmosphere Floral Pocket"
           fill
           sizes="(min-width: 1024px) 580px, 300px"
           className="object-cover filter contrast-110"
@@ -43,10 +43,10 @@ export function AestheticKineticManifesto() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
       </div>
 
-      <div className="pointer-events-none absolute -bottom-16 -right-12 sm:right-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-60">
+      <div className="pointer-events-none absolute -bottom-16 -right-12 sm:right-12 z-0 w-64 sm:w-[480px] lg:w-[580px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65">
         <Image
-          src="/lifestyle/lifestyle-7.jpg"
-          alt="CaseMood Atmosphere Burgundy Stars"
+          src="/lifestyle/lifestyle-12.jpg"
+          alt="CaseMood Atmosphere Silver Butterflies"
           fill
           sizes="(min-width: 1024px) 580px, 300px"
           className="object-cover filter contrast-110"

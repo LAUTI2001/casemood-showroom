@@ -37,8 +37,8 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
       {/* ========================================================= */}
       <div className="pointer-events-none absolute top-12 -left-20 sm:-left-10 lg:left-2 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl -rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
-          src="/lifestyle/lifestyle-3.jpg"
-          alt="Atmosphere Coast"
+          src="/lifestyle/lifestyle-2.jpg"
+          alt="Atmosphere Parisienne"
           fill
           sizes="(min-width: 1024px) 620px, 320px"
           className="object-cover filter contrast-110"
@@ -48,8 +48,8 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
 
       <div className="pointer-events-none absolute top-1/2 -right-20 sm:-right-10 lg:right-2 z-0 w-64 sm:w-[480px] lg:w-[620px] aspect-[3/4] rounded-[52px] overflow-hidden border-2 border-white/15 bg-white/[0.04] backdrop-blur-xl rotate-12 shadow-[0_30px_90px_rgba(0,0,0,0.85)] opacity-40 sm:opacity-65 lg:opacity-75">
         <Image
-          src="/lifestyle/lifestyle-8.jpg"
-          alt="Atmosphere Seaside"
+          src="/lifestyle/lifestyle-7.jpg"
+          alt="Atmosphere Burgundy Stars"
           fill
           sizes="(min-width: 1024px) 620px, 320px"
           className="object-cover filter contrast-110"
@@ -59,8 +59,8 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
 
       <div className="pointer-events-none absolute bottom-20 -left-16 sm:left-4 z-0 w-60 sm:w-[420px] lg:w-[540px] aspect-[3/4] rounded-[48px] overflow-hidden border border-white/15 bg-white/[0.03] backdrop-blur-md rotate-6 shadow-2xl opacity-35 sm:opacity-60">
         <Image
-          src="/lifestyle/lifestyle-10.jpg"
-          alt="Atmosphere Picnic"
+          src="/lifestyle/lifestyle-13.jpg"
+          alt="Atmosphere Great Wave Desk"
           fill
           sizes="(min-width: 1024px) 540px, 300px"
           className="object-cover"
@@ -101,9 +101,9 @@ export function FloatingArtisanCollage({ products }: FloatingArtisanCollageProps
             // Insert large lifestyle lookbook panels inside the grid flow
             const lifestyleInterleave =
               idx === 2
-                ? { src: '/lifestyle/lifestyle-4.jpg', alt: 'Night & Stars Editorial' }
+                ? { src: '/lifestyle/lifestyle-3.jpg', alt: 'Beach Sunset Shell Lookbook' }
                 : idx === 7
-                ? { src: '/lifestyle/lifestyle-9.jpg', alt: 'Denim & Stars Lookbook' }
+                ? { src: '/lifestyle/lifestyle-8.jpg', alt: 'Summer Stripes Seaside' }
                 : null;
 
             return (

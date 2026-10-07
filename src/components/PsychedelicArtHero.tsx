@@ -211,29 +211,7 @@ export function PsychedelicArtHero({ products }: PsychedelicArtHeroProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       </div>
 
-      {/* Deep Background Lifestyle 2 (Lower Left Atmosphere) */}
-      <div className="pointer-events-none absolute -bottom-10 left-10 lg:left-32 z-0 hidden lg:block w-80 aspect-[3/4] rounded-[40px] overflow-hidden border border-white/15 bg-white/[0.02] backdrop-blur-md rotate-12 shadow-2xl opacity-40">
-        <Image
-          src="/lifestyle/lifestyle-2.jpg"
-          alt="CaseMood Atmosphere Parisienne"
-          fill
-          sizes="320px"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-      </div>
 
-      {/* Deep Background Lifestyle 7 (Lower Right Atmosphere) */}
-      <div className="pointer-events-none absolute -bottom-10 right-10 lg:right-32 z-0 hidden lg:block w-80 aspect-[3/4] rounded-[40px] overflow-hidden border border-white/15 bg-white/[0.02] backdrop-blur-md -rotate-12 shadow-2xl opacity-40">
-        <Image
-          src="/lifestyle/lifestyle-7.jpg"
-          alt="CaseMood Atmosphere Burgundy"
-          fill
-          sizes="320px"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-      </div>
 
       {/* Main Title & Editorial Statement */}
       <div className="relative z-20 flex flex-col items-center text-center max-w-5xl mx-auto w-full">
